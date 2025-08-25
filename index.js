@@ -25,7 +25,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const allPosts = [
         {
             id: 1,
-            title: "About This Apps Creator",
+            title: "About This App's Creator",
             author: "Komal Chaudhary",
             date: "August 25, 2025",
             category: "Biography",
