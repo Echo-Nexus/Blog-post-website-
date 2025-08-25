@@ -30,7 +30,7 @@ document.addEventListener("DOMContentLoaded", () => {
             date: "August 25, 2025",
             category: "Biography",
             imageUrl:
-                "https://www.dropbox.com/scl/fi/mm7oujrodbqwr2zblin8t/id1.jpg?rlkey=q2gcl2xrwo47tcxzzxfabtt7t&st=cyzv0yl9&&raw=1",
+                "https://www.dropbox.com/scl/fi/bu8wupt023vg0u37kl2t3/id1.jpg?rlkey=353neh9rxdfde6kpezyb2bvb4&st=ctxd9rr9&&raw=1",
             summary:
                 "Komal Chaudhary is a highly motivated and talented learner from Nepal, with a passion for science, technology, and sharing knowledge through creative content.",
             content: `<p>Komal Chaudhary is an ambitious and intellectually curious individual hailing from Nepal. Known for being a consistent top performer in academics, Komal has a deep love for learning and exploring new subjects, particularly in the fields of science, technology, history, and innovation. With a natural talent for research and critical thinking, Komal has developed a strong foundation in understanding complex concepts and presenting them in a simple, engaging manner.</p>
