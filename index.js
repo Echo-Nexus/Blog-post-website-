@@ -115,10 +115,10 @@ document.addEventListener("DOMContentLoaded", () => {
         },
         {
             id: 11,
-            title: "About Komal Chaudhary",
+            title: "About This Website Creator ",
             author: "Komal Chaudhary",
             date: "August 25, 2025",
-            category: "Personal",
+            category: "Biography",
             imageUrl: "https://placehold.co/600x400/00bcd4/ffffff?text=Profile",
             summary:
                 "Komal Chaudhary is a highly motivated and talented learner from Nepal, with a passion for science, technology, and sharing knowledge through creative content.",
