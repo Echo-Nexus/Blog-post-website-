@@ -1,193 +1,354 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en" class="">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Modern Dev | A Blog</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-    <link rel="shortcut icon" href="https://www.dropbox.com/scl/fi/hnciwvzndpyuzlfyhayr9/favicon.ico?rlkey=1ge8l4s28esdlq8kk0b6pyp3d&st=uuwhpxhc&&raw=1" type="image/x-icon" />
-    <script>
-        // Custom Tailwind configuration to set the 'Inter' font family.
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                    },
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>The Modern Dev | A Blog</title>
+        <script src="https://cdn.tailwindcss.com"></script>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+            rel="stylesheet"
+        />
+        <link
+            rel="shortcut icon"
+            href="https://www.dropbox.com/scl/fi/hnciwvzndpyuzlfyhayr9/favicon.ico?rlkey=1ge8l4s28esdlq8kk0b6pyp3d&st=uuwhpxhc&&raw=1"
+            type="image/x-icon"
+        />
+        <script>
+            // Custom Tailwind configuration to set the 'Inter' font family.
+            tailwind.config = {
+                theme: {
+                    extend: {
+                        fontFamily: {
+                            sans: ["Inter", "sans-serif"]
+                        }
+                    }
                 }
+            };
+        </script>
+        <style>
+            /* Simple scrollbar styling for a better look */
+            ::-webkit-scrollbar {
+                width: 8px;
+                height: 8px;
             }
-        }
-    </script>
-    <style>
-        /* Simple scrollbar styling for a better look */
-        ::-webkit-scrollbar {
-            width: 8px;
-            height: 8px;
-        }
-        ::-webkit-scrollbar-track {
-            background: #f1f1f1;
-        }
-        .dark ::-webkit-scrollbar-track {
-            background: #2d3748;
-        }
-        ::-webkit-scrollbar-thumb {
-            background: #888;
-            border-radius: 10px;
-        }
-        ::-webkit-scrollbar-thumb:hover {
-            background: #555;
-        }
-        /* Basic styles for the prose content from the data */
-        .prose h3 {
-            font-size: 1.5rem; /* 24px */
-            line-height: 2rem; /* 32px */
-            font-weight: 700;
-            margin-top: 1.5rem;
-            margin-bottom: 0.75rem;
-        }
-        .prose p {
-            margin-bottom: 1rem;
-        }
-        .prose code {
-            background-color: #e5e7eb;
-            padding: 0.25rem 0.5rem;
-            border-radius: 0.25rem;
-            font-family: monospace;
-        }
-        .dark .prose code {
-             background-color: #4a5568;
-        }
-        /* Styles for the sidebar menu */
-        #sidebar-menu {
-            transform: translateX(-100%);
-            transition: transform 0.3s ease-in-out;
-        }
-        #sidebar-menu.is-open {
-            transform: translateX(0);
-        }
-        #sidebar-overlay {
-            opacity: 0;
-            visibility: hidden;
-            transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
-        }
-        #sidebar-overlay.is-open {
-            opacity: 1;
-            visibility: visible;
-        }
-    </style>
-</head>
-<body class="bg-gray-100 dark:bg-gray-900 font-sans transition-colors duration-300">
-
-    <!-- Sidebar Menu (hidden by default) -->
-    <div id="sidebar-overlay" class="fixed inset-0 bg-black/50 z-40"></div>
-    <div id="sidebar-menu" class="fixed top-0 left-0 h-full w-80 bg-white dark:bg-gray-900 shadow-lg z-50">
-        <div class="flex items-center justify-between p-4 border-b border-gray-200 dark:border-gray-700">
-            <h2 class="text-lg font-bold text-gray-800 dark:text-gray-100">Favorite Articles</h2>
-            <button id="sidebar-close-btn" class="p-1 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-gray-600 dark:text-gray-300"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
-            </button>
+            ::-webkit-scrollbar-track {
+                background: #f1f1f1;
+            }
+            .dark ::-webkit-scrollbar-track {
+                background: #2d3748;
+            }
+            ::-webkit-scrollbar-thumb {
+                background: #888;
+                border-radius: 10px;
+            }
+            ::-webkit-scrollbar-thumb:hover {
+                background: #555;
+            }
+            /* Basic styles for the prose content from the data */
+            .prose h3 {
+                font-size: 1.5rem; /* 24px */
+                line-height: 2rem; /* 32px */
+                font-weight: 700;
+                margin-top: 1.5rem;
+                margin-bottom: 0.75rem;
+            }
+            .prose p {
+                margin-bottom: 1rem;
+            }
+            .prose code {
+                background-color: #e5e7eb;
+                padding: 0.25rem 0.5rem;
+                border-radius: 0.25rem;
+                font-family: monospace;
+            }
+            .dark .prose code {
+                background-color: #4a5568;
+            }
+            /* Styles for the sidebar menu */
+            #sidebar-menu {
+                transform: translateX(-100%);
+                transition: transform 0.3s ease-in-out;
+            }
+            #sidebar-menu.is-open {
+                transform: translateX(0);
+            }
+            #sidebar-overlay {
+                opacity: 0;
+                visibility: hidden;
+                transition:
+                    opacity 0.3s ease-in-out,
+                    visibility 0.3s ease-in-out;
+            }
+            #sidebar-overlay.is-open {
+                opacity: 1;
+                visibility: visible;
+            }
+        </style>
+    </head>
+    <body
+        class="bg-gray-100 dark:bg-gray-900 font-sans transition-colors duration-300"
+    >
+        <!-- Sidebar Menu (hidden by default) -->
+        <div id="sidebar-overlay" class="fixed inset-0 bg-black/50 z-40"></div>
+        <div
+            id="sidebar-menu"
+            class="fixed top-0 left-0 h-full w-80 bg-white dark:bg-gray-900 shadow-lg z-50"
+        >
+            <div
+                class="flex items-center justify-between p-4 border-b border-gray-200 dark:border-gray-700"
+            >
+                <h2 class="text-lg font-bold text-gray-800 dark:text-gray-100">
+                    Favorite Articles
+                </h2>
+                <button
+                    id="sidebar-close-btn"
+                    class="p-1 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700"
+                >
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="24"
+                        height="24"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        class="text-gray-600 dark:text-gray-300"
+                    >
+                        <path d="M18 6 6 18" />
+                        <path d="m6 6 12 12" />
+                    </svg>
+                </button>
+            </div>
+            <div
+                id="favorites-list-container"
+                class="p-4 h-[calc(100%-65px)] overflow-y-auto"
+            >
+                <!-- Favorite items will be injected here -->
+            </div>
         </div>
-        <div id="favorites-list-container" class="p-4 h-[calc(100%-65px)] overflow-y-auto">
-            <!-- Favorite items will be injected here -->
-        </div>
-    </div>
 
-
-    <!-- App Container -->
-    <div id="app">
-
-        <!-- Header/Navbar -->
-        <header class="bg-white dark:bg-gray-900 shadow-md sticky top-0 z-20 transition-colors duration-300">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="flex items-center justify-between h-16">
-                    <div class="flex items-center gap-4">
-                         <!-- Hamburger Menu Button -->
-                        <button id="hamburger-btn" class="p-2 rounded-full text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" x2="21" y1="12" y2="12"/><line x1="3" x2="21" y1="6" y2="6"/><line x1="3" x2="21" y1="18" y2="18"/></svg>
-                        </button>
-                        <h1 class="text-2xl font-bold text-blue-600 dark:text-blue-400">The Modern Dev</h1>
-                    </div>
-                    <div class="flex-1 flex justify-center px-2 lg:ml-6 lg:justify-end">
-                        <div class="max-w-lg w-full lg:max-w-xs">
-                            <label for="search" class="sr-only">Search</label>
-                            <div class="relative text-gray-400 focus-within:text-gray-600">
-                                <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+        <!-- App Container -->
+        <div id="app">
+            <!-- Header/Navbar -->
+            <header
+                class="bg-white dark:bg-gray-900 shadow-md sticky top-0 z-20 transition-colors duration-300"
+            >
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="flex items-center justify-between h-16">
+                        <div class="flex items-center gap-4">
+                            <!-- Hamburger Menu Button -->
+                            <button
+                                id="hamburger-btn"
+                                class="p-2 rounded-full text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700"
+                            >
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    width="24"
+                                    height="24"
+                                    viewBox="0 0 24 24"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    stroke-width="2"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                >
+                                    <line x1="3" x2="21" y1="12" y2="12" />
+                                    <line x1="3" x2="21" y1="6" y2="6" />
+                                    <line x1="3" x2="21" y1="18" y2="18" />
+                                </svg>
+                            </button>
+                            <h1
+                                class="text-2xl font-bold text-blue-600 dark:text-blue-400"
+                            >
+                                The Modern Dev
+                            </h1>
+                        </div>
+                        <div
+                            class="flex-1 flex justify-center px-2 lg:ml-6 lg:justify-end"
+                        >
+                            <div class="max-w-lg w-full lg:max-w-xs">
+                                <label for="search" class="sr-only"
+                                    >Search</label
+                                >
+                                <div
+                                    class="relative text-gray-400 focus-within:text-gray-600"
+                                >
+                                    <div
+                                        class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none"
+                                    >
+                                        <svg
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            width="20"
+                                            height="20"
+                                            viewBox="0 0 24 24"
+                                            fill="none"
+                                            stroke="currentColor"
+                                            stroke-width="2"
+                                            stroke-linecap="round"
+                                            stroke-linejoin="round"
+                                        >
+                                            <circle cx="11" cy="11" r="8" />
+                                            <path d="m21 21-4.3-4.3" />
+                                        </svg>
+                                    </div>
+                                    <input
+                                        id="search-input"
+                                        class="block w-full bg-gray-100 dark:bg-gray-800 py-2 pl-10 pr-3 border border-transparent rounded-md leading-5 text-gray-900 dark:text-gray-100 placeholder-gray-500 focus:outline-none focus:bg-white dark:focus:bg-gray-700 focus:border-white focus:ring-white focus:text-gray-900 sm:text-sm"
+                                        placeholder="Search by title..."
+                                        type="search"
+                                    />
                                 </div>
-                                <input
-                                    id="search-input"
-                                    class="block w-full bg-gray-100 dark:bg-gray-800 py-2 pl-10 pr-3 border border-transparent rounded-md leading-5 text-gray-900 dark:text-gray-100 placeholder-gray-500 focus:outline-none focus:bg-white dark:focus:bg-gray-700 focus:border-white focus:ring-white focus:text-gray-900 sm:text-sm"
-                                    placeholder="Search by title..."
-                                    type="search"
-                                />
+                            </div>
+                        </div>
+                        <button
+                            id="theme-toggle"
+                            class="p-2 rounded-full text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 dark:focus:ring-offset-gray-800 focus:ring-blue-500"
+                        >
+                            <!-- Moon Icon -->
+                            <svg
+                                id="theme-icon-moon"
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="24"
+                                height="24"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="2"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                            >
+                                <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z" />
+                            </svg>
+                            <!-- Sun Icon (hidden by default) -->
+                            <svg
+                                id="theme-icon-sun"
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="24"
+                                height="24"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="2"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                class="hidden"
+                            >
+                                <circle cx="12" cy="12" r="4" />
+                                <path d="M12 2v2" />
+                                <path d="M12 20v2" />
+                                <path d="m4.93 4.93 1.41 1.41" />
+                                <path d="m17.66 17.66 1.41 1.41" />
+                                <path d="M2 12h2" />
+                                <path d="M20 12h2" />
+                                <path d="m6.34 17.66-1.41 1.41" />
+                                <path d="m19.07 4.93-1.41 1.41" />
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </header>
+
+            <main>
+                <!-- Blog List View -->
+                <div id="list-view">
+                    <!-- Controls: Categories & Sorting -->
+                    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+                        <div
+                            id="categories-container"
+                            class="flex overflow-x-auto space-x-2 pb-4 -mx-2 px-2"
+                        >
+                            <!-- Category buttons will be injected here -->
+                        </div>
+                        <div class="flex justify-end">
+                            <div class="flex items-center gap-2">
+                                <label
+                                    for="sort-select"
+                                    class="text-sm font-medium text-gray-700 dark:text-gray-300"
+                                    >Sort by:</label
+                                >
+                                <select
+                                    id="sort-select"
+                                    class="bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 text-gray-900 dark:text-gray-100 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2"
+                                >
+                                    <option value="newest">Newest First</option>
+                                    <option value="oldest">Oldest First</option>
+                                    <option value="alpha-asc">
+                                        Title (A-Z)
+                                    </option>
+                                    <option value="alpha-desc">
+                                        Title (Z-A)
+                                    </option>
+                                </select>
                             </div>
                         </div>
                     </div>
-                    <button id="theme-toggle" class="p-2 rounded-full text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 dark:focus:ring-offset-gray-800 focus:ring-blue-500">
-                        <!-- Moon Icon -->
-                        <svg id="theme-icon-moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>
-                        <!-- Sun Icon (hidden by default) -->
-                        <svg id="theme-icon-sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="hidden"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg>
-                    </button>
-                </div>
-            </div>
-        </header>
 
-        <main>
-            <!-- Blog List View -->
-            <div id="list-view">
-                <!-- Controls: Categories & Sorting -->
-                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
-                    <div id="categories-container" class="flex overflow-x-auto space-x-2 pb-4 -mx-2 px-2">
-                        <!-- Category buttons will be injected here -->
-                    </div>
-                    <div class="flex justify-end">
-                         <div class="flex items-center gap-2">
-                            <label for="sort-select" class="text-sm font-medium text-gray-700 dark:text-gray-300">Sort by:</label>
-                            <select id="sort-select" class="bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 text-gray-900 dark:text-gray-100 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2">
-                                <option value="newest">Newest First</option>
-                                <option value="oldest">Oldest First</option>
-                                <option value="alpha-asc">Title (A-Z)</option>
-                                <option value="alpha-desc">Title (Z-A)</option>
-                            </select>
+                    <!-- Blog Posts Grid -->
+                    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+                        <div
+                            id="posts-container"
+                            class="grid gap-8 md:grid-cols-2 lg:grid-cols-3"
+                        >
+                            <!-- Blog post cards will be injected here -->
+                        </div>
+                        <div id="no-results" class="text-center py-16 hidden">
+                            <h2
+                                class="text-2xl font-bold text-gray-900 dark:text-white"
+                            >
+                                No Articles Found
+                            </h2>
+                            <p class="text-gray-500 dark:text-gray-400 mt-2">
+                                Try adjusting your search or category filters.
+                            </p>
                         </div>
                     </div>
                 </div>
 
-                <!-- Blog Posts Grid -->
-                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-                     <div id="posts-container" class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-                         <!-- Blog post cards will be injected here -->
-                     </div>
-                     <div id="no-results" class="text-center py-16 hidden">
-                        <h2 class="text-2xl font-bold text-gray-900 dark:text-white">No Articles Found</h2>
-                        <p class="text-gray-500 dark:text-gray-400 mt-2">Try adjusting your search or category filters.</p>
+                <!-- Single Post View (hidden by default) -->
+                <div id="post-view" class="hidden">
+                    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+                        <button
+                            id="back-button"
+                            class="inline-flex items-center gap-2 text-blue-600 dark:text-blue-400 hover:underline font-semibold mb-6 group"
+                        >
+                            <span
+                                class="transform group-hover:-translate-x-1 transition-transform duration-300"
+                            >
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    width="24"
+                                    height="24"
+                                    viewBox="0 0 24 24"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    stroke-width="2"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                >
+                                    <path d="m12 19-7-7 7-7" />
+                                    <path d="M19 12H5" />
+                                </svg>
+                            </span>
+                            Back to all posts
+                        </button>
+                        <article id="post-content-container">
+                            <!-- Full post content will be injected here -->
+                        </article>
+                        <div
+                            id="post-navigation"
+                            class="mt-12 flex justify-between items-center"
+                        >
+                            <!-- Navigation buttons will be injected here -->
+                        </div>
                     </div>
                 </div>
-            </div>
-
-            <!-- Single Post View (hidden by default) -->
-            <div id="post-view" class="hidden">
-                 <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-                    <button id="back-button" class="inline-flex items-center gap-2 text-blue-600 dark:text-blue-400 hover:underline font-semibold mb-6 group">
-                        <span class="transform group-hover:-translate-x-1 transition-transform duration-300">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 19-7-7 7-7"/><path d="M19 12H5"/></svg>
-                        </span>
-                        Back to all posts
-                    </button>
-                    <article id="post-content-container">
-                        <!-- Full post content will be injected here -->
-                    </article>
-                    <div id="post-navigation" class="mt-12 flex justify-between items-center">
-                        <!-- Navigation buttons will be injected here -->
-                    </div>
-                </div>
-            </div>
-        </main>
-    </div>
-    <script src="index.js" type="text/javascript" charset="utf-8"></script>
-</body>
+            </main>
+        </div>
+        <script src="index.js" type="text/javascript" charset="utf-8"></script>
+    </body>
 </html>
