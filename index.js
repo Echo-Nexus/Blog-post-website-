@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 { id: 9, title: 'Effective Project Management Techniques', author: 'Laura Plan', date: 'August 17, 2025', category: 'Business', imageUrl: 'https://placehold.co/600x400/ea580c/ffffff?text=Project', summary: 'Learn about Agile, Scrum, and other methodologies to keep your projects on track and on budget.', content: `<p>Choosing the right project management methodology can make or break a project. Agile and Scrum are popular choices for their flexibility and iterative approach.</p>` },
                 { id: 10, title: 'The Wonders of the James Webb Telescope', author: 'Astro Alex', date: 'August 16, 2025', category: 'Science', imageUrl: 'https://placehold.co/600x400/8b5cf6/ffffff?text=Space', summary: 'Explore the breathtaking images and groundbreaking discoveries from the James Webb Space Telescope.', content: `<p>The James Webb Space Telescope is providing an unprecedented view of the early universe, revealing galaxies and stars in stunning detail.</p>` },
             ];
-            const categories = [ 'All', 'Tech', 'Design', 'Lifestyle', 'Business', 'Science', 'Health', 'Travel', 'Food', 'Finance', 'Marketing', 'Education', 'History', 'Art', 'Music', 'Sports', 'Gaming', 'Books', 'Movies', 'DIY' ];
+            const categories = [ 'All', 'Tech', 'Design', 'Lifestyle', 'Business', 'Science', 'Health', 'Travel', 'Food', 'Finance', 'Marketing', 'Education', 'History', 'Art', 'Music', 'Sports', 'Gaming', 'Books', 'Movies', 'DIY','Biography' ];
 
             // --- STATE MANAGEMENT ---
             let state = {
