@@ -119,16 +119,16 @@ document.addEventListener("DOMContentLoaded", () => {
             author: "Komal Chaudhary",
             date: "August 25, 2025",
             category: "Biography",
-            imageUrl: "https://placehold.co/600x400/00bcd4/ffffff?text=Profile",
+            imageUrl: "https://www.dropbox.com/scl/fi/94re827cvv68umj0od45c/IMG_20250719_140929.jpg?rlkey=42a55l0d8sld2ojeaxqwt2z7j&st=0z8ou6ga&&raw=1",
             summary:
                 "Komal Chaudhary is a highly motivated and talented learner from Nepal, with a passion for science, technology, and sharing knowledge through creative content.",
             content: `<p>Komal Chaudhary is an ambitious and intellectually curious individual hailing from Nepal. Known for being a consistent top performer in academics, Komal has a deep love for learning and exploring new subjects, particularly in the fields of science, technology, history, and innovation. With a natural talent for research and critical thinking, Komal has developed a strong foundation in understanding complex concepts and presenting them in a simple, engaging manner.</p>
 
-<p>Beyond academics, Komal is exploring various avenues to share knowledge with a wider audience. Whether it is writing detailed blog posts, crafting engaging articles, or producing educational content for YouTube, Komal aims to inspire curiosity and learning in others. A tech-savvy individual, Komal is comfortable using modern tools, gadgets, and digital platforms to create and disseminate content efficiently.</p>
+            <p>Beyond academics, Komal is exploring various avenues to share knowledge with a wider audience. Whether it is writing detailed blog posts, crafting engaging articles, or producing educational content for YouTube, Komal aims to inspire curiosity and learning in others. A tech-savvy individual, Komal is comfortable using modern tools, gadgets, and digital platforms to create and disseminate content efficiently.</p>
 
-<p>Despite having limited resources, including devices like a Samsung A7 tablet, a Redmi Note 9, and basic accessories, Komal has shown remarkable ingenuity in leveraging what is available to achieve learning and creative goals. With a forward-thinking mindset, Komal is constantly seeking opportunities to grow, innovate, and explore career paths that blend technology, creativity, and knowledge sharing.</p>
+            <p>Despite having limited resources, including devices like a Samsung A7 tablet, a Redmi Note 9, and basic accessories, Komal has shown remarkable ingenuity in leveraging what is available to achieve learning and creative goals. With a forward-thinking mindset, Komal is constantly seeking opportunities to grow, innovate, and explore career paths that blend technology, creativity, and knowledge sharing.</p>
 
-<p>Driven by curiosity and a desire to make a meaningful impact, Komal continues to set ambitious goals, balancing academic excellence with personal development and creative pursuits. Through dedication, discipline, and a passion for lifelong learning, Komal Chaudhary represents a bright and inspiring example of a young individual eager to leave a mark in the fields of science, technology, and education.</p>`
+            <p>Driven by curiosity and a desire to make a meaningful impact, Komal continues to set ambitious goals, balancing academic excellence with personal development and creative pursuits. Through dedication, discipline, and a passion for lifelong learning, Komal Chaudhary represents a bright and inspiring example of a young individual eager to leave a mark in the fields of science, technology, and education.</p>`
         }
     ];
     const categories = [
