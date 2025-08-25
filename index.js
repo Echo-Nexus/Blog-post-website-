@@ -128,7 +128,7 @@ document.addEventListener("DOMContentLoaded", () => {
             date: "August 25, 2025",
             category: "Science",
             imageUrl:
-                "https://www.dropbox.com/scl/fi/pqfe0wseqxy2w5nbk4hc2/id4.jpg?rlkey=fk3409qhnt68glse9mzjq7etd&st=qu4053fk&$raw=1",
+                "https://www.dropbox.com/scl/fi/pqfe0wseqxy2w5nbk4hc2/id4.jpg?rlkey=fk3409qhnt68glse9mzjq7etd&st=qu4053fk&&raw=1",
             summary:
                 "यो लेखमा हामी ब्रह्माण्डको विशालता, यसको संरचना, र यसको रहस्यहरूबारे विस्तृत चर्चा गर्नेछौं।",
             content: `<div style="max-width:800px; margin:auto; padding:20px; background-color:#ffffff; box-shadow:0 4px 12px rgba(0,0,0,0.1); border-radius:16px; font-family:Arial, sans-serif;">
