@@ -3,7 +3,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // To add a new article, simply add a new object to this array.
     // Ensure the 'id' is unique and the 'date' is a valid string format.
     const allPosts = [
-        {
+      {
     id: 1,
     title: "Artificial Intelligence को भविष्य",
     author: "Komal Chaudhary",
@@ -11,65 +11,66 @@ document.addEventListener("DOMContentLoaded", () => {
     category: "Tech",
     imageUrl: "https://www.dropbox.com/scl/fi/mu2xvhnxmto9f941fsb3b/id2.jpg?rlkey=lmnig3t0q8he4p7m7wyw1u4jn&st=h07tu3nu&&raw=1",
     summary: "यो लेखमा हामी भविष्यमा Artificial Intelligence (AI) ले हाम्रो जीवन र समाजमा कस्तो प्रभाव पार्न सक्छ भन्ने बारेमा विस्तृत विश्लेषण गर्नेछौं।",
-    content: `<div class="max-w-4xl mx-auto p-8 bg-white shadow-xl rounded-2xl">
-  <img src="https://www.dropbox.com/scl/fi/mu2xvhnxmto9f941fsb3b/id2.jpg?rlkey=lmnig3t0q8he4p7m7wyw1u4jn&st=h07tu3nu&&raw=1" 
-       alt="Artificial Intelligence" 
-       class="w-full h-80 md:h-96 object-cover rounded-xl mb-6 shadow-md" />
+    content: `<div style="max-width:800px; margin:auto; padding:20px; background-color:#ffffff; box-shadow:0 4px 12px rgba(0,0,0,0.1); border-radius:16px;">
+        
+        <img src="https://www.dropbox.com/scl/fi/mu2xvhnxmto9f941fsb3b/id2.jpg?rlkey=lmnig3t0q8he4p7m7wyw1u4jn&st=h07tu3nu&&raw=1" 
+             alt="Artificial Intelligence" 
+             style="width:100%; height:auto; border-radius:12px; margin-bottom:20px; box-shadow:0 2px 8px rgba(0,0,0,0.2);" />
 
-  <div class="text-gray-500 text-sm mb-4 flex flex-wrap gap-4">
-    <span>Author: <strong>Komal Chaudhary</strong></span>
-    <span>Date: <strong>August 25, 2025</strong></span>
-    <span>Category: <strong>Tech</strong></span>
-  </div>
+        <div style="color:#6b7280; font-size:14px; margin-bottom:12px;">
+            <span style="margin-right:10px;">Author: <strong>Komal Chaudhary</strong></span> |
+            <span style="margin:0 10px;">Date: <strong>August 25, 2025</strong></span> |
+            <span style="margin-left:10px;">Category: <strong>Tech</strong></span>
+        </div>
 
-  <h1 class="text-4xl font-extrabold text-gray-900 mb-6">Artificial Intelligence को भविष्य</h1>
+        <h1 style="font-size:32px; font-weight:800; color:#111827; margin-bottom:16px;">Artificial Intelligence को भविष्य</h1>
 
-  <p class="text-lg text-gray-700 mb-8">
-    यो लेखमा हामी भविष्यमा Artificial Intelligence (AI) ले हाम्रो जीवन र समाजमा कस्तो प्रभाव पार्न सक्छ भन्ने बारेमा विस्तृत विश्लेषण गर्नेछौं।
-  </p>
+        <p style="font-size:18px; color:#374151; margin-bottom:20px;">
+            यो लेखमा हामी भविष्यमा Artificial Intelligence (AI) ले हाम्रो जीवन र समाजमा कस्तो प्रभाव पार्न सक्छ भन्ने बारेमा विस्तृत विश्लेषण गर्नेछौं।
+        </p>
 
-  <div class="prose prose-lg prose-gray max-w-none">
-    <p>Artificial Intelligence (AI) आधुनिक प्रविधिको एक महत्वपूर्ण हिस्सा बनेको छ। यसले हाम्रा दैनिक जीवन, उद्योग, स्वास्थ्य, शिक्षा, र मनोरञ्जनको क्षेत्रमा ठूलो प्रभाव पार्दै आएको छ। भविष्यमा AI को विकास अझ तीव्र र व्यापक हुने अपेक्षा गरिएको छ।</p>
+        <p style="font-size:16px; color:#374151; margin-bottom:16px;">
+            Artificial Intelligence (AI) आधुनिक प्रविधिको एक महत्वपूर्ण हिस्सा बनेको छ। यसले हाम्रा दैनिक जीवन, उद्योग, स्वास्थ्य, शिक्षा, र मनोरञ्जनको क्षेत्रमा ठूलो प्रभाव पार्दै आएको छ। भविष्यमा AI को विकास अझ तीव्र र व्यापक हुने अपेक्षा गरिएको छ।
+        </p>
 
-    <h2>१. AI को वर्तमान स्थिति</h2>
-    <p>आजको समयमा AI विभिन्न क्षेत्रमा प्रयोग भइरहेको छ:</p>
-    <ul>
-      <li>स्वचालित ड्राइभिङ: Tesla, Waymo जस्ता कम्पनीहरूले AI को प्रयोग गरेर कारलाई स्वतः चलाउने प्रविधि विकास गरिरहेका छन्।</li>
-      <li>स्वास्थ्य सेवा: AI रोगको पहिचान, उपचार योजना, र मेडिकल इमेजिंगमा मद्दत गर्दैछ।</li>
-      <li>वाणिज्य र ई–कर्मस: AI ग्राहक व्यवहार विश्लेषण, सुझाव प्रणाली, र सप्लाई चेन व्यवस्थापनमा प्रयोग भइरहेको छ।</li>
-      <li>भाषा र संचार: ChatGPT जस्ता AI उपकरणहरूले मानव–कम्प्युटर संवादलाई सहज बनाउँदै छन्।</li>
-    </ul>
+        <h2 style="font-size:24px; font-weight:700; color:#111827; margin-top:20px; margin-bottom:12px;">१. AI को वर्तमान स्थिति</h2>
+        <p style="font-size:16px; color:#374151; margin-bottom:12px;">आजको समयमा AI विभिन्न क्षेत्रमा प्रयोग भइरहेको छ:</p>
+        <ul style="font-size:16px; color:#374151; margin-left:20px; margin-bottom:20px;">
+            <li style="margin-bottom:6px;">स्वचालित ड्राइभिङ: Tesla, Waymo जस्ता कम्पनीहरूले AI को प्रयोग गरेर कारलाई स्वतः चलाउने प्रविधि विकास गरिरहेका छन्।</li>
+            <li style="margin-bottom:6px;">स्वास्थ्य सेवा: AI रोगको पहिचान, उपचार योजना, र मेडिकल इमेजिंगमा मद्दत गर्दैछ।</li>
+            <li style="margin-bottom:6px;">वाणिज्य र ई–कर्मस: AI ग्राहक व्यवहार विश्लेषण, सुझाव प्रणाली, र सप्लाई चेन व्यवस्थापनमा प्रयोग भइरहेको छ।</li>
+            <li style="margin-bottom:6px;">भाषा र संचार: ChatGPT जस्ता AI उपकरणहरूले मानव–कम्प्युटर संवादलाई सहज बनाउँदै छन्।</li>
+        </ul>
 
-    <h2>२. भविष्यमा AI को सम्भावना</h2>
-    <p>भविष्यमा AI ले हाम्रो जीवन र समाजलाई विभिन्न तरिकाले रूपान्तरण गर्नेछ:</p>
-    <ul>
-      <li><strong>शिक्षा:</strong> व्यक्तिगत शिक्षण अनुभव र अनलाइन शिक्षा प्रणालीलाई AI द्वारा अझ प्रभावकारी बनाइनेछ।</li>
-      <li><strong>स्वास्थ्य:</strong> AI ले रोग निदान, औषधि विकास, र स्वास्थ्य सेवा प्रणालीमा क्रान्ति ल्याउनेछ।</li>
-      <li><strong>उद्योग र रोजगारी:</strong> मेसिन लर्निङ र रोबोटिक्सको प्रयोगले उत्पादन क्षमता बढाउनेछ, तर केही पारम्परिक रोजगारी कम हुन सक्छ।</li>
-      <li><strong>सुरक्षा र गोपनीयता:</strong> AI आधारित सुरक्षा प्रणालीले साइबर अपराध र डाटा सुरक्षा सुधार गर्नेछ, तर गोपनीयता र नैतिक चुनौतीहरू पनि बढ्नेछन्।</li>
-    </ul>
+        <h2 style="font-size:24px; font-weight:700; color:#111827; margin-top:20px; margin-bottom:12px;">२. भविष्यमा AI को सम्भावना</h2>
+        <p style="font-size:16px; color:#374151; margin-bottom:12px;">भविष्यमा AI ले हाम्रो जीवन र समाजलाई विभिन्न तरिकाले रूपान्तरण गर्नेछ:</p>
+        <ul style="font-size:16px; color:#374151; margin-left:20px; margin-bottom:20px;">
+            <li style="margin-bottom:6px;"><strong>शिक्षा:</strong> व्यक्तिगत शिक्षण अनुभव र अनलाइन शिक्षा प्रणालीलाई AI द्वारा अझ प्रभावकारी बनाइनेछ।</li>
+            <li style="margin-bottom:6px;"><strong>स्वास्थ्य:</strong> AI ले रोग निदान, औषधि विकास, र स्वास्थ्य सेवा प्रणालीमा क्रान्ति ल्याउनेछ।</li>
+            <li style="margin-bottom:6px;"><strong>उद्योग र रोजगारी:</strong> मेसिन लर्निङ र रोबोटिक्सको प्रयोगले उत्पादन क्षमता बढाउनेछ, तर केही पारम्परिक रोजगारी कम हुन सक्छ।</li>
+            <li style="margin-bottom:6px;"><strong>सुरक्षा र गोपनीयता:</strong> AI आधारित सुरक्षा प्रणालीले साइबर अपराध र डाटा सुरक्षा सुधार गर्नेछ, तर गोपनीयता र नैतिक चुनौतीहरू पनि बढ्नेछन्।</li>
+        </ul>
 
-    <h2>३. AI र सामाजिक प्रभाव</h2>
-    <p>AI को प्रभाव समाजमा विविध प्रकारले देखिनेछ:</p>
-    <ul>
-      <li>आर्थिक वृद्धि: AI ले उत्पादन क्षमता बढाएर राष्ट्रिय आर्थिक वृद्धि गर्नेछ।</li>
-      <li>रोजगारी चुनौती: केही क्षेत्रमा मानिसको स्थान मेसिनले लिने सम्भावना छ, जसले नयाँ कौशल सिक्न आवश्यक बनाउनेछ।</li>
-      <li>शिक्षा र प्रशिक्षण: नयाँ AI प्रविधिको लागि विद्यार्थी र पेशेवरहरूको लागि प्रशिक्षण र शिक्षा अनिवार्य हुनेछ।</li>
-      <li>नैतिक र कानूनी प्रश्न: AI ले निर्णय लिने प्रक्रियामा पारदर्शिता र जिम्मेवारी सुनिश्चित गर्न चुनौती उत्पन्न गर्नेछ।</li>
-    </ul>
+        <h2 style="font-size:24px; font-weight:700; color:#111827; margin-top:20px; margin-bottom:12px;">३. AI र सामाजिक प्रभाव</h2>
+        <ul style="font-size:16px; color:#374151; margin-left:20px; margin-bottom:20px;">
+            <li style="margin-bottom:6px;">आर्थिक वृद्धि: AI ले उत्पादन क्षमता बढाएर राष्ट्रिय आर्थिक वृद्धि गर्नेछ।</li>
+            <li style="margin-bottom:6px;">रोजगारी चुनौती: केही क्षेत्रमा मानिसको स्थान मेसिनले लिने सम्भावना छ, जसले नयाँ कौशल सिक्न आवश्यक बनाउनेछ।</li>
+            <li style="margin-bottom:6px;">शिक्षा र प्रशिक्षण: नयाँ AI प्रविधिको लागि विद्यार्थी र पेशेवरहरूको लागि प्रशिक्षण र शिक्षा अनिवार्य हुनेछ।</li>
+            <li style="margin-bottom:6px;">नैतिक र कानूनी प्रश्न: AI ले निर्णय लिने प्रक्रियामा पारदर्शिता र जिम्मेवारी सुनिश्चित गर्न चुनौती उत्पन्न गर्नेछ।</li>
+        </ul>
 
-    <h2>४. AI को नैतिकता र जिम्मेवारी</h2>
-    <ul>
-      <li>AI ले लिएर आउने निर्णयहरू पारदर्शी र न्यायसंगत हुनुपर्छ।</li>
-      <li>डेटा गोपनीयता र प्रयोगकर्ता अधिकारको संरक्षण अनिवार्य छ।</li>
-      <li>AI मा पूर्वाग्रह र भेदभाव रोक्न निरन्तर निगरानी आवश्यक छ।</li>
-    </ul>
+        <h2 style="font-size:24px; font-weight:700; color:#111827; margin-top:20px; margin-bottom:12px;">४. AI को नैतिकता र जिम्मेवारी</h2>
+        <ul style="font-size:16px; color:#374151; margin-left:20px; margin-bottom:20px;">
+            <li style="margin-bottom:6px;">AI ले लिएर आउने निर्णयहरू पारदर्शी र न्यायसंगत हुनुपर्छ।</li>
+            <li style="margin-bottom:6px;">डेटा गोपनीयता र प्रयोगकर्ता अधिकारको संरक्षण अनिवार्य छ।</li>
+            <li style="margin-bottom:6px;">AI मा पूर्वाग्रह र भेदभाव रोक्न निरन्तर निगरानी आवश्यक छ।</li>
+        </ul>
 
-    <h2>५. निष्कर्ष</h2>
-    <p>भविष्यमा AI हाम्रो जीवनको अभिन्न हिस्सा बन्नेछ। यसले शिक्षा, स्वास्थ्य, उद्योग, सुरक्षा र मनोरञ्जनका क्षेत्रमा क्रान्ति ल्याउनेछ। तर यससँगै सामाजिक, नैतिक, र कानूनी चुनौतीहरू पनि आउनेछन्। हामीले यी चुनौतीहरू सामना गर्दै AI को विकासलाई सुरक्षित, जिम्मेवार र मानव कल्याणमुखी बनाउनु जरुरी छ।</p>
-    <p>AI को सही दिशा र नियमनले मानव जीवनलाई अझ सरल, सुरक्षित, र समृद्ध बनाउने अवसर प्रदान गर्नेछ। यसैले, AI को भविष्य उज्ज्वल भए पनि यसमा सजग र जिम्मेवार दृष्टिकोण आवश्यक छ।</p>
-  </div>
-</div>`
+        <h2 style="font-size:24px; font-weight:700; color:#111827; margin-top:20px; margin-bottom:12px;">५. निष्कर्ष</h2>
+        <p style="font-size:16px; color:#374151; margin-bottom:12px;">भविष्यमा AI हाम्रो जीवनको अभिन्न हिस्सा बन्नेछ। यसले शिक्षा, स्वास्थ्य, उद्योग, सुरक्षा र मनोरञ्जनका क्षेत्रमा क्रान्ति ल्याउनेछ। तर यससँगै सामाजिक, नैतिक, र कानूनी चुनौतीहरू पनि आउनेछन्। हामीले यी चुनौतीहरू सामना गर्दै AI को विकासलाई सुरक्षित, जिम्मेवार र मानव कल्याणमुखी बनाउनु जरुरी छ।</p>
+        <p style="font-size:16px; color:#374151;">AI को सही दिशा र नियमनले मानव जीवनलाई अझ सरल, सुरक्षित, र समृद्ध बनाउने अवसर प्रदान गर्नेछ। यसैले, AI को भविष्य उज्ज्वल भए पनि यसमा सजग र जिम्मेवार दृष्टिकोण आवश्यक छ।</p>
+
+    </div>`
 },
         {
             id: 2,
