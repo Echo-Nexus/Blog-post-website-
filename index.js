@@ -1,3 +1,23 @@
+//Use this template to set image between article
+/*  <img src="https://www.dropbox.com/scl/fi/mu2xvhnxmto9f941fsb3b/id2.jpg?rlkey=lmnig3t0q8he4p7m7wyw1u4jn&st=h07tu3nu&&raw=1" 
+       alt="Artificial Intelligence" 
+       class="w-full h-80 md:h-96 object-cover rounded-xl mb-6 shadow-md" />
+*/
+
+//This is the tamplate for Articles 
+/*
+{  
+        id: 11,  
+        title: "The Wonders of the James Webb Tele",  
+        author: "Astro Alex",  
+        date: "August 16, 2025",  
+        category: "Science",  
+        imageUrl: "https://placehold.co/600x400/8b5cf6/ffffff?text=Space",  
+        summary:  
+            "Explore the breathtaking images and groundbreaking discoveries from the James Webb Space Telescope.",  
+        content: `<p>The James Webb Space Telescope is providing an unprecedented view of the early universe, revealing galaxies and stars in stunning detail.</p>`  
+    }
+*/
 document.addEventListener("DOMContentLoaded", () => {
     // --- DATA SOURCE ---
     // To add a new article, simply add a new object to this array.
