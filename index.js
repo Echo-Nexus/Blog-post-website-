@@ -3,25 +3,17 @@ document.addEventListener("DOMContentLoaded", () => {
     // To add a new article, simply add a new object to this array.
     // Ensure the 'id' is unique and the 'date' is a valid string format.
     const allPosts = [
-      {
-    id: 1,
-    title: "Artificial Intelligence को भविष्य",
-    author: "Komal Chaudhary",
-    date: "August 25, 2025",
-    category: "Tech",
-    imageUrl: "https://www.dropbox.com/scl/fi/mu2xvhnxmto9f941fsb3b/id2.jpg?rlkey=lmnig3t0q8he4p7m7wyw1u4jn&st=h07tu3nu&&raw=1",
-    summary: "यो लेखमा हामी भविष्यमा Artificial Intelligence (AI) ले हाम्रो जीवन र समाजमा कस्तो प्रभाव पार्न सक्छ भन्ने बारेमा विस्तृत विश्लेषण गर्नेछौं।",
-    content: `<div style="max-width:800px; margin:auto; padding:20px; background-color:#ffffff; box-shadow:0 4px 12px rgba(0,0,0,0.1); border-radius:16px;">
-        
-        <img src="https://www.dropbox.com/scl/fi/mu2xvhnxmto9f941fsb3b/id2.jpg?rlkey=lmnig3t0q8he4p7m7wyw1u4jn&st=h07tu3nu&&raw=1" 
-             alt="Artificial Intelligence" 
-             style="width:100%; height:auto; border-radius:12px; margin-bottom:20px; box-shadow:0 2px 8px rgba(0,0,0,0.2);" />
-
-        <div style="color:#6b7280; font-size:14px; margin-bottom:12px;">
-            <span style="margin-right:10px;">Author: <strong>Komal Chaudhary</strong></span> |
-            <span style="margin:0 10px;">Date: <strong>August 25, 2025</strong></span> |
-            <span style="margin-left:10px;">Category: <strong>Tech</strong></span>
-        </div>
+        {
+            id: 1,
+            title: "Artificial Intelligence को भविष्य",
+            author: "Komal Chaudhary",
+            date: "August 25, 2025",
+            category: "Tech",
+            imageUrl:
+                "https://www.dropbox.com/scl/fi/mu2xvhnxmto9f941fsb3b/id2.jpg?rlkey=lmnig3t0q8he4p7m7wyw1u4jn&st=h07tu3nu&&raw=1",
+            summary:
+                "यो लेखमा हामी भविष्यमा Artificial Intelligence (AI) ले हाम्रो जीवन र समाजमा कस्तो प्रभाव पार्न सक्छ भन्ने बारेमा विस्तृत विश्लेषण गर्नेछौं।",
+            content: `<div style="max-width:800px; margin:auto; padding:20px; background-color:#ffffff; box-shadow:0 4px 12px rgba(0,0,0,0.1); border-radius:16px;">
 
         <h1 style="font-size:32px; font-weight:800; color:#111827; margin-bottom:16px;">Artificial Intelligence को भविष्य</h1>
 
@@ -71,7 +63,7 @@ document.addEventListener("DOMContentLoaded", () => {
         <p style="font-size:16px; color:#374151;">AI को सही दिशा र नियमनले मानव जीवनलाई अझ सरल, सुरक्षित, र समृद्ध बनाउने अवसर प्रदान गर्नेछ। यसैले, AI को भविष्य उज्ज्वल भए पनि यसमा सजग र जिम्मेवार दृष्टिकोण आवश्यक छ।</p>
 
     </div>`
-},
+        },
         {
             id: 2,
             title: "Getting Started with React Hooks",
