@@ -2,17 +2,38 @@ document.addEventListener("DOMContentLoaded", () => {
     // --- DATA SOURCE ---
     // To add a new article, simply add a new object to this array.
     // Ensure the 'id' is unique and the 'date' is a valid string format.
-    const allPosts = [{
-    id: 14,
-    title: "Artificial Intelligence को भविष्य",
-    author: "Komal Chaudhary",
-    date: "August 25, 2025",
-    category: "Tech",
-    imageUrl: "https://www.dropbox.com/scl/fi/mu2xvhnxmto9f941fsb3b/id2.jpg?rlkey=lmnig3t0q8he4p7m7wyw1u4jn&st=h07tu3nu&&raw=1",
-    summary: "यो लेखमा हामी भविष्यमा Artificial Intelligence (AI) ले हाम्रो जीवन र समाजमा कस्तो प्रभाव पार्न सक्छ भन्ने बारेमा विस्तृत विश्लेषण गर्नेछौं।",
-    content: `<div style="max-width:800px; margin:auto; padding:20px; background-color:#ffffff; box-shadow:0 4px 12px rgba(0,0,0,0.1); border-radius:16px;">
+    const allPosts = [
+        {
+            id: 1,
+            title: "About This Website Creator ",
+            author: "Komal Chaudhary",
+            date: "August 25, 2025",
+            category: "Biography",
+            imageUrl:
+                "https://www.dropbox.com/scl/fi/94re827cvv68umj0od45c/IMG_20250719_140929.jpg?rlkey=42a55l0d8sld2ojeaxqwt2z7j&st=0z8ou6ga&&raw=1",
+            summary:
+                "Komal Chaudhary is a highly motivated and talented learner from Nepal, with a passion for science, technology, and sharing knowledge through creative content.",
+            content: `<p>Komal Chaudhary is an ambitious and intellectually curious individual hailing from Nepal. Known for being a consistent top performer in academics, Komal has a deep love for learning and exploring new subjects, particularly in the fields of science, technology, history, and innovation. With a natural talent for research and critical thinking, Komal has developed a strong foundation in understanding complex concepts and presenting them in a simple, engaging manner.</p>
+
+            <p>Beyond academics, Komal is exploring various avenues to share knowledge with a wider audience. Whether it is writing detailed blog posts, crafting engaging articles, or producing educational content for YouTube, Komal aims to inspire curiosity and learning in others. A tech-savvy individual, Komal is comfortable using modern tools, gadgets, and digital platforms to create and disseminate content efficiently.</p>
+
+            <p>Despite having limited resources, including devices like a Samsung A7 tablet, a Redmi Note 9, and basic accessories, Komal has shown remarkable ingenuity in leveraging what is available to achieve learning and creative goals. With a forward-thinking mindset, Komal is constantly seeking opportunities to grow, innovate, and explore career paths that blend technology, creativity, and knowledge sharing.</p>
+
+            <p>Driven by curiosity and a desire to make a meaningful impact, Komal continues to set ambitious goals, balancing academic excellence with personal development and creative pursuits. Through dedication, discipline, and a passion for lifelong learning, Komal Chaudhary represents a bright and inspiring example of a young individual eager to leave a mark in the fields of science, technology, and education.</p>`
+        },
+        {
+            id: 2,
+            title: "Artificial Intelligence को भविष्य",
+            author: "Komal Chaudhary",
+            date: "August 25, 2025",
+            category: "Tech",
+            imageUrl:
+                "https://www.dropbox.com/scl/fi/mu2xvhnxmto9f941fsb3b/id2.jpg?rlkey=lmnig3t0q8he4p7m7wyw1u4jn&st=h07tu3nu&&raw=1",
+            summary:
+                "यो लेखमा हामी भविष्यमा Artificial Intelligence (AI) ले हाम्रो जीवन र समाजमा कस्तो प्रभाव पार्न सक्छ भन्ने बारेमा विस्तृत विश्लेषण गर्नेछौं।",
+            content: `<div style="max-width:800px; margin:auto; padding:20px; background-color:#ffffff; box-shadow:0 4px 12px rgba(0,0,0,0.1); border-radius:16px;">
         
-        <p style="font-size:18px; color:#374151; margin-bottom:20px;">
+               <p style="font-size:18px; color:#374151; margin-bottom:20px;">
             यो लेखमा हामी भविष्यमा Artificial Intelligence (AI) ले हाम्रो जीवन र समाजमा कस्तो प्रभाव पार्न सक्छ भन्ने बारेमा विस्तृत विश्लेषण गर्नेछौं।
         </p>
 
@@ -58,124 +79,91 @@ document.addEventListener("DOMContentLoaded", () => {
         <p style="font-size:16px; color:#374151;">AI को सही दिशा र नियमनले मानव जीवनलाई अझ सरल, सुरक्षित, र समृद्ध बनाउने अवसर प्रदान गर्नेछ। यसैले, AI को भविष्य उज्ज्वल भए पनि यसमा सजग र जिम्मेवार दृष्टिकोण आवश्यक छ।</p>
 
     </div>`
-}
-,
-        {
-            id: 2,
-            title: "Getting Started with React Hooks",
-            author: "John Dev",
-            date: "August 24, 2025",
-            category: "Tech",
-            imageUrl: "https://placehold.co/600x400/2563eb/ffffff?text=React",
-            summary:
-                "A comprehensive guide to understanding and using React Hooks for state management and side effects.",
-            content: `<p>React Hooks have revolutionized how we write components. They allow you to use state and other React features without writing a class.</p><h3 class="text-2xl font-bold mt-6 mb-3">useState and useEffect</h3><p>The most common hooks are <code>useState</code> for managing local state and <code>useEffect</code> for handling side effects like data fetching or subscriptions. Mastering them is key to modern React development.</p>`
         },
         {
-            id: 3,
-            title: "Understanding Docker and Containers",
-            author: "Peter Code",
-            date: "August 23, 2025",
-            category: "Tech",
-            imageUrl: "https://placehold.co/600x400/3b82f6/ffffff?text=Docker",
-            summary:
-                "An introduction to containerization technology with Docker, and how it simplifies deployment.",
-            content: `<p>Docker allows you to package an application with all of its dependencies into a standardized unit for software development. This solves the "it works on my machine" problem.</p>`
-        },
+    id: 3,
+    title: "Google को इतिहास र भविष्य",
+    author: "Komal Chaudhary",
+    date: "August 25, 2025",
+    category: "Tech",
+    imageUrl: "https://www.dropbox.com/scl/fi/q78b026iahykc1j4e3zxk/id3.jpg?rlkey=dcswv80ci9bwmdkfy5k9thtvb&st=e5t58imr&&raw=1",
+    summary: "यो लेखमा हामी Google को इतिहास, यसको विकास, र भविष्यमा यसको सम्भावित योगदानबारे विस्तृत विश्लेषण गर्नेछौं।",
+    content: `<div style="max-width:800px; margin:auto; padding:20px; background-color:#ffffff; box-shadow:0 4px 12px rgba(0,0,0,0.1); border-radius:16px; font-family:Arial, sans-serif;">
+
+        <p style="font-size:18px; color:#374151; margin-bottom:16px;">
+            Google संसारकै सबैभन्दा लोकप्रिय खोज इञ्जिन हो। यसले इन्टरनेट प्रयोगकर्ताहरूलाई छिटो र सजिलै जानकारी खोज्न सहयोग पुर्‍याएको छ। २०२५ सम्म Google केवल खोज इञ्जिन मात्र नभएर ठूलो टेक कम्पनीको रूपमा विकसित भइसकेको छ।
+        </p>
+
+        <h2 style="font-size:24px; font-weight:700; color:#111827; margin-top:20px; margin-bottom:12px;">१. Google को स्थापना</h2>
+        <p style="font-size:16px; color:#374151; margin-bottom:12px;">
+            Google सन् १९९८ मा Larry Page र Sergey Brin द्वारा स्थापना गरिएको थियो। यसको मुख्य उद्देश्य वेब पेजहरूलाई क्रमबद्ध गरी प्रयोगकर्ताले खोज्न सजिलो बनाउने थियो।
+        </p>
+
+        <h2 style="font-size:24px; font-weight:700; color:#111827; margin-top:20px; margin-bottom:12px;">२. Google को विकास र विस्तार</h2>
+        <p style="font-size:16px; color:#374151; margin-bottom:12px;">
+            सुरुमा केवल खोज इञ्जिनको रूपमा सुरु भए पनि Google ले विभिन्न क्षेत्रहरूमा विस्तार गर्‍यो। Gmail, Google Maps, Google Drive, Android, YouTube, र Cloud Computing जस्ता सेवाहरू Google को महत्वपूर्ण उत्पादनहरू हुन्।
+        </p>
+
+        <h2 style="font-size:24px; font-weight:700; color:#111827; margin-top:20px; margin-bottom:12px;">३. Google र प्रविधिमा क्रान्ति</h2>
+        <p style="font-size:16px; color:#374151; margin-bottom:12px;">
+            Google ले इन्टरनेट, मोबाइल, र क्लाउड प्रविधिमा क्रान्ति ल्याएको छ। यसको कृत्रिम बुद्धिमत्ता (AI) र मेशिन लर्निङ प्रोजेक्टहरूले स्वास्थ्य, शिक्षा, र व्यवसाय क्षेत्रमा नवप्रवर्तन सम्भव पारेका छन्।
+        </p>
+
+        <h2 style="font-size:24px; font-weight:700; color:#111827; margin-top:20px; margin-bottom:12px;">४. Google को भविष्य</h2>
+        <p style="font-size:16px; color:#374151; margin-bottom:12px;">
+            भविष्यमा Google ले AI, Quantum Computing, र Augmented Reality जस्ता क्षेत्रमा अझै क्रान्तिकारी योगदान दिने अपेक्षा गरिएको छ। यसले मानव जीवनलाई सजिलो, स्मार्ट, र समृद्ध बनाउने दिशामा काम गर्दैछ।
+        </p>
+
+        <h2 style="font-size:24px; font-weight:700; color:#111827; margin-top:20px; margin-bottom:12px;">५. निष्कर्ष</h2>
+        <p style="font-size:16px; color:#374151; margin-bottom:12px;">
+            Google केवल एक खोज इञ्जिन होइन, यो संसारभरिका मानिसहरूको जीवनशैली, सूचना पहुँच, र टेक्नोलोजिकल नवप्रवर्तनमा ठूलो भूमिका खेलिरहेको छ। यसको भविष्य अझ उज्ज्वल र चुनौतीपूर्ण रहन सक्छ, तर यसले ज्ञान र प्रगतिको बाटो खोल्ने अवसर प्रदान गर्नेछ।
+        </p>
+
+    </div>`
+},
         {
             id: 4,
-            title: "The Art of Minimalist Web Design",
-            author: "Emily White",
-            date: "August 22, 2025",
-            category: "Design",
-            imageUrl: "https://placehold.co/600x400/64748b/ffffff?text=Design",
-            summary:
-                "Explore the principles of minimalist design and how they can create beautiful, functional websites.",
-            content: `<p>Minimalist web design emphasizes simplicity and functionality. By stripping away unnecessary elements, it focuses the user's attention on what's most important: the content.</p>`
-        },
-        {
-            id: 5,
-            title: "Mastering CSS Grid Layout",
-            author: "Chris Style",
-            date: "August 21, 2025",
-            category: "Design",
-            imageUrl: "https://placehold.co/600x400/71717a/ffffff?text=CSS",
-            summary:
-                "Unlock the power of CSS Grid to create complex, responsive layouts with ease.",
-            content: `<p>CSS Grid is a two-dimensional layout system that makes it easy to build complex web page layouts. It's a game-changer for web designers and developers.</p>`
-        },
-        {
-            id: 6,
-            title: "A Guide to Sustainable Living",
-            author: "John Smith",
-            date: "August 20, 2025",
-            category: "Lifestyle",
-            imageUrl: "https://placehold.co/600x400/22c55e/ffffff?text=Green",
-            summary:
-                "Learn practical tips for a more sustainable lifestyle. Every small change makes a big difference.",
-            content: `<p>Sustainable living is about making conscious choices to reduce your environmental impact. It starts with the three Rs: Reduce, Reuse, Recycle.</p>`
-        },
-        {
-            id: 7,
-            title: "The Benefits of Daily Meditation",
-            author: "Sara Mindful",
-            date: "August 19, 2025",
-            category: "Lifestyle",
-            imageUrl: "https://placehold.co/600x400/16a34a/ffffff?text=Zen",
-            summary:
-                "Discover how a few minutes of meditation each day can improve your focus, reduce stress, and enhance well-being.",
-            content: `<p>Meditation is a practice that can lead to a greater sense of calm and clarity. Even short sessions can have a profound impact on your mental health.</p>`
-        },
-        {
-            id: 8,
-            title: "Startup Funding: A Founder's Guide",
-            author: "Mark Investor",
-            date: "August 18, 2025",
-            category: "Business",
-            imageUrl: "https://placehold.co/600x400/f97316/ffffff?text=Biz",
-            summary:
-                "Navigate the complex world of venture capital and angel investing to secure funding for your startup.",
-            content: `<p>Securing funding is one of the biggest challenges for a startup. Understanding the different stages of funding is crucial for success.</p>`
-        },
-        {
-            id: 9,
-            title: "Effective Project Management Techniques",
-            author: "Laura Plan",
-            date: "August 17, 2025",
-            category: "Business",
-            imageUrl: "https://placehold.co/600x400/ea580c/ffffff?text=Project",
-            summary:
-                "Learn about Agile, Scrum, and other methodologies to keep your projects on track and on budget.",
-            content: `<p>Choosing the right project management methodology can make or break a project. Agile and Scrum are popular choices for their flexibility and iterative approach.</p>`
-        },
-        {
-            id: 10,
-            title: "The Wonders of the James Webb Telescope",
-            author: "Astro Alex",
-            date: "August 16, 2025",
-            category: "Science",
-            imageUrl: "https://placehold.co/600x400/8b5cf6/ffffff?text=Space",
-            summary:
-                "Explore the breathtaking images and groundbreaking discoveries from the James Webb Space Telescope.",
-            content: `<p>The James Webb Space Telescope is providing an unprecedented view of the early universe, revealing galaxies and stars in stunning detail.</p>`
-        },
-        {
-            id: 11,
-            title: "About This Website Creator ",
+            title: "ब्रह्माण्डको रहस्य",
             author: "Komal Chaudhary",
             date: "August 25, 2025",
-            category: "Biography",
+            category: "Science",
             imageUrl:
-                "https://www.dropbox.com/scl/fi/94re827cvv68umj0od45c/IMG_20250719_140929.jpg?rlkey=42a55l0d8sld2ojeaxqwt2z7j&st=0z8ou6ga&&raw=1",
+                "https://www.dropbox.com/scl/fi/pqfe0wseqxy2w5nbk4hc2/id4.jpg?rlkey=fk3409qhnt68glse9mzjq7etd&st=qu4053fk&$raw=1",
             summary:
-                "Komal Chaudhary is a highly motivated and talented learner from Nepal, with a passion for science, technology, and sharing knowledge through creative content.",
-            content: `<p>Komal Chaudhary is an ambitious and intellectually curious individual hailing from Nepal. Known for being a consistent top performer in academics, Komal has a deep love for learning and exploring new subjects, particularly in the fields of science, technology, history, and innovation. With a natural talent for research and critical thinking, Komal has developed a strong foundation in understanding complex concepts and presenting them in a simple, engaging manner.</p>
+                "यो लेखमा हामी ब्रह्माण्डको विशालता, यसको संरचना, र यसको रहस्यहरूबारे विस्तृत चर्चा गर्नेछौं।",
+            content: `<div style="max-width:800px; margin:auto; padding:20px; background-color:#ffffff; box-shadow:0 4px 12px rgba(0,0,0,0.1); border-radius:16px; font-family:Arial, sans-serif;">
 
-            <p>Beyond academics, Komal is exploring various avenues to share knowledge with a wider audience. Whether it is writing detailed blog posts, crafting engaging articles, or producing educational content for YouTube, Komal aims to inspire curiosity and learning in others. A tech-savvy individual, Komal is comfortable using modern tools, gadgets, and digital platforms to create and disseminate content efficiently.</p>
+        <p style="font-size:18px; color:#374151; margin-bottom:16px;">
+            ब्रह्माण्ड मानव ज्ञानको सबैभन्दा विशाल र रहस्यमय क्षेत्र हो। यसको गहिराइ र विशालता अकल्पनीय छ, र यसमा अरबौं तारा, ग्रह, नक्षत्र, र आकाशगङ्गा छन्।
+        </p>
 
-            <p>Despite having limited resources, including devices like a Samsung A7 tablet, a Redmi Note 9, and basic accessories, Komal has shown remarkable ingenuity in leveraging what is available to achieve learning and creative goals. With a forward-thinking mindset, Komal is constantly seeking opportunities to grow, innovate, and explore career paths that blend technology, creativity, and knowledge sharing.</p>
+        <h2 style="font-size:24px; font-weight:700; color:#111827; margin-top:20px; margin-bottom:12px;">१. ब्रह्माण्डको संरचना</h2>
+        <p style="font-size:16px; color:#374151; margin-bottom:12px;">ब्रह्माण्ड मुख्यतः निम्न घटकबाट बनेको छ:</p>
+        <div style="font-size:16px; color:#374151; margin-left:20px; margin-bottom:20px;">
+            <p style="margin-bottom:6px;">• ताराहरू: आकाशमा प्रकाश फ्याँक्ने विशाल ग्यासका बल्बहरू।</p>
+            <p style="margin-bottom:6px;">• ग्रहहरू: आफ्नो तारा वरिपरि घुम्ने ठूला पिण्डहरू।</p>
+            <p style="margin-bottom:6px;">• ग्यास र धुलो: नयाँ तारा निर्माणमा महत्वपूर्ण।</p>
+            <p style="margin-bottom:6px;">• डार्क म्याटर र डार्क ऊर्जा: अझै रहस्यमय, ब्रह्माण्डको ९०% भन्दा बढी हिस्सा यहीले बनाएको छ।</p>
+        </div>
 
-            <p>Driven by curiosity and a desire to make a meaningful impact, Komal continues to set ambitious goals, balancing academic excellence with personal development and creative pursuits. Through dedication, discipline, and a passion for lifelong learning, Komal Chaudhary represents a bright and inspiring example of a young individual eager to leave a mark in the fields of science, technology, and education.</p>`
+        <h2 style="font-size:24px; font-weight:700; color:#111827; margin-top:20px; margin-bottom:12px;">२. ब्रह्माण्डको उत्पत्ति</h2>
+        <p style="font-size:16px; color:#374151; margin-bottom:12px;">
+            वैज्ञानिक अनुसार, ब्रह्माण्ड करिब १३.८ अरब वर्षअघि बिग बैंक (Big Bang) बाट उत्पन्न भएको हो। त्यसपछि यो विस्तार हुँदै आएको छ र आजसम्म विशाल रूप लिइसकेको छ।
+        </p>
+
+        <h2 style="font-size:24px; font-weight:700; color:#111827; margin-top:20px; margin-bottom:12px;">३. ब्रह्माण्डका रहस्य</h2>
+        <div style="font-size:16px; color:#374151; margin-left:20px; margin-bottom:20px;">
+            <p style="margin-bottom:6px;">• डार्क म्याटर र डार्क ऊर्जा: ब्रह्माण्डको अधिकांश तत्व अझै बुझिएको छैन।</p>
+            <p style="margin-bottom:6px;">• ब्ल्याक होल: अत्यन्त घना पिण्ड जसबाट प्रकाश पनि बाहिर निस्कन सक्दैन।</p>
+            <p style="margin-bottom:6px;">• मल्टिवर्स सम्भावना: वैज्ञानिकहरूले अन्य ब्रह्माण्डहरूको अस्तित्वको सम्भावना पनि राखेका छन्।</p>
+        </div>
+
+        <h2 style="font-size:24px; font-weight:700; color:#111827; margin-top:20px; margin-bottom:12px;">४. निष्कर्ष</h2>
+        <p style="font-size:16px; color:#374151; margin-bottom:12px;">
+            ब्रह्माण्डको अध्ययनले मानव सोच र विज्ञान दुवैलाई चुनौती दिएको छ। यसको विशालता र रहस्यहरूले अझ नयाँ अनुसन्धान र खोजहरूको मार्ग खोल्नेछ। हामीले यसको संरचना, उत्पत्ति, र रहस्य बुझेर मात्र आफ्नो ज्ञानको सीमा विस्तार गर्न सक्छौं।
+        </p>
+
+    </div>`
         }
     ];
     const categories = [
