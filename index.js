@@ -38,8 +38,14 @@ document.addEventListener("DOMContentLoaded", () => {
             <p>Beyond academics, Komal is exploring various avenues to share knowledge with a wider audience. Whether it is writing detailed blog posts, crafting engaging articles, or producing educational content for YouTube, Komal aims to inspire curiosity and learning in others. A tech-savvy individual, Komal is comfortable using modern tools, gadgets, and digital platforms to create and disseminate content efficiently.</p>
 
             <p>Despite having limited resources, including devices like a Samsung A7 tablet, a Redmi Note 9, and basic accessories, Komal has shown remarkable ingenuity in leveraging what is available to achieve learning and creative goals. With a forward-thinking mindset, Komal is constantly seeking opportunities to grow, innovate, and explore career paths that blend technology, creativity, and knowledge sharing.</p>
-
-            <p>Driven by curiosity and a desire to make a meaningful impact, Komal continues to set ambitious goals, balancing academic excellence with personal development and creative pursuits. Through dedication, discipline, and a passion for lifelong learning, Komal Chaudhary represents a bright and inspiring example of a young individual eager to leave a mark in the fields of science, technology, and education.</p>`
+            
+            <p>Driven by curiosity and a desire to make a meaningful impact, Komal continues to set ambitious goals, balancing academic excellence with personal development and creative pursuits. Through dedication, discipline, and a passion for lifelong learning, Komal Chaudhary represents a bright and inspiring example of a young individual eager to leave a mark in the fields of science, technology, and education.</p>
+            <img 
+  src="https://www.dropbox.com/scl/fi/1i4a5atblxcectov3rmpy/0db207ab571622c71e017acdbb4b44d0.jpg?rlkey=o6wokix3lg09hc01ubm902pk0&st=ip7qo5i7&&raw=1" 
+  alt="My Certificate" 
+  class="w-full md:w-3/4 lg:w-1/2 h-auto object-contain rounded-xl shadow-lg mx-auto my-6"
+/>
+            `
         },
         {
             id: 2,
