@@ -169,7 +169,53 @@ document.addEventListener("DOMContentLoaded", () => {
         </p>
 
     </div>`
-        }
+        },
+        {
+    id: 5,
+    title: "Microsoft को इतिहास र भविष्य",
+    author: "Komal Chaudhary",
+    date: "August 25, 2025",
+    category: "Tech",
+    imageUrl: "https://www.dropbox.com/scl/fi/y1m9uwyajy474s5aqqxh7/id5.jpg?rlkey=75hy2684aedt9jim8uatiaw3t&st=zvi06zs9&&raw=1",
+    summary: "यो लेखमा Microsoft को इतिहास, यसको प्रमुख उत्पादनहरू, विश्वमा परेको प्रभाव, र भविष्यको सम्भावनाबारे चर्चा गरिएको छ।",
+    content: `<div style="max-width:800px; margin:auto; padding:20px; background-color:#ffffff; box-shadow:0 4px 12px rgba(0,0,0,0.1); border-radius:16px; font-family:Arial, sans-serif;">
+
+        <p style="font-size:18px; color:#374151; margin-bottom:16px;">
+            Microsoft विश्वकै ठूला प्रविधि कम्पनीहरूमध्ये एक हो जसले कम्प्युटर सफ्टवेयर, हार्डवेयर, क्लाउड सेवा, र कृत्रिम बुद्धिमत्तामा ठूलो योगदान दिएको छ। यसले आधुनिक कम्प्युटिङको इतिहासलाई नयाँ दिशा दिएको छ।
+        </p>
+
+        <h2 style="font-size:24px; font-weight:700; color:#111827; margin-top:20px; margin-bottom:12px;">१. Microsoft को स्थापना</h2>
+        <p style="font-size:16px; color:#374151; margin-bottom:12px;">
+            Microsoft सन् १९७५ मा Bill Gates र Paul Allen द्वारा स्थापना गरिएको थियो। यसको पहिलो प्रमुख उत्पादन BASIC प्रोग्रामिङ भाषाको संस्करण थियो, जुन Altair 8800 कम्प्युटरका लागि विकास गरिएको थियो।
+        </p>
+
+        <h2 style="font-size:24px; font-weight:700; color:#111827; margin-top:20px; margin-bottom:12px;">२. Windows र Office को क्रान्ति</h2>
+        <p style="font-size:16px; color:#374151; margin-bottom:12px;">
+            Microsoft Windows को लॉन्चले व्यक्तिगत कम्प्युटरमा ग्राफिकल इन्टरफेस ल्याएर ठूलो परिवर्तन गर्‍यो। त्यसपछि Microsoft Office (Word, Excel, PowerPoint) ले व्यवसाय, शिक्षा, र प्रशासनमा उत्पादकता बढायो।
+        </p>
+
+        <h2 style="font-size:24px; font-weight:700; color:#111827; margin-top:20px; margin-bottom:12px;">३. Microsoft र विश्वव्यापी प्रभाव</h2>
+        <p style="font-size:16px; color:#374151; margin-bottom:12px;">
+            Microsoft ले लाखौं मानिसलाई कम्प्युटर प्रविधि प्रयोग गर्ने अवसर दिएको छ। यसको उत्पादनहरूले व्यवसाय, शिक्षा, स्वास्थ्य, र मनोरञ्जन क्षेत्रमा ठूलो प्रभाव पारेको छ। Xbox गेमिङ कन्सोल र Azure Cloud सेवा विश्वभर प्रयोगमा आएका छन्।
+        </p>
+
+        <h2 style="font-size:24px; font-weight:700; color:#111827; margin-top:20px; margin-bottom:12px;">४. Microsoft को नवीनतम प्रगति</h2>
+        <p style="font-size:16px; color:#374151; margin-bottom:12px;">
+            अहिले Microsoft कृत्रिम बुद्धिमत्ता (AI), क्लाउड कम्प्युटिङ, र साइबर सुरक्षामा केन्द्रित छ। यसको AI टूलहरू (जस्तै Copilot) ले उत्पादकता र सिर्जनशीलतालाई नयाँ उचाइमा पुर्‍याइरहेका छन्।
+        </p>
+
+        <h2 style="font-size:24px; font-weight:700; color:#111827; margin-top:20px; margin-bottom:12px;">५. भविष्यको सम्भावना</h2>
+        <p style="font-size:16px; color:#374151; margin-bottom:12px;">
+            Microsoft भविष्यमा Quantum Computing, Mixed Reality, र Artificial General Intelligence (AGI) जस्ता क्षेत्रमा ठूलो योगदान दिने अपेक्षा गरिएको छ। यसले विश्वलाई अझ स्मार्ट र कनेक्टेड बनाउन सहयोग गर्नेछ।
+        </p>
+
+        <h2 style="font-size:24px; font-weight:700; color:#111827; margin-top:20px; margin-bottom:12px;">६. निष्कर्ष</h2>
+        <p style="font-size:16px; color:#374151; margin-bottom:12px;">
+            Microsoft केवल एक प्रविधि कम्पनी मात्र होइन, यसले विश्वव्यापी समाज र अर्थतन्त्रमा गहिरो प्रभाव पारेको छ। यसको अतीत गौरवशाली छ, वर्तमान बलियो छ, र भविष्य अझ क्रान्तिकारी हुने देखिन्छ।
+        </p>
+
+    </div>`
+}
     ];
     const categories = [
         "All",
