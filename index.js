@@ -41,7 +41,7 @@ document.addEventListener("DOMContentLoaded", () => {
             
             <p>Driven by curiosity and a desire to make a meaningful impact, Komal continues to set ambitious goals, balancing academic excellence with personal development and creative pursuits. Through dedication, discipline, and a passion for lifelong learning, Komal Chaudhary represents a bright and inspiring example of a young individual eager to leave a mark in the fields of science, technology, and education.</p>
             <img 
-  src="https://www.dropbox.com/scl/fi/1i4a5atblxcectov3rmpy/0db207ab571622c71e017acdbb4b44d0.jpg?rlkey=o6wokix3lg09hc01ubm902pk0&st=ip7qo5i7&&raw=1" 
+  src="https://www.dropbox.com/scl/fi/56ykum5pnwdjjnkt1rxct/Certificates-sololearn.jpg?rlkey=e6og39il2yjsg1vuaahubyi29&st=4sqsot8l&&raw=1" 
   alt="My Certificate" 
   class="w-full md:w-3/4 lg:w-1/2 h-auto object-contain rounded-xl shadow-lg mx-auto my-6"
 />
