@@ -19,1690 +19,386 @@
     }
 */
 document.addEventListener("DOMContentLoaded", () => {
-    // --- DATA SOURCE ---
-    // To add a new article, simply add a new object to this array.
-    // Ensure the 'id' is unique and the 'date' is a valid string format.
-    const allPosts = [
-        {
-            id: 1,
-            title: "About This App's Creator",
-            author: "Komal Chaudhary",
-            date: "August 25, 2025",
-            category: "Biography",
-            imageUrl:
-                "https://www.dropbox.com/scl/fi/bu8wupt023vg0u37kl2t3/id1.jpg?rlkey=353neh9rxdfde6kpezyb2bvb4&st=ctxd9rr9&&raw=1",
-            summary:
-                "Komal Chaudhary is a highly motivated and talented learner from Nepal, with a passion for science, technology, and sharing knowledge through creative content.",
-            content: `<p>Komal Chaudhary is an ambitious and intellectually curious individual hailing from Nepal. Known for being a consistent top performer in academics, Komal has a deep love for learning and exploring new subjects, particularly in the fields of science, technology, history, and innovation. With a natural talent for research and critical thinking, Komal has developed a strong foundation in understanding complex concepts and presenting them in a simple, engaging manner.</p>
 
-            <p>Beyond academics, Komal is exploring various avenues to share knowledge with a wider audience. Whether it is writing detailed blog posts, crafting engaging articles, or producing educational content for YouTube, Komal aims to inspire curiosity and learning in others. A tech-savvy individual, Komal is comfortable using modern tools, gadgets, and digital platforms to create and disseminate content efficiently.</p>
+  const categories = [
+    "All",
+    "Tech",
+    "Biography",
+    "Science",
+    "Country",
+    "Books",
+    "River",
+    "Mountains",
+    "Music",
+    "Business",
+    "Education",
+    "History",
+    "Art",
+    "Sports",
+  ];
 
-            <p>Despite having limited resources, including devices like a Samsung A7 tablet, a Redmi Note 9, and basic accessories, Komal has shown remarkable ingenuity in leveraging what is available to achieve learning and creative goals. With a forward-thinking mindset, Komal is constantly seeking opportunities to grow, innovate, and explore career paths that blend technology, creativity, and knowledge sharing.</p>
-            
-            <p>Driven by curiosity and a desire to make a meaningful impact, Komal continues to set ambitious goals, balancing academic excellence with personal development and creative pursuits. Through dedication, discipline, and a passion for lifelong learning, Komal Chaudhary represents a bright and inspiring example of a young individual eager to leave a mark in the fields of science, technology, and education.</p>
-            
-            <p style="font-size:25px; font-weight:bold;";>HP Global Life र मेरो शिक्षा यात्रा</p>
-                        <img 
-  src="https://www.dropbox.com/scl/fi/vngduo0fi058ao9ey6c2b/Certificatses-hp-life.jpg?rlkey=9yoh36bg6mij8zd4z1weyi0ll&st=zbn444n3&&raw=1" 
-  alt="My Certificate" 
-  class="w-full md:w-3/4 lg:w-1/2 h-auto object-contain rounded-xl shadow-lg mx-auto my-6"
-/>
-            <p>
-            मेरो शिक्षा र सीप विकासको यात्रामा HP Global Life ले महत्वपूर्ण भूमिका खेलेको छ। जब म नयाँ कुराहरू सिक्ने र आफ्नो क्षमता बढाउने सोचमा थिएँ, त्यसबेला HP Global Life ले उपलब्ध गराएको विभिन्न कोर्सहरूले मलाई सही दिशा देखायो।
-</p><p>
-त्यहाँ विभिन्न डिजिटल, व्यावसायिक र व्यक्तिगत विकासका कोर्सहरू उपलब्ध थिए, जसले मेरो ज्ञान र अनुभवलाई फराकिलो बनायो। मैले त्यहाँको प्रशिक्षणमार्फत नयाँ विषयहरू सिकें, प्रोजेक्टहरूमा काम गर्ने अनुभव पाएँ, र समयमै आवश्यक सिपहरू विकास गर्न सकें।
-</p><p>
-सबैभन्दा महत्वपूर्ण कुरा, HP Global Life को प्रशिक्षण प्रणाली सरल, व्यवस्थित र प्रयोगमैत्री थियो। यसले मलाई मेरो गति अनुसार अध्ययन गर्न सजिलो बनायो र सिकाइमा आत्मविश्वास बढायो।
-</p><p>
-मेरो अनुभव अनुसार, HP Global Life ले केवल कोर्स मात्र प्रदान गरेको छैन, बरु भविष्यका अवसरहरूका लागि मार्गदर्शन र प्रेरणा पनि दिएको छ। यसको सहयोगले म आफ्नो लक्ष्यतर्फ थप निश्चित कदम चाल्न सक्षम भएँ।</p>
+  // --- STATE MANAGEMENT ---
+  let state = {
+    searchTerm: "",
+    selectedCategory: "All",
+    sortOrder: localStorage.getItem("blog-sortOrder") || "newest",
+    favorites: JSON.parse(localStorage.getItem("blog-favorites")) || [],
+    theme: localStorage.getItem("blog-theme") || "light",
+  };
 
-            <p style="font-size:25px; font-weight:bold;";>Programming Hub र मेरो प्रोग्रामिङ्ग यात्रा</p>
-            <img 
-  src="https://www.dropbox.com/scl/fi/qw3tdo1gbnhzbc6kokts5/Certificates-programming-hub.jpg?rlkey=n9qbk7p7dkkqu7yutchtkac51&st=i7cal6yh&&raw=1" 
-  alt="My Certificate" 
-  class="w-full md:w-3/4 lg:w-1/2 h-auto object-contain rounded-xl shadow-lg mx-auto my-6"
-/>
-<p>
-मेरो प्रोग्रामिङ्ग सिक्ने यात्रामा Programming Hub ले ठूलो सहयोग गरेको छ। जब म कम्प्युटर प्रोग्रामिङ्ग र नयाँ भाषाहरू सिक्ने सोचमा थिएँ, त्यहाँ उपलब्ध कोर्सहरूले मलाई आवश्यक ज्ञान र मार्गदर्शन प्रदान गर्यो।
-</p><p> Programming Hub मा विभिन्न प्रोग्रामिङ्ग भाषाहरू र विकास सम्बन्धी कोर्सहरू सजिलै बुझिने तरिकामा तयार गरिएका थिए। मैले त्यहाँको प्रशिक्षणमार्फत Python, Java, C++, Web Development जस्ता विषयहरू सिकें र अभ्यासका लागि प्रोजेक्टहरू पनि पाएँ। यसले मेरो सिप र आत्मविश्वास दुवै बढायो।
-</p><p>सबैभन्दा महत्वपूर्ण कुरा, Programming Hub को मोबाइल र वेब एप्लिकेशन प्रयोग गर्न सजिलो र इन्टरएक्टिभ थियो। यसले मेरो अध्ययनलाई रमाइलो र प्रभावकारी बनायो।
-</p><p>मेरो अनुभव अनुसार, Programming Hub ले मात्र कोर्स उपलब्ध गराएको छैन, बरु प्रायोगात्मक अभ्यास र वास्तविक जीवनका उदाहरणहरूमार्फत ज्ञान बुझ्न सहयोग गरेको छ। यसले मलाई मेरो प्रोग्रामिङ्ग यात्रा अझ द्रुत र सफल बनाउन मद्दत गर्यो।
-</p>
-            <p style="font-size:25px; font-weight:bold;";>Solo learn र मेरो प्रोग्रामिङ्ग यात्रा</p>
-            <img 
-  src="https://www.dropbox.com/scl/fi/56ykum5pnwdjjnkt1rxct/Certificates-sololearn.jpg?rlkey=e6og39il2yjsg1vuaahubyi29&st=4sqsot8l&&raw=1" 
-  alt="My Certificate" 
-  class="w-full md:w-3/4 lg:w-1/2 h-auto object-contain rounded-xl shadow-lg mx-auto my-6"
-/>
-<p>मेरो प्रोग्रामिङ्ग सिक्ने यात्रामा SoloLearn ले ठूलो सहयोग पुऱ्‍यायो। जब म नयाँ प्रोग्रामिङ्ग भाषाहरू सिक्ने सोचमा थिएँ, SoloLearn ले त्यसलाई सजिलो र रमाइलो बनायो।
-</p><p>
-SoloLearn मा Python, Java, C++, JavaScript जस्ता धेरै भाषाहरूको कोर्सहरू इन्टरएक्टिभ तरिकाले उपलब्ध छन्। मैले त्यहाँको छोटो-छोटो पाठ, क्विज र प्रोजेक्टहरू मार्फत सिकाइलाई व्यवहारिक बनायो। यसले मेरो ज्ञान बढाउने मात्र होइन, अभ्यास गर्ने आत्मविश्वास पनि दिएको छ।
-</p><p>
-सबैभन्दा राम्रो कुरा भनेको SoloLearn को मोबाइल एप्लिकेशनले जहाँसुकै, जुनसुकै समयमा अध्ययन गर्न मिल्ने सुविधा दिएको हो। यसले मेरो सिकाइलाई लचिलो र सहज बनायो।
-</p><p>
-मेरो अनुभव अनुसार, SoloLearn ले केवल कोर्स मात्र उपलब्ध गराएको छैन, बरु सिप विकास र वास्तविक प्रोग्रामिङ्ग अभ्यासका लागि प्रेरणा पनि दिएको छ। यसको मद्दतले म आफ्नो प्रोग्रामिङ्ग क्षमतालाई अझ सुदृढ बनाउन सफल भएँ।</p>
+  // --- DOM ELEMENTS ---
+  const postsContainer = document.getElementById("posts-container");
+  const categoriesContainer = document.getElementById("categories-container");
+  const searchInput = document.getElementById("search-input");
+  const sortSelect = document.getElementById("sort-select");
+  const themeToggle = document.getElementById("theme-toggle");
+  const themeIconMoon = document.getElementById("theme-icon-moon");
+  const themeIconSun = document.getElementById("theme-icon-sun");
+  const listView = document.getElementById("list-view");
+  const postView = document.getElementById("post-view");
+  const backButton = document.getElementById("back-button");
+  const postContentContainer = document.getElementById(
+    "post-content-container"
+  );
+  const postNavigationContainer = document.getElementById("post-navigation");
+  const noResultsContainer = document.getElementById("no-results");
 
-            `
-        },
-        {
-            id: 2,
-            title: "Future of Artificial Intelligence",
-            author: "Komal Chaudhary",
-            date: "August 25, 2025",
-            category: "Tech",
-            imageUrl:
-                "https://www.dropbox.com/scl/fi/mu2xvhnxmto9f941fsb3b/id2.jpg?rlkey=lmnig3t0q8he4p7m7wyw1u4jn&st=h07tu3nu&&raw=1",
-            summary:
-                "यो लेखमा हामी भविष्यमा Artificial Intelligence (AI) ले हाम्रो जीवन र समाजमा कस्तो प्रभाव पार्न सक्छ भन्ने बारेमा विस्तृत विश्लेषण गर्नेछौं।",
-            content: `<div style="max-width:800px; margin:auto; padding:20px; background-color:#ffffff; box-shadow:0 4px 12px rgba(0,0,0,0.1); border-radius:16px;">
-        
-               <p style="font-size:18px; color:#374151; margin-bottom:20px;">
-            यो लेखमा हामी भविष्यमा Artificial Intelligence (AI) ले हाम्रो जीवन र समाजमा कस्तो प्रभाव पार्न सक्छ भन्ने बारेमा विस्तृत विश्लेषण गर्नेछौं।
-        </p>
+  // Sidebar elements
+  const sidebarMenu = document.getElementById("sidebar-menu");
+  const sidebarOverlay = document.getElementById("sidebar-overlay");
+  const hamburgerBtn = document.getElementById("hamburger-btn");
+  const sidebarCloseBtn = document.getElementById("sidebar-close-btn");
+  const favoritesListContainer = document.getElementById(
+    "favorites-list-container"
+  );
 
-        <p style="font-size:16px; color:#374151; margin-bottom:16px;">
-            Artificial Intelligence (AI) आधुनिक प्रविधिको एक महत्वपूर्ण हिस्सा बनेको छ। यसले हाम्रा दैनिक जीवन, उद्योग, स्वास्थ्य, शिक्षा, र मनोरञ्जनको क्षेत्रमा ठूलो प्रभाव पार्दै आएको छ। भविष्यमा AI को विकास अझ तीव्र र व्यापक हुने अपेक्षा गरिएको छ।
-        </p>
+  // --- RENDER FUNCTIONS ---
 
-        <h2 style="font-size:24px; font-weight:700; color:#111827; margin-top:20px; margin-bottom:12px;">१. AI को वर्तमान स्थिति</h2>
-        <p style="font-size:16px; color:#374151; margin-bottom:12px;">आजको समयमा AI विभिन्न क्षेत्रमा प्रयोग भइरहेको छ:</p>
-        <div style="font-size:16px; color:#374151; margin-left:20px; margin-bottom:20px;">
-            <p style="margin-bottom:6px;">• स्वचालित ड्राइभिङ: Tesla, Waymo जस्ता कम्पनीहरूले AI को प्रयोग गरेर कारलाई स्वतः चलाउने प्रविधि विकास गरिरहेका छन्।</p>
-            <p style="margin-bottom:6px;">• स्वास्थ्य सेवा: AI रोगको पहिचान, उपचार योजना, र मेडिकल इमेजिंगमा मद्दत गर्दैछ।</p>
-            <p style="margin-bottom:6px;">• वाणिज्य र ई–कर्मस: AI ग्राहक व्यवहार विश्लेषण, सुझाव प्रणाली, र सप्लाई चेन व्यवस्थापनमा प्रयोग भइरहेको छ।</p>
-            <p style="margin-bottom:6px;">• भाषा र संचार: ChatGPT जस्ता AI उपकरणहरूले मानव–कम्प्युटर संवादलाई सहज बनाउँदै छन्।</p>
-        </div>
+  const renderCategories = () => {
+    categoriesContainer.innerHTML = "";
+    categories.forEach((category) => {
+      const button = document.createElement("button");
+      button.textContent = category;
+      button.className = `px-4 py-2 text-sm font-medium rounded-full whitespace-nowrap transition-colors duration-200 ${
+        state.selectedCategory === category
+          ? "bg-blue-600 text-white"
+          : "bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-200 hover:bg-gray-200 dark:hover:bg-gray-700"
+      }`;
+      button.addEventListener("click", () => {
+        state.selectedCategory = category;
+        renderAll();
+      });
+      categoriesContainer.appendChild(button);
+    });
+  };
 
-        <h2 style="font-size:24px; font-weight:700; color:#111827; margin-top:20px; margin-bottom:12px;">२. भविष्यमा AI को सम्भावना</h2>
-        <p style="font-size:16px; color:#374151; margin-bottom:12px;">भविष्यमा AI ले हाम्रो जीवन र समाजलाई विभिन्न तरिकाले रूपान्तरण गर्नेछ:</p>
-        <div style="font-size:16px; color:#374151; margin-left:20px; margin-bottom:20px;">
-            <p style="margin-bottom:6px;">• <strong>शिक्षा:</strong> व्यक्तिगत शिक्षण अनुभव र अनलाइन शिक्षा प्रणालीलाई AI द्वारा अझ प्रभावकारी बनाइनेछ।</p>
-            <p style="margin-bottom:6px;">• <strong>स्वास्थ्य:</strong> AI ले रोग निदान, औषधि विकास, र स्वास्थ्य सेवा प्रणालीमा क्रान्ति ल्याउनेछ।</p>
-            <p style="margin-bottom:6px;">• <strong>उद्योग र रोजगारी:</strong> मेसिन लर्निङ र रोबोटिक्सको प्रयोगले उत्पादन क्षमता बढाउनेछ, तर केही पारम्परिक रोजगारी कम हुन सक्छ।</p>
-            <p style="margin-bottom:6px;">• <strong>सुरक्षा र गोपनीयता:</strong> AI आधारित सुरक्षा प्रणालीले साइबर अपराध र डाटा सुरक्षा सुधार गर्नेछ, तर गोपनीयता र नैतिक चुनौतीहरू पनि बढ्नेछन्।</p>
-        </div>
+  const renderPosts = () => {
+    postsContainer.innerHTML = "";
+    const filteredPosts = getFilteredAndSortedPosts();
 
-        <h2 style="font-size:24px; font-weight:700; color:#111827; margin-top:20px; margin-bottom:12px;">३. AI र सामाजिक प्रभाव</h2>
-        <div style="font-size:16px; color:#374151; margin-left:20px; margin-bottom:20px;">
-            <p style="margin-bottom:6px;">• आर्थिक वृद्धि: AI ले उत्पादन क्षमता बढाएर राष्ट्रिय आर्थिक वृद्धि गर्नेछ।</p>
-            <p style="margin-bottom:6px;">• रोजगारी चुनौती: केही क्षेत्रमा मानिसको स्थान मेसिनले लिने सम्भावना छ, जसले नयाँ कौशल सिक्न आवश्यक बनाउनेछ।</p>
-            <p style="margin-bottom:6px;">• शिक्षा र प्रशिक्षण: नयाँ AI प्रविधिको लागि विद्यार्थी र पेशेवरहरूको लागि प्रशिक्षण र शिक्षा अनिवार्य हुनेछ।</p>
-            <p style="margin-bottom:6px;">• नैतिक र कानूनी प्रश्न: AI ले निर्णय लिने प्रक्रियामा पारदर्शिता र जिम्मेवारी सुनिश्चित गर्न चुनौती उत्पन्न गर्नेछ।</p>
-        </div>
+    noResultsContainer.classList.toggle("hidden", filteredPosts.length > 0);
 
-        <h2 style="font-size:24px; font-weight:700; color:#111827; margin-top:20px; margin-bottom:12px;">४. AI को नैतिकता र जिम्मेवारी</h2>
-        <div style="font-size:16px; color:#374151; margin-left:20px; margin-bottom:20px;">
-            <p style="margin-bottom:6px;">• AI ले लिएर आउने निर्णयहरू पारदर्शी र न्यायसंगत हुनुपर्छ।</p>
-            <p style="margin-bottom:6px;">• डेटा गोपनीयता र प्रयोगकर्ता अधिकारको संरक्षण अनिवार्य छ।</p>
-            <p style="margin-bottom:6px;">• AI मा पूर्वाग्रह र भेदभाव रोक्न निरन्तर निगरानी आवश्यक छ।</p>
-        </div>
-
-        <h2 style="font-size:24px; font-weight:700; color:#111827; margin-top:20px; margin-bottom:12px;">५. निष्कर्ष</h2>
-        <p style="font-size:16px; color:#374151; margin-bottom:12px;">भविष्यमा AI हाम्रो जीवनको अभिन्न हिस्सा बन्नेछ। यसले शिक्षा, स्वास्थ्य, उद्योग, सुरक्षा र मनोरञ्जनका क्षेत्रमा क्रान्ति ल्याउनेछ। तर यससँगै सामाजिक, नैतिक, र कानूनी चुनौतीहरू पनि आउनेछन्। हामीले यी चुनौतीहरू सामना गर्दै AI को विकासलाई सुरक्षित, जिम्मेवार र मानव कल्याणमुखी बनाउनु जरुरी छ।</p>
-        <p style="font-size:16px; color:#374151;">AI को सही दिशा र नियमनले मानव जीवनलाई अझ सरल, सुरक्षित, र समृद्ध बनाउने अवसर प्रदान गर्नेछ। यसैले, AI को भविष्य उज्ज्वल भए पनि यसमा सजग र जिम्मेवार दृष्टिकोण आवश्यक छ।</p>
-
-    </div>`
-        },
-        {
-            id: 3,
-            title: "Google",
-            author: "Komal Chaudhary",
-            date: "August 25, 2025",
-            category: "Tech",
-            imageUrl:
-                "https://www.dropbox.com/scl/fi/q78b026iahykc1j4e3zxk/id3.jpg?rlkey=dcswv80ci9bwmdkfy5k9thtvb&st=e5t58imr&&raw=1",
-            summary:
-                "यो लेखमा हामी Google को इतिहास, यसको विकास, र भविष्यमा यसको सम्भावित योगदानबारे विस्तृत विश्लेषण गर्नेछौं।",
-            content: `<div style="max-width:800px; margin:auto; padding:20px; background-color:#ffffff; box-shadow:0 4px 12px rgba(0,0,0,0.1); border-radius:16px; font-family:Arial, sans-serif;">
-
-      <p>
-      गुगलको यात्रा सन् १९९८ मा ल्यारी पेज (Larry Page) र सर्गेई ब्रिन (Sergey Brin) द्वारा सुरु भएको थियो। उनीहरू दुवै स्ट्यानफोर्ड विश्वविद्यालयका विद्यार्थी थिए। उनीहरूले इन्टरनेटमा जानकारी खोज्ने एउटा नयाँ र राम्रो तरिका पत्ता लगाउने उद्देश्यले काम गरिरहेका थिए। उनीहरूको यो परियोजनाको नाम सुरुमा "ब्याकरब" (BackRub) थियो, जसलाई पछि "गूगल" नाम दिइयो। "गूगल" नाम "गूगोल" (Googol) शब्दबाट आएको हो, जसको अर्थ १ पछि १०० वटा शून्य हुन्छ। यो नामले उनीहरूको विशाल जानकारीलाई व्यवस्थित गर्ने लक्ष्यलाई झल्काउँछ
-      </p>
-      <p>
-​गूगलको पहिलो कार्यालय क्यालिफोर्नियाको मेन्लो पार्कमा एउटा साथीको ग्यारेजमा थियो। सन् १९९८ मा उनीहरूले आधिकारिक रूपमा "गुगल इंक." (Google Inc.) को स्थापना गरे। उनीहरूको मुख्य लक्ष्य भनेको संसारभरिको जानकारीलाई व्यवस्थित गर्नु र सबैले त्यसलाई सजिलै उपयोग गर्न सक्ने बनाउनु थियो। उनीहरूको खोज इन्जिनले वेबसाइटहरूलाई उनीहरूको लिङ्कको आधारमा श्रेणीकरण गर्थ्यो, जसले गर्दा सबैभन्दा सान्दर्भिक परिणामहरू सजिलै फेला पार्न सकिन्थ्यो।
-</p>
-<p>
-​समयसँगै गुगलले आफ्नो सेवाहरू विस्तार गर्दै गयो। सन् २००० मा गुगलले "गुगल एड्स" (Google Ads) सुरु गर्यो, जसले कम्पनीलाई ठूलो आर्थिक सफलता दियो। त्यसपछि सन् २००४ मा "जीमेल" (Gmail) आयो, जसले ठूलो मात्रामा निःशुल्क भण्डारण दिएर इमेलको क्षेत्रमा क्रान्ति ल्यायो। त्यसैगरी, सन् २००५ मा "गुगल म्याप्स" (Google Maps) र सन् २००६ मा "युट्युब" (YouTube) को अधिग्रहणले गुगललाई थप शक्तिशाली बनायो।
-</p>
-<p>
-​सन् २००८ मा गुगलले आफ्नो वेब ब्राउजर "गुगल क्रोम" (Google Chrome) र मोबाइल अपरेटिङ सिस्टम "एन्ड्रोइड" (Android) सुरु गर्यो। एन्ड्रोइड अहिले संसारका धेरैजसो स्मार्टफोनहरूमा प्रयोग हुने मुख्य अपरेटिङ सिस्टम बनेको छ। यी दुई उत्पादनले गुगललाई खोज र विज्ञापनभन्दा बाहिरको प्रविधि बजारमा पनि स्थापित गर्यो।
-</p>
-<p>​आज, गुगल एक विश्वव्यापी कम्पनी बनेको छ र यसको मुख्य कम्पनी "अल्फाबेट इंक." (Alphabet Inc.) हो। यसले आर्टिफिसियल इन्टेलिजेन्स (AI), क्लाउड कम्प्युटिङ, र अन्य धेरै क्षेत्रमा काम गरिरहेको छ। गुगलले आफ्नो सानो ग्यारेजबाट सुरु भएको यात्रामा प्रविधिको संसारमा ठूलो परिवर्तन ल्याएको छ।
-      </p>
-    </div>`
-        },
-        {
-            id: 4,
-            title: "Mystery of The Universe",
-            author: "Komal Chaudhary",
-            date: "August 25, 2025",
-            category: "Science",
-            imageUrl:
-                "https://www.dropbox.com/scl/fi/pqfe0wseqxy2w5nbk4hc2/id4.jpg?rlkey=fk3409qhnt68glse9mzjq7etd&st=qu4053fk&&raw=1",
-            summary:
-                "यो लेखमा हामी ब्रह्माण्डको विशालता, यसको संरचना, र यसको रहस्यहरूबारे विस्तृत चर्चा गर्नेछौं।",
-            content: `<div style="max-width:800px; margin:auto; padding:20px; background-color:#ffffff; box-shadow:0 4px 12px rgba(0,0,0,0.1); border-radius:16px; font-family:Arial, sans-serif;">
-
-        <p style="font-size:18px; color:#374151; margin-bottom:16px;">
-            ब्रह्माण्ड मानव ज्ञानको सबैभन्दा विशाल र रहस्यमय क्षेत्र हो। यसको गहिराइ र विशालता अकल्पनीय छ, र यसमा अरबौं तारा, ग्रह, नक्षत्र, र आकाशगङ्गा छन्।
-        </p>
-
-        <h2 style="font-size:24px; font-weight:700; color:#111827; margin-top:20px; margin-bottom:12px;">१. ब्रह्माण्डको संरचना</h2>
-        <p style="font-size:16px; color:#374151; margin-bottom:12px;">ब्रह्माण्ड मुख्यतः निम्न घटकबाट बनेको छ:</p>
-        <div style="font-size:16px; color:#374151; margin-left:20px; margin-bottom:20px;">
-            <p style="margin-bottom:6px;">• ताराहरू: आकाशमा प्रकाश फ्याँक्ने विशाल ग्यासका बल्बहरू।</p>
-            <p style="margin-bottom:6px;">• ग्रहहरू: आफ्नो तारा वरिपरि घुम्ने ठूला पिण्डहरू।</p>
-            <p style="margin-bottom:6px;">• ग्यास र धुलो: नयाँ तारा निर्माणमा महत्वपूर्ण।</p>
-            <p style="margin-bottom:6px;">• डार्क म्याटर र डार्क ऊर्जा: अझै रहस्यमय, ब्रह्माण्डको ९०% भन्दा बढी हिस्सा यहीले बनाएको छ।</p>
-        </div>
-
-        <h2 style="font-size:24px; font-weight:700; color:#111827; margin-top:20px; margin-bottom:12px;">२. ब्रह्माण्डको उत्पत्ति</h2>
-        <p style="font-size:16px; color:#374151; margin-bottom:12px;">
-            वैज्ञानिक अनुसार, ब्रह्माण्ड करिब १३.८ अरब वर्षअघि बिग बैंक (Big Bang) बाट उत्पन्न भएको हो। त्यसपछि यो विस्तार हुँदै आएको छ र आजसम्म विशाल रूप लिइसकेको छ।
-        </p>
-
-        <h2 style="font-size:24px; font-weight:700; color:#111827; margin-top:20px; margin-bottom:12px;">३. ब्रह्माण्डका रहस्य</h2>
-        <div style="font-size:16px; color:#374151; margin-left:20px; margin-bottom:20px;">
-            <p style="margin-bottom:6px;">• डार्क म्याटर र डार्क ऊर्जा: ब्रह्माण्डको अधिकांश तत्व अझै बुझिएको छैन।</p>
-            <p style="margin-bottom:6px;">• ब्ल्याक होल: अत्यन्त घना पिण्ड जसबाट प्रकाश पनि बाहिर निस्कन सक्दैन।</p>
-            <p style="margin-bottom:6px;">• मल्टिवर्स सम्भावना: वैज्ञानिकहरूले अन्य ब्रह्माण्डहरूको अस्तित्वको सम्भावना पनि राखेका छन्।</p>
-        </div>
-
-        <h2 style="font-size:24px; font-weight:700; color:#111827; margin-top:20px; margin-bottom:12px;">४. निष्कर्ष</h2>
-        <p style="font-size:16px; color:#374151; margin-bottom:12px;">
-            ब्रह्माण्डको अध्ययनले मानव सोच र विज्ञान दुवैलाई चुनौती दिएको छ। यसको विशालता र रहस्यहरूले अझ नयाँ अनुसन्धान र खोजहरूको मार्ग खोल्नेछ। हामीले यसको संरचना, उत्पत्ति, र रहस्य बुझेर मात्र आफ्नो ज्ञानको सीमा विस्तार गर्न सक्छौं।
-        </p>
-
-    </div>`
-        },
-        {
-            id: 5,
-            title: "Microsoft",
-            author: "Komal Chaudhary",
-            date: "August 25, 2025",
-            category: "Tech",
-            imageUrl:
-                "https://www.dropbox.com/scl/fi/y1m9uwyajy474s5aqqxh7/id5.jpg?rlkey=75hy2684aedt9jim8uatiaw3t&st=zvi06zs9&&raw=1",
-            summary: `माइक्रोसफ्ट (Microsoft) विश्वकै सबैभन्दा ठूला र प्रभावशाली प्रविधि कम्पनीहरूमध्ये एक हो। सन् १९७५ मा बिल गेट्स र पॉल एलेनले स्थापना गरेको यो कम्पनी सुरुमा सानो सफ्टवेयर व्यवसायको रूपमा अघि बढ्यो। पहिलोपटक एमएस–डस (MS-DOS) अपरेटिङ सिस्टम तयार गरेर कम्प्युटर उद्योगमा ठूलो परिवर्तन ल्याएको माइक्रोसफ्टले सन १९८५ मा  (Windows) अपरेटिङ सिस्टम सार्वजनिक गर्‍यो, जसले व्यक्तिगत कम्प्युटरलाई सजिलो, प्रयोगमैत्री र विश्वभर लोकप्रिय बनाउन मद्दत गर्‍यो। त्यसपछि माइक्रोसफ्टले निरन्तर नयाँ सफ्टवेयर, हार्डवेयर र प्रविधिहरू ल्याउँदै आएको छ।
-`,
-            content: `<p>माइक्रोसफ्टका प्रमुख उत्पादनहरूमा विण्डोज अपरेटिङ सिस्टम, माइक्रोसफ्ट अफिस सूट (Word, Excel, PowerPoint), अझै पछिल्लो समयका लागि एजर क्लाउड सेवाहरू (Azure Cloud Services), सर्फेस उपकरणहरू (Surface Devices) र गेमिङ उद्योगमा अग्रणी Xbox कन्सोल पर्छन्। यी सबै उत्पादनहरूले शिक्षा, व्यवसाय, अनुसन्धानदेखि मनोरञ्जनसम्मका क्षेत्रमा ठूलो योगदान पुर्‍याएका छन्।
-        </p>
-        <p>
-         हाल माइक्रोसफ्टको नेतृत्व सत्या नाडेलाको हातमा छ। उनको कार्यकालमा कम्पनीले क्लाउड कम्प्युटिङ, कृत्रिम बौद्धिकता (AI) र साइबर सुरक्षा क्षेत्रमा उल्लेखनीय प्रगति गरेको छ। बिल गेट्स स्वयं भने अहिले परोपकारी कार्यतिर सक्रिय छन् र बिल एन्ड मेलिन्डा गेट्स फाउन्डेशनमार्फत स्वास्थ्य, शिक्षा र गरिबी निवारणमा विश्वव्यापी सहयोग गर्दै आएका छन्।
-        </p>
-        <p>
-           आज माइक्रोसफ्ट केवल सफ्टवेयर कम्पनी मात्र होइन, प्रविधि नवप्रवर्तन गर्ने अग्रणी संस्था बनेको छ। यसले हामीलाई कम्प्युटर चलाउन सिकाएको छ, व्यवसायलाई सजिलो बनाएको छ, र भविष्यमा कृत्रिम बुद्धिमत्ता तथा क्लाउड प्रविधिमा नयाँ अध्याय थप्ने अपेक्षा गरिएको छ।
-        </p>`
-        },
-        {
-            id: 6,
-            title: "Open AI",
-            author: "Komal Chaudhary",
-            date: "August 25, 2025",
-            category: "Tech",
-            imageUrl:
-                "https://www.dropbox.com/scl/fi/amt04vu04fmet7tomx66l/id6.jpg?rlkey=dv9dl1ida0ik1dhco5pmndfih&st=ez7h4fsl&&raw=1",
-            summary: `ओपन एआई (OpenAI) कृत्रिम बुद्धिमत्ता (Artificial Intelligence – AI) अनुसन्धान र विकास गर्ने विश्वप्रसिद्ध संस्था हो। यसलाई सन् २०१५ मा इलोन मस्क, स्याम आल्टम्यान, ग्रेग ब्रोकम्यान, इलिया सुत्सकेभर लगायतका प्रविधि उद्यमीहरूले स्थापना गरेका थिए। यसको मुख्य उद्देश्य सुरक्षित, उपयोगी र मानवहितमैत्री कृत्रिम बुद्धिमत्ता प्रविधि विकास गर्नु हो। सुरुवाती चरणमा यो गैर-नाफामूलक संस्था (non-profit) को रूपमा सञ्चालन भए पनि पछि आवश्यक लगानी र प्राविधिक स्रोत जुटाउन यसले Capped Profit मोडेल अपनाएको छ।
-`,
-            content: `<p>ओपन एआईले विश्वलाई विभिन्न शक्तिशाली एआई प्रविधिहरू उपलब्ध गराएको छ। जसमध्ये सबैभन्दा लोकप्रिय "ChatGPT" हो, जसले मानव भाषालाई बुझ्ने र जवाफ दिने क्षमताले मानिसको दैनिकीमा ठूलो परिवर्तन ल्याएको छ। यसका साथै "DALL·E" नामक प्रणालीले चित्र सिर्जना गर्ने, "Codex" ले प्रोग्रामिङमा मद्दत गर्ने, र "Whisper" ले भाषणलाई पाठमा रूपान्तरण गर्ने जस्ता महत्वपूर्ण उपकरणहरू उपलब्ध गराएको छ। यी सबैले शिक्षा, अनुसन्धान, व्यवसाय, सञ्चार र सिर्जनात्मक क्षेत्रमा नयाँ सम्भावना खोलेका छन्।
-</p>
-<p>
-हाल ओपन एआईको नेतृत्व स्याम आल्टम्यानको हातमा छ। कम्पनीले कृत्रिम बुद्धिमत्ता सुरक्षित रूपमा प्रयोग गरिनुपर्ने भन्दै "एआई सेफ्टी" र "रेस्पोन्सिबल युज" मा विशेष ध्यान दिएको छ। विश्वभर एआईको दुरुपयोग हुन सक्ने सम्भावनालाई मध्यनजर गर्दै ओपन एआईले मानव–केन्द्रित प्रविधि विकास गर्ने आफ्नो लक्ष्यलाई निरन्तर अघि बढाइरहेको छ।
-</p><p>
-आज ओपन एआई केवल प्रविधि कम्पनी मात्र नभई, एआई अनुसन्धान र प्रयोगको दिशा देखाउने अग्रणी संस्था बनेको छ। यसले भविष्यमा मानव जीवनलाई अझ सजिलो, प्रभावकारी र सिर्जनशील बनाउन मद्दत गर्ने अपेक्षा गरिएको छ।
-</p>`
-        },
-        {
-            id: 7,
-            title: "Amazon",
-            author: "Komal Chaudhary",
-            date: "August 25, 2025",
-            category: "Tech",
-            imageUrl:
-                "https://www.dropbox.com/scl/fi/zv90rfn4cw4vvz36viy0e/id7.jpg?rlkey=ytztp9bi55h6zq4j74rj8qfax&st=5iwxv2kp&&raw=1",
-            summary:
-                "अमेज़न (Amazon) संसारकै सबैभन्दा ठूलो अनलाइन व्यवसायिक कम्पनीहरूमध्ये एक हो। यसलाई सन् १९९४ मा जेफ बेजोस (Jeff Bezos) ले स्थापना गरेका थिए। सुरुमा केवल अनलाइन पुस्तक बेच्ने कामबाट सुरु भएको यो कम्पनी आज विश्वकै अग्रणी ई–कमर्स, क्लाउड कम्प्युटिङ र प्रविधि क्षेत्रमा प्रभावशाली संस्था बनेको छ।",
-            content: `<p>अमेज़नको मुख्य परिचय ई–कमर्स प्लेटफर्मको रूपमा छ। यसको वेबसाइटमार्फत कपडा, इलेक्ट्रोनिक्स, पुस्तक, दैनिक प्रयोगका सामानदेखि लिएर औद्योगिक उत्पादनसम्म सजिलै खरिद–बिक्री गर्न सकिन्छ। आज अमेज़न विश्वभरका करोडौं ग्राहकका लागि विश्वासिलो अनलाइन बजारको रूपमा स्थापित भएको छ।
-        </p><p>
-
-ई–कमर्स बाहेक अमेज़नले अन्य धेरै क्षेत्रमा पनि योगदान पुर्‍याएको छ। अमेज़न वेब सर्भिसेस (AWS) नामक क्लाउड कम्प्युटिङ सेवा हाल विश्वकै सबैभन्दा ठूलो क्लाउड प्लेटफर्म हो, जसले व्यवसाय, संस्था र सरकारहरूलाई डेटा भण्डारण, सुरक्षा तथा कृत्रिम बुद्धिमत्ता सम्बन्धी सुविधा उपलब्ध गराइरहेको छ। यसबाहेक, अमेज़न प्राइम (Amazon Prime) नामक सेवा मार्फत भिडियो, संगीत र तीव्र डेलिभरी सुविधा उपलब्ध छ, जसले मनोरञ्जन उद्योगमा ठूलो प्रभाव पारेको छ।
-</p><p>
-जेफ बेजोसको नेतृत्वमा अमेज़नले अभूतपूर्व सफलता हासिल गरेको थियो। अहिले कम्पनीको नेतृत्व एन्डी जस्सी (Andy Jassy) को हातमा छ। नेतृत्व परिवर्तनपछि पनि कम्पनीले प्रविधि, व्यवसाय र सेवा विस्तारलाई निरन्तरता दिइरहेको छ।
-</p><p>
-आज अमेज़न केवल अनलाइन बजार मात्र नभई, क्लाउड प्रविधि, कृत्रिम बौद्धिकता, रोबोटिक्स र आपूर्ति प्रणालीमा क्रान्ति ल्याउने विश्वव्यापी शक्ति बनेको छ। यसको लक्ष्य भविष्यमा अझ बढी स्वचालित र दक्ष सेवा प्रदान गर्दै उपभोक्ताको जीवनलाई सजिलो र सहज बनाउन योगदान पुर्‍याउनु हो।</p>`
-        },
-        {
-            id: 8,
-            title: "Grok AI",
-            author: "Komal Chaudhary",
-            date: "August 25, 2025",
-            category: "Tech",
-            imageUrl:
-                "https://www.dropbox.com/scl/fi/zhaydhixk6larzyr5jwrv/id8.jpg?rlkey=gqq8kciyjx1z5kb51c0lors9l&st=u8r8cz2k&&raw=1",
-            summary: `Grok भन्ने नाम सुनिरहनु भएको होला — यो वास्तवमा एलन मस्कको कम्पनी xAI द्वारा विकास गरिएको एक अत्याधुनिक AI chatbot हो। यसको सुरुवात सन् 2023 को नोभेम्बरमा X (पहिलेको Twitter) प्लेटफर्ममा प्रीमियम प्रयोगकर्ताहरूका लागि गरिएको थियो, र यसले “Truth-seeking” अर्थात् सत्य खोज्ने AI को रूपमा परिचित हुँदै आएको छ ।`,
-            content: `<p>Grok द्रुत सुधार हुँदै आएको छ — Grok 3 को विकास फेब्रुअरी 2025 मा भयो, जुन सुपर–कम्प्युटर Colossus प्रयोग गरेर तयार गरिएको थियो जसमा लगभग दुई लाख GPUs का उपयोग भएका थिए । यसले गणित, विज्ञान, र प्रोग्रामिङ परीक्षणहरूमा ChatGPT, Google's Gemini र DeepSeek जस्ता प्रतिद्वन्द्वीसँग प्रतिस्पर्धा गर्ने क्षमताको प्रदर्शन गरेको छ ।
-</p><p>
-Grok 3 का आकर्षक विशेषताहरूमा “Think Mode” र “Big Brain Mode” छन्, जसले साधारण प्रश्नदेखि गहिरो विश्लेषणसम्म सहज उत्तर दिन सक्छन्। त्यसै गरी “DeepSearch” नामक एक अनुसन्धान उपकरणले रियल–टाइम इन्टरनेट खोज गरेर सन्दर्भ सहित जानकारी प्रदान गर्छ । नयाँ Grok 4 मा थप सुधार, उच्च प्रदर्शन र आवाज आधारित अन्तरक्रिया (voice mode) जस्ता नयाँ सुविधाहरू समावेश गरिएका छन् ।
-</p><p>
-Grok को एक विशेषता यसको “विशेष व्यक्तित्व” पनि हो — यसले कहिले-कहिले हास्यात्मक, सीधा, वा खुला जवाफ दिने शैली अपनाउँछ, जसले गर्दा प्रयोगकर्ताले यसलाई अरू AI भन्दा बढी ‘मानव जस्तो’ महसुस गर्दछन् ।
-</p><p>
-यद्यपि, Grok मा केही विवाद पनि भएका छन्। उदाहरणका लागि, यसले प्रयोगकर्ताहरूका निजी वा संवेदनशील कुराकानीहरू “Share” सुविधाबाट सार्वजनिक रूपमा उपलब्ध गराएको थियो, जसले गूगल जस्ता सर्च इन्जिनहरूमा indexing भयो र लाखौं संवादहरू सार्वजनिक रुपमा देखिन थाले । यो गोपनीयता संकटको रूपमा स्वीकारिन्छ, जहाँ उपयोगकर्ताले साझा गरेका कुराहरूका बारेमा स्पष्ट चेतावनी नभएको देखिन्छ ।
-</p><p>
-हालैको अपडेटहरूमा, एलन मस्कले Grok 2.5 लाई “open source” गरिसकेका छन् र छिट्टै Grok 3 लाई पनि खुला स्रोत (open source) बन्ने संकेत दिएका छन् । साथै, xAI ले माइक्रोसफ्टको Azure platform सँग साझेदारी गरेको छ, जसले Grok लाई क्लाउड सेवा मार्फत पनि उपलब्ध गराउने सम्भावना खोल्छ ।</p>`
-        },
-        {
-            id: 9,
-            title: "Tiktok",
-            author: "Komal Chaudhary",
-            date: "August 25, 2025",
-            category: "Tech",
-            imageUrl:
-                "https://www.dropbox.com/scl/fi/xcfjx2ywj4573xvlpwh1d/id9.jpg?rlkey=oo4jjiolqjxlolp8chybctt0w&st=my8mmku0&&raw=1",
-            summary: `टिकटोक (TikTok) आजको संसारमा सबैभन्दा लोकप्रिय छोटकरी भिडियो साझा गर्ने प्लेटफर्म हो। यसलाई चीनको कम्पनी ByteDance ले सन् २०१६ मा "Douyin" नामबाट सुरु गरेको थियो र पछि अन्तर्राष्ट्रिय प्रयोगकर्ताका लागि TikTok को रूपमा उपलब्ध गराइयो। छोटकरी भिडियो बनाउन, सम्पादन गर्न र विश्वभर साझा गर्न सकिने सहज सुविधाका कारण यो छोटो समयमा नै युवावर्गदेखि कलाकार, व्यवसायी र सामाजिक कार्यकर्तासम्मको रोजाइमा पर्न सफल भएको छ।`,
-            content: `<p>
-टिकटोकको प्रमुख विशेषता यसको user-friendly video creation tool हो। प्रयोगकर्ताले १५ सेकेन्डदेखि १० मिनेटसम्मका भिडियोहरू बनाउन सक्छन्। यसमा विभिन्न ध्वनि (sound effects), संगीत, फिल्टर र कृत्रिम बुद्धिमत्ता आधारित विशेष प्रभावहरू (AI effects) जडान गर्न सकिन्छ। यसको एल्गोरिदम विशेष गरी प्रभावशाली मानिन्छ, जसले प्रयोगकर्ताले मन पराउने कन्टेन्टलाई छिट्टै बुझ्छ र "For You Page (FYP)" मा सिफारिस गर्छ।
-</p><p>
-मनोरञ्जन मात्र नभई, टिकटोक अहिले शिक्षा, व्यवसाय र राजनीति जस्ता क्षेत्रमा पनि उपयोग हुँदै आएको छ। शिक्षकहरूले छोटकरी शैक्षिक सामग्री प्रस्तुत गर्न, व्यवसायहरूले उत्पादन प्रचार गर्न, र सामाजिक अभियन्ताहरूले जनचेतना फैलाउन यसलाई प्लेटफर्मको रूपमा उपयोग गर्दै आएका छन्।
-</p><p>
-यद्यपि, टिकटोक विवादविहीन भने छैन। यसमा गोपनीयता, लत लाग्ने सम्भावना, र गलत सूचना फैलिने जोखिम जस्ता चुनौतीहरू पनि छन्। धेरै देशहरूले सुरक्षा र डाटा सम्बन्धी चिन्ताका कारण यसलाई नियमन गरेका छन् वा अस्थायी रूपमा प्रतिबन्ध लगाएका छन्।
-</p><p>
-आज टिकटोक विश्वभरका करोडौं प्रयोगकर्ताको दैनिकीमा जोडिएको छ। छोटकरी भिडियो प्रविधिमा अग्रणी बनेको यस प्लेटफर्मले नयाँ पुस्ताको सञ्चार र मनोरञ्जन शैलीलाई नै बदलिदिएको छ। भविष्यमा अझ सुरक्षित, जिम्मेवार र सिर्जनात्मक प्लेटफर्मको रूपमा विकसित हुने अपेक्षा गरिएको छ।
-</p>`
-        },
-        {
-            id: 10,
-            title: "Facebook",
-            author: "Komal Chaudhary",
-            date: "August 25, 2025",
-            category: "Tech",
-            imageUrl:
-                "https://www.dropbox.com/scl/fi/jrusnfe1wutfwxfttxa8l/id10.jpg?rlkey=lk3qwuxdyhggjmhnw7qgh0drw&st=w56w70en&&raw=1",
-            summary: `फेसबुक (Facebook) विश्वकै सबैभन्दा ठूलो सामाजिक सञ्जाल प्लेटफर्म हो, जसलाई सन् २००४ मा मार्क जुकरबर्ग (Mark Zuckerberg) ले आफ्ना साथीहरूसँग मिलेर हार्भर्ड विश्वविद्यालयमा स्थापना गरेका थिए। सुरुमा केवल विद्यार्थीहरूलाई जोड्ने उद्देश्यले बनेको यो प्लेटफर्म अहिले अरबौं प्रयोगकर्ताको दैनिकीमा जोडिएको छ।`,
-            content: `<p>फेसबुकको मूल उद्देश्य मानिसहरूलाई आपसमा जोड्नु र विचार, फोटो, भिडियो, सन्देश तथा अनुभवहरू सजिलै साझा गर्न सक्ने वातावरण बनाउनु हो। प्रयोगकर्ताले आफ्नो प्रोफाइल बनाउन, साथीहरू थप्न, स्टाटस लेख्न, समूह वा पेज सञ्चालन गर्न र लाइभ भिडियो प्रसारण गर्न सक्ने सुविधा यसले दिएको छ। यसका कारण सामाजिक सम्बन्ध, शिक्षा, व्यवसाय र मनोरञ्जन सबै क्षेत्रमा यसको प्रभाव परेको छ।
-</p><p>
-फेसबुकले समयसँगै नयाँ प्रविधि र सेवा थप्दै आएको छ। जस्तै— Messenger मार्फत सन्देश पठाउने, Facebook Marketplace मार्फत अनलाइन किनमेल गर्ने, र Facebook Watch मार्फत भिडियो हेर्ने सुविधा उपलब्ध छन्। साथै, यो कम्पनीले Instagram, WhatsApp र Oculus (Virtual Reality) जस्ता सेवाहरूलाई पनि आफ्नो स्वामित्वमा राखेको छ।
-</p><p>
-सन् २०२१ मा फेसबुक कम्पनीले आफ्नो नाम परिवर्तन गरेर Meta Platforms Inc. राखेको छ, जसको उद्देश्य "Metaverse" अर्थात् भविष्यको भर्चुअल विश्व निर्माणतर्फ केन्द्रित हुनु हो। यसले केवल सामाजिक सञ्जालमा सीमित नभई, भविष्यमा नयाँ प्रकारको डिजिटल अनुभव दिने महत्वाकांक्षा बोकेको छ।
-</p><p>
-यद्यपि, फेसबुक विवादविहीन छैन। प्रयोगकर्ताको गोपनीयता, गलत सूचना (fake news), राजनीति र सामाजिक प्रभावका कारण यसले आलोचना पनि भोग्नुपरेको छ। धेरै देशहरूले यसलाई नियमन गर्न कानुनी कदम चालेका छन्।
-</p><p>
-आज फेसबुक विश्वका करोडौं मानिसका लागि सूचना आदान–प्रदान, व्यवसाय प्रचार, सामाजिक सम्बन्ध निर्माण र मनोरञ्जनको आधारस्तम्भ बनेको छ। यसको प्रभाव केवल अनलाइनमै सीमित नभई, मानव जीवनशैली र सामाजिक संरचनामा गहिरो असर पारिरहेको छ।</p>`
-        },
-        {
-            id: 11,
-            title: "YouTube",
-            author: "Komal Chaudhary",
-            date: "August 25, 2025",
-            category: "Tech",
-            imageUrl:
-                "https://www.dropbox.com/scl/fi/2rjz4ue8g4wvzd7htg6zn/id11.jpg?rlkey=uf0jx76h6lbqe5qd4olmhzz2x&st=5v3i9g4a&&raw=1",
-            summary:
-                "युट्युब (YouTube) विश्वकै सबैभन्दा ठूलो भिडियो साझा गर्ने प्लेटफर्म हो। यसलाई सन् २००५ मा स्टिभ चेन, चाड हर्ली र जावेद करीमले स्थापना गरेका थिए। सुरुमा सामान्य मानिसहरूले आफ्ना भिडियोहरू अपलोड गरी अरूसँग सजिलै हेर्न र साझा गर्न सक्ने उद्देश्यले सुरु गरिएको यो प्लेटफर्म अहिले विश्वव्यापी रूपमा शिक्षा, मनोरञ्जन, समाचार, व्यवसाय र सिर्जनात्मकताको केन्द्र बनेको छ।",
-            content: `<p>सन् २००६ मा गुगलले युट्युबलाई आफ्नो स्वामित्वमा लियो, जसपश्चात यसमा अझ नयाँ प्रविधि र सेवा थपिँदै गए। प्रयोगकर्ताले यसमा भिडियो अपलोड, लाइक, कमेन्ट, शेयर गर्नका साथै आफ्नै च्यानल सञ्चालन गर्न सक्छन्। युट्युबमा उपलब्ध recommendation system अर्थात् सिफारिस गर्ने एल्गोरिदमले प्रयोगकर्ताले मन पराउने विषयअनुसार भिडियो देखाउने काम गर्छ, जसले यसलाई अझ आकर्षक बनाएको छ।
-</p><p>
-आज युट्युब केवल मनोरञ्जनको स्रोत मात्र नभई, शिक्षा र व्यवसाय को माध्यम पनि बनेको छ। शिक्षकहरूले शैक्षिक भिडियो तयार गरेर विद्यार्थीहरूलाई सजिलै ज्ञान दिन सक्छन्। व्यवसाय र ब्रान्डहरूले उत्पादन वा सेवाको प्रचार गर्न युट्युब विज्ञापन (YouTube Ads) को प्रयोग गर्छन्। साथै, "YouTube Partner Program" मार्फत सामग्री सिर्जनाकर्ताहरू (creators) ले आफ्नो भिडियोमा विज्ञापन राखेर आय आर्जन गर्ने अवसर पाएका छन्।
-</p><p>
-युट्युबमा विभिन्न सेवा सुविधा पनि थपिएका छन्। जस्तै, YouTube Shorts छोटकरी भिडियोहरूका लागि, YouTube Music संगीत सुन्नका लागि, र YouTube Live प्रत्यक्ष प्रसारणका लागि उपयोग हुन्छ। यसले सिर्जनाकर्ता र दर्शकबीचको अन्तरक्रियालाई अझ सजिलो बनाएको छ।
-</p><p>
-तर, युट्युबसँग चुनौतीहरू पनि छन्। गलत सूचना (fake news), असत्य सामग्री, बालबालिकामैत्री नभएको कन्टेन्ट र कॉपीराइट उल्लङ्घनजस्ता समस्याहरू समय–समयमा देखिने गरेका छन्। यी समस्याहरूलाई नियन्त्रण गर्न कम्पनीले कडा नियम र निगरानी प्रणाली लागू गरिरहेको छ।
-</p><p>
-आज युट्युब विश्वभरका अरबौं मानिसको दैनिकीमा जोडिएको छ। यसले सिर्जनशीलतालाई प्रोत्साहन मात्र गरेको छैन, मानिसहरूको सूचना, शिक्षा र मनोरञ्जन प्राप्त गर्ने तरिकालाई नै परिवर्तन गरिदिएको छ। भविष्यमा अझ सुरक्षित, उपयोगी र सिर्जनात्मक डिजिटल प्लेटफर्मको रूपमा युट्युबले अझ धेरै सम्भावनाहरू बोकेको छ।</p>`
-        },
-        {
-            id: 12,
-            title: "Instagram",
-            author: "Komal Chaudhary",
-            date: "August 25, 2025",
-            category: "Tech",
-            imageUrl:
-                "https://www.dropbox.com/scl/fi/a415b4d8ylvxelvkoq3ph/id12.jpg?rlkey=0el3ujq773bll07rekxcndeuj&st=56hkbz3g&&raw=1",
-            summary: `इन्स्टाग्राम (Instagram) आजको डिजिटल युगमा सबैभन्दा लोकप्रिय फोटो र भिडियो साझा गर्ने सामाजिक सञ्जाल प्लेटफर्म हो। यसलाई सन् २०१० मा केविन सिस्ट्रोम (Kevin Systrom) र माइक क्राइगर (Mike Krieger) ले स्थापना गरेका थिए। सुरुमा केवल मोबाइल एपमा फोटो सेयर गर्ने सरल प्लेटफर्मको रूपमा सुरु भएको इन्स्टाग्राम आज विश्वभर अरबौं प्रयोगकर्तासँग जोडिएको छ।`,
-            content: `<p>इन्स्टाग्रामको मुख्य विशेषता यसको फोटो र भिडियो फिल्टर हो, जसले प्रयोगकर्ताले आफ्ना दृश्यहरू आकर्षक बनाउने सुविधा दिन्छ। यसमा प्रयोगकर्ताले स्टोरीज (Stories), रील्स (Reels), IGTV र लाइव भिडियो (Live Video) मार्फत आफ्ना अनुभव, ज्ञान, मनोरञ्जन र सन्देशहरू साझा गर्न सक्छन्। यसले मानिसलाई आफ्ना व्यक्तिगत जीवनदेखि व्यवसाय, कला र सिर्जनात्मकता प्रदर्शन गर्न सजिलो बनाएको छ।
-</p><p>
-इन्स्टाग्राम केवल व्यक्तिगत सामाजिक सञ्जाल मात्र नभई व्यवसाय र ब्रान्डिङ को लागि पनि महत्वपूर्ण प्लेटफर्म बनेको छ। व्यवसायहरूले उत्पादन वा सेवाको प्रचार गर्न इन्स्टाग्राम विज्ञापन (Instagram Ads) प्रयोग गर्छन्। साथै, प्रभावशाली व्यक्तिहरू (Influencers) ले आफ्ना अनुयायीहरूसँग जोडिन र आफ्नो सामाजिक पहुँच बढाउन यसलाई उपयोग गर्दै आएका छन्।
-</p><p>
-सन् २०१२ मा फेसबुकले इन्स्टाग्रामलाई आफ्नो स्वामित्वमा लियो, जसले यसलाई विश्वव्यापी स्तरमा बढावा दिन र नयाँ सुविधा थप्न सहयोग गर्‍यो। यसले व्यवसाय, डिजिटल मार्केटिङ, मनोरञ्जन र सामाजिक अभियानहरूमा ठूलो प्रभाव पारेको छ।
-</p><p>
-यद्यपि, इन्स्टाग्राममा केही चुनौतीहरू पनि छन्। गोपनीयता, साइबर बुलिङ, मानसिक स्वास्थ्यमा प्रभाव, र गलत सूचना फैलिन सक्ने जोखिम यससँग सम्बन्धित छन्। कम्पनीले यी समस्यालाई नियन्त्रण गर्न नियम र सुरक्षा प्रणाली लागू गर्दै आएको छ।
-</p><p>
-आज इन्स्टाग्राम विश्वभर अरबौं मानिसको दैनिक जीवनको हिस्सा बनेको छ। यसले सिर्जनशीलता, सामाजिक जडान, व्यवसाय र मनोरञ्जनमा नयाँ दृष्टिकोण दिएको छ। भविष्यमा अझ सुरक्षित, उपयोगी र इनोभेटिभ प्लेटफर्मको रूपमा विकसित हुने अपेक्षा गरिएको छ।</p>`
-        },
-        {
-            id: 13,
-            title: "DeepSeek",
-            author: "Komal Chaudhary",
-            date: "August 25, 2025",
-            category: "Tech",
-            imageUrl:
-                "https://www.dropbox.com/scl/fi/jlw6qvak77p2y6byvbp9e/id13.jpg?rlkey=r05raiimyh6uelykevv8jthjm&st=enln4gmj&&raw=1",
-            summary: `DeepSeek एक चिनियाँ कृत्रिम बुद्धिमत्ता कम्पनी हो जसले सस्तो र प्रभावकारी एआई मोडेलहरू विकास गरेर प्रविधि क्षेत्रमा ठूलो हलचल मच्चाएको छ।  यसका प्रमुख उत्पादनहरू DeepSeek-R1 र DeepSeek-V3 छन्, जसले विश्वका प्रमुख एआई मोडेलहरूलाई चुनौती दिँदै छन्। `,
-            content: `<p>कम्पनीको पृष्ठभूमि र स्थापना
-DeepSeek, जसको पूर्ण नाम Hangzhou DeepSeek Artificial Intelligence Basic Technology Research Co., Ltd. हो, सन् २०२३ मा लियाङ वेनफेङद्वारा स्थापित भएको हो।  यो कम्पनी हाङ्जोउ, झेजियाङ प्रान्तमा अवस्थित छ र यसको मुख्य उद्देश्य सस्तो र प्रभावकारी एआई मोडेलहरू विकास गर्नु हो।  
-</p><p style="font-size:25px; font-weight:bold;">
-DeepSeek-R1 र DeepSeek-V3 मोडेलहरू</p><p>
-DeepSeek-R1 र DeepSeek-V3 मोडेलहरू DeepSeek कम्पनीका प्रमुख एआई मोडेलहरू हुन्।  DeepSeek-R1, जुन सन् २०२५ को जनवरीमा सार्वजनिक गरिएको थियो, अमेरिकाको App Store मा ChatGPT भन्दा बढी डाउनलोड भएको थियो।  यस मोडेलले कम लागतमा उच्च प्रदर्शन प्रदान गर्दै छ।  DeepSeek-V3, जसमा ६०० अर्ब भन्दा बढी प्यारामिटरहरू छन्, उच्चतम स्तरको प्रदर्शन र कम लागतमा प्रशिक्षणको लागि परिचित छ।  
-</p><p style="font-size:25px; font-weight:bold;">
-प्रशिक्षण र लागत</p><p>
-DeepSeek कम्पनीले DeepSeek-V3 मोडेललाई लगभग ५.५८ मिलियन अमेरिकी डलरको लागतमा ५५ दिनमा २,००० GPUs प्रयोग गरेर प्रशिक्षित गरेको छ।  यसले Meta जस्तो कम्पनीको तुलनामा एक दशमलव दश गुणा कम लागतमा समान प्रदर्शन प्राप्त गरेको छ।  
-</p><p style="font-size:25px; font-weight:bold;">
-प्रयोग र पहुँच</p><p>
-DeepSeek एआई मोडेलहरू वेब एप्लिकेशन, Android र iOS जस्ता प्लेटफर्महरूमा उपलब्ध छन्।  प्रयोगकर्ताहरूले DeepSeek को आधिकारिक वेबसाइट वा मोबाइल एप्लिकेशनमार्फत निःशुल्क पहुँच प्राप्त गर्न सक्छन्।  यसका साथै, DeepSeek API मार्फत व्यवसाय र डेभलपरहरूले पनि यसका मोडेलहरूलाई प्रयोग गर्न सक्छन्।  
-</p><p style="font-size:25px; font-weight:bold;">
-नेपालमा DeepSeek को प्रयोग</p><p>
-नेपालका प्रयोगकर्ताहरूले पनि DeepSeek एआई मोडेलहरूको प्रयोग गर्दै छन्।  विशेष गरी नेपाली भाषामा आधारित सामग्री सिर्जना र अनुवादका लागि DeepSeek उपयुक्त रहेको पाइन्छ।  यसका साथै, DeepSeek को प्रयोगले नेपाली भाषामा आधारित एआई विकासमा नयाँ सम्भावनाहरू खोल्दैछ। 
-</p><p style="font-size:25px; font-weight:bold;">
-निष्कर्ष</p><p>
-DeepSeek कम्पनीले सस्तो, प्रभावकारी र उच्च प्रदर्शन भएका एआई मोडेलहरू विकास गरेर विश्वभरका प्रमुख एआई कम्पनीहरूलाई चुनौती दिँदैछ।  यसका मोडेलहरू कम लागतमा उच्च प्रदर्शन प्रदान गर्दै छन् र नेपाली भाषामा पनि यसको प्रयोग सम्भव छ।  यसले भविष्यमा एआई विकासमा नयाँ दिशा र सम्भावनाहरू खोल्ने अपेक्षा गरिएको छ। </p>`
-        },
-        {
-            id: 14,
-            title: "Gemini AI (By Google)",
-            author: "Komal Chaudhary",
-            date: "August 25, 2025",
-            category: "Tech",
-            imageUrl:
-                "https://www.dropbox.com/scl/fi/0mxym7m8za0ton2wexl69/id14.jpg?rlkey=ynlic6zc355er0d84bxhiy2q8&st=b1scrnek&&raw=1",
-            summary: `Gemini AI गुगलको अत्याधुनिक कृत्रिम बुद्धिमत्ता प्रणाली हो, जुन सन् २०२३ को अन्त्यतिर सार्वजनिक गरिएको थियो। यो प्रणालीले गुगलको पुरानो च्याटबोट Bard लाई प्रतिस्थापन गर्दै, बहु-मोडल (multimodal) क्षमतासहितको नयाँ एआई अनुभव प्रदान गर्दछ। Gemini AI ले पाठ, चित्र, ध्वनि र भिडियो जस्ता विभिन्न प्रकारका इनपुट प्रोसेस गर्न सक्छ, जसले प्रयोगकर्तासँग प्राकृतिक र सजीव संवाद स्थापित गर्न मद्दत पुर्‍याउँछ।`,
-            content: `<p>यस प्रणालीको मुख्य उद्देश्य प्रयोगकर्तालाई विविध कार्यहरूमा सहयोग गर्नु हो। Gemini AI ले लेख लेख्न, कोडिङ गर्न, चित्र सिर्जना गर्न, डोक्युमेन्ट सारांश तयार गर्न, र ईमेल लेख्न जस्ता कार्यहरूमा सहजता प्रदान गर्दछ। यसको बहु-मोडल क्षमता, उन्नत संवादात्मकता र स्मार्ट जवाफ दिने शैलीले यसलाई अन्य साधारण च्याटबोट भन्दा निकै प्रभावशाली बनाएको छ।
-</p><p>
-Gemini AI वेब एप मार्फत ४० भन्दा बढी भाषामा उपलब्ध छ, जसले यसलाई विश्वव्यापी पहुँचयोग्य बनाएको छ। नेपालमा पनि विद्यार्थी, व्यवसायिक प्रयोगकर्ताहरू र सिर्जनाकर्ताहरूले यस प्रणालीको प्रयोग गरेर अनुसन्धान, शिक्षा र सिर्जनात्मक कार्यहरूमा लाभ उठाउन सक्छन्। विशेष रूपमा, Gemini Advanced सेवा सदस्यता मार्फत प्रयोगकर्ताले अझ प्रगतिशील सुविधाहरू प्राप्त गर्न सक्छन्।
-</p><p>
-भविष्यमा, Gemini AI गुगलका विभिन्न उत्पादनहरूसँग एकीकृत भई प्रयोगकर्तालाई अझ स्मार्ट, प्रभावकारी र सिर्जनात्मक डिजिटल अनुभव प्रदान गर्ने अपेक्षा गरिएको छ। यसले केवल व्यक्तिगत प्रयोगमा सीमित नहुने, तर व्यवसाय, शिक्षा र अनुसन्धान क्षेत्रमा पनि नयाँ सम्भावनाहरू खोल्ने विश्वास गरिएको छ।</p>`
-        },
-        {
-            id: 15,
-            title: "Copilot",
-            author: "Komal Chaudhary",
-            date: "August 25, 2025",
-            category: "Tech",
-            imageUrl:
-                "https://www.dropbox.com/scl/fi/lnkix641i4tbe1gpjkzv4/id15.jpg?rlkey=4el97mgzxp5iped62nes4cohn&st=5h5fj1w1&&raw=1",
-            summary: `Copilot माइक्रोसफ्टले विकास गरेको एक उन्नत कृत्रिम बुद्धिमत्ता आधारित सहायक प्रणाली हो, जुन मुख्य रूपमा कोडिङ, दस्तावेज निर्माण, र अन्य डिजिटल कार्यहरूमा प्रयोगकर्तालाई सहयोग गर्न डिजाइन गरिएको छ। यो प्रणाली GitHub Copilot को रूपमा सबैभन्दा बढी परिचित छ, जुन GitHub र OpenAI को साझेदारीबाट विकसित गरिएको हो। Copilot ले प्रयोगकर्ताले लेख्न चाहेको कोडको सन्दर्भ अनुसार सुझाव दिन्छ, कोड अटोमेटिक पूरा गर्छ, र विकासकर्ताको समय बचत गर्न मद्दत गर्दछ।`,
-            content: `<p>GitHub Copilot विशेष गरी प्रोग्रामिङ भाषाहरू जस्तै Python, JavaScript, TypeScript, C# आदि मा शक्तिशाली छ। यसले डेभलपरहरूलाई नयाँ कोड लेख्न सहयोग गर्ने मात्र नभई, कोडको त्रुटि पत्ता लगाउने, सुधार सुझाव दिने र पुन: प्रयोगयोग्य ब्लकहरू सिर्जना गर्न पनि सक्षम छ। यसको एआई मोडेलले अघिल्ला कोडिङ अभ्यासहरूबाट सिकेर बुद्धिमत्तापूर्ण सुझाव दिन्छ, जसले डेभलपरहरूको उत्पादकत्वमा उल्लेखनीय सुधार ल्याएको छ।
-</p><p>
-माइक्रोसफ्टको अन्य उत्पादनहरूसँग पनि Copilot एकीकृत गरिएको छ। उदाहरणका लागि, Microsoft 365 Copilot ले Word, Excel, PowerPoint जस्ता अनुप्रयोगहरूमा प्रयोगकर्तालाई दस्तावेज निर्माण, डेटा विश्लेषण, रिपोर्ट तयार पार्ने र प्रस्तुतीकरण सुधार्ने कार्यमा सहयोग पुर्‍याउँछ। यसले केवल समय बचत मात्र गरेको छैन, तर प्रयोगकर्ताको कार्य क्षमतामा नयाँ स्तर थपेको छ।
-</p><p>
-Copilot को प्रयोग विद्यार्थी, पेशेवर डेभलपर, व्यवसायिक विशेषज्ञ र अनुसन्धानकर्ताहरूले गर्दै आएका छन्। यसको उपयोगले शिक्षण, अनुसन्धान, व्यवसाय र सिर्जनात्मक परियोजनाहरूमा सहजता र प्रभावकारिता बढाएको छ। भविष्यमा, Copilot अझ प्रगतिशील क्षमताहरू सहितको बहु-क्षेत्रीय एआई सहायकको रूपमा विकसित हुने अपेक्षा गरिएको छ, जसले मानव–कम्प्युटर अन्तरक्रियालाई अझ स्मार्ट र सहज बनाउने लक्ष्य राखेको छ।
-</p>`
-        },
-        {
-            id: 16,
-            title: "The Sun",
-            author: "Komal Chaudhary",
-            date: "August 26, 2025",
-            category: "Science",
-            imageUrl:
-                "https://www.dropbox.com/scl/fi/qeiehtoq1rkgl31zc4f4h/id16.jpg?rlkey=jkkaldaj2m15d6wnp1woa4g23&st=0sdf2lwh&&raw=1",
-            summary: `सूर्य हाम्रो सौर्यमण्डलको केन्द्रमा रहेको विशाल तारा हो जसले प्रकाश र ताप दिनेर पृथ्वीमा जीवन सम्भव बनाएको छ। यसको ऊर्जा बिना पृथ्वीमा मौसम, वनस्पति र जीवजन्तु अस्तित्वमै रहन सक्दैनन्।`,
-            content: `<p class="sub-headings">
-                 परिचय</p><p>
-
-सूर्य हाम्रो सौर्यमण्डलको केन्द्रमा अवस्थित एउटा विशाल तारा हो, जसको गुरुत्वाकर्षण शक्तिले ग्रह, उपग्रह, धूमकेतु र क्षुद्रग्रहहरूलाई आफ्नो परिक्रमा कक्षमा राखेको छ । सूर्यको बिना सौर्यमण्डल अस्तित्वमै रहन सक्दैन । यो हाइड्रोजन (करिब ७४%) र हीलियम (करिब २४%) बाट बनेको छ, बाँकी २% अन्य तत्वहरू छन् । पृथ्वीमा देखिने दिनरातको चक्र, मौसमको परिवर्तन, वनस्पति र जीवजन्तुको जीवनचक्र सबै सूर्यसँग प्रत्यक्ष सम्बन्धित छन् ।
-</p><p class="sub-headings">
-सूर्यको भौतिक आकार र तौल
-</p><p>
-• सूर्यको व्यास करिब १३.९ लाख किलोमिटर छ, जुन पृथ्वीभन्दा करिब १०९ गुणा ठूलो हो ।
-</p><p>
-• यसको तौल पृथ्वीको ३,३०,००० गुणा बढी छ ।
-</p><p>
-• सूर्य सौर्यमण्डलको कुल द्रव्यमानको ९९.८६% हिस्सा ओगटेको छ ।
-</p><p>
-
-यसको विशाल आकार र तौलका कारण सूर्यको गुरुत्वाकर्षण शक्ति अत्यन्तै प्रबल छ, जसले सबै ग्रहलाई आफ्नो वरिपरि स्थिर कक्षमा घुमाइराखेको छ ।
-</p><p class="sub-headings">
-सूर्यको आन्तरिक संरचना</p><p>
-सूर्यलाई विभिन्न तहहरूमा विभाजन गरिएको छ, जसले ऊर्जा उत्पादनदेखि सतहसम्म ऊर्जा पुर्‍याउने प्रक्रियालाई वर्णन गर्छ ।
-</p><p class="sec-sub-heading">
-1. कोर (Core):</p>
-<p>• सूर्यको मुटु मानिन्छ ।</p>
-<p>
-• यहाँ परमाणु संलयन (Nuclear Fusion) हुन्छ, जसमा हाइड्रोजन परमाणुहरू हीलियममा परिणत हुन्छन् ।
-</p>
-<p>
-• यस प्रक्रियाबाट असीम ऊर्जा निस्कन्छ ।
-</p><p>
-• कोरको तापक्रम करिब १.५ करोड डिग्री सेल्सियस हुन्छ ।
-</p>
-<p class="sec-sub-heading">
-2. रेडियटिभ जोन (Radiative Zone):</p>
-<p>• यहाँ ऊर्जा विकिरण (radiation) मार्फत बाहिर पठाइन्छ ।
-</p>
-<p>• प्रकाशलाई कोरबाट फोटोस्फियरसम्म पुग्न करिब १,७०,००० वर्ष लाग्छ भन्ने वैज्ञानिक अनुमान छ ।
-</p>
-<p class="sec-sub-heading">
-3. कन्भेक्टिभ जोन (Convective Zone):
-</p>
-<p>• यहाँ ग्याँसहरू निरन्तर हलचलमा हुन्छन् ।
-</p>
-<p>• ऊर्जा तातो प्लाज्माको उठ्ने–बस्ने चक्रबाट सतहसम्म पुग्छ ।</p>
-<p class="sec-sub-heading">
-4. फोटोस्फियर (Photosphere):</p>
-<p>• सूर्यको दृश्य सतह हो, जुन हामी पृथ्वीबाट देख्छौँ ।</p>
-<p>• यसको तापक्रम करिब ५,५०० डिग्री सेल्सियस हुन्छ ।</p>
-<p>• यहीँबाट सूर्यको प्रकाश हामीलाई प्रत्यक्ष देखिन्छ ।
-</p>
-<p class="sec-sub-heading">
-5. क्रोमोस्फियर (Chromosphere):</p>
-<p>• फोटोस्फियरको माथि रहेको तह ।</p>
-<p>• सूर्यग्रहणको बेला रातो रङको चमकको रूपमा देखिन्छ ।</p>
-<p class="sec-sub-heading">6. कोरोना (Corona):</p>
-<p>• सूर्यको सबैभन्दा बाहिरी तह ।</p>
-<p>• तापक्रम करिब १० लाख देखि ३० लाख डिग्री सेल्सियस सम्म हुन्छ ।
-</p>
-<p>• यो केवल सम्पूर्ण सूर्यग्रहणको समयमा मात्र स्पष्ट देखिन्छ ।</p>
-<p class="sub-headings"></p>
-<p>• सूर्यले आफ्नो कोरमा हुने नाभिकीय संलयन (Nuclear Fusion) प्रक्रियाबाट प्रत्येक सेकेन्ड ३८० अरब मेगाटन TNT बराबर ऊर्जा उत्पादन गर्छ ।</p>
-<p>• पृथ्वीमा आइपुग्दा यो ऊर्जा उपयुक्त मात्रामा हुन्छ, जसले जीवनलाई सम्भव बनाउँछ ।</p>
-<p>• सूर्यको विकिरणलाई हामी विभिन्न तरंगदैर्ध्यमा पाउँछौं — अल्ट्राभायोलेट, इन्फ्रारेड, दृश्यमान प्रकाश आदि।</p>
-<p class="sub-headings">सूर्यको पृथ्वीप्रति प्रभाव</p>
-<p class="sec-sub-heading">1. प्रकाश संश्लेषण (Photosynthesis):</p>
-<p>बोटबिरुवाले सूर्यको प्रकाशलाई ऊर्जा स्रोतका रूपमा प्रयोग गरेर खाना तयार गर्छन् । यसैले सूर्य बिना पृथ्वीमा जीवन सम्भव हुँदैन ।
-</p>
-<p class="sec-sub-heading">2. जलवायु र मौसम:</p>
-<p>पृथ्वीमा तापक्रम, हावा, वर्षा, वायुमण्डलीय चक्र सबै सूर्यको उर्जा र विकिरणमा निर्भर छन् ।
-</p>
-<p class="sec-sub-heading">3. जैविक घडी (Biological Clock):</p>
-<p>दिन–रातको चक्रले जीवजन्तु र मानवको जीवनशैलीमा गहिरो प्रभाव पार्छ ।
-</p>
-<p class="sec-sub-heading">4. सौर्य ऊर्जा (Solar Energy):</p>
-<p>आजको आधुनिक विश्वमा सूर्यबाट विद्युत् उत्पादन गर्ने प्रविधि (Solar Panels) विकास हुँदैछ, जसले भविष्यमा स्वच्छ ऊर्जा उपलब्ध गराउँछ ।
-</p>
-<p class="sub-headings">सूर्यको भविष्य</p>
-<p>• सूर्य अहिले आफ्नो जीवनको मुख्य अनुक्रम (Main Sequence) अवस्थामा छ र करिब ४.६ अर्ब वर्ष पुरानो छ ।
-</p>
-<p>• कुल आयु अनुमान: १० अर्ब वर्ष ।</p>
-<p>• करिब ५ अर्ब वर्षपछि सूर्यको कोरमा हाइड्रोजन समाप्त हुँदै जानेछ ।</p>
-<p>• त्यसपछि सूर्य रेड जायन्ट (Red Giant) बन्नेछ, जसले पृथ्वीलाई पनि नष्ट गर्न सक्छ ।
-</p>
-<p>• अन्ततः सूर्य **श्वेत वामन (White Dwarf)**मा परिणत हुनेछ र लाखौँ वर्षमा विस्तारै चिसिँदै ब्ल्याक ड्वार्फ (Black Dwarf) बन्नेछ ।</p>
-<p class="sub-headings">सूर्यसँग सम्बन्धित वैज्ञानिक घटनाहरू</p>
-<p>• सौर्य झट्का (Solar Flares): सूर्यको सतहबाट अचानक ठूलो मात्रामा ऊर्जा र विकिरण निस्कने घटना ।</p>
-<p>• सौर्य आँधी (Solar Storms): सूर्यबाट निस्केको चार्ज भएका कणहरूले पृथ्वीको चुम्बकीय क्षेत्रलाई असर गर्छन्, जसले कम्युनिकेशन सिस्टममा समस्या ल्याउन सक्छ ।</p>
-<p>• अरोरा (Aurora Borealis र Aurora Australis): सूर्यबाट आएको कण पृथ्वीको ध्रुवीय क्षेत्रमा प्रवेश गर्दा आकाशमा देखिने सुन्दर रङ्गीन प्रकाश ।
-</p>
-<p>सूर्य हाम्रो जीवनको आधार हो । यसबिना पृथ्वीमा पानी जम्न सक्दैन, हावा चल्दैन, बोटबिरुवा हुन्नन् र प्राणीहरू बाँच्छैनन् । सूर्यलाई प्राचीन संस्कृतिहरूले देवताको रूपमा पूजा गर्दै आएका छन्, जुन वैज्ञानिक दृष्टिले पनि उचित छ किनकि यो जीवनको प्रमुख स्रोत हो । भविष्यमा सूर्य परिवर्तन भएर नष्ट भए पनि अहिले यसले हामीलाई जीवन दिन्छ, ऊर्जा दिन्छ, र मानव सभ्यतालाई निरन्तर अघि बढाइरहेको छ ।
-                 </p>`
-        },
-        {
-            id: 17,
-            title: "Earth",
-            author: "Komal Chaudhary",
-            date: "August 26, 2025",
-            category: "Science",
-            imageUrl:
-                "https://www.dropbox.com/scl/fi/tdech5asytyzw2s8b5y5k/id17.jpg?rlkey=7xh0b3jxwuq3abwndfyfo951s&st=41rxf28p&&raw=1",
-            summary: `पृथ्वी हाम्रो सौर्यमण्डलको तेस्रो ग्रह हो र जीवनको मात्र आधार हो। यसको वायुमण्डल, जलाशय र भूमिगत संरचना जीवनलाई सम्भव बनाउँछ।`,
-            content: `<p class="sub-headings">परिचय</p><p>
-पृथ्वी सौर्यमण्डलको एक मात्र यस्तो ग्रह हो जहाँ जीवन सम्भव छ। यो सूर्यबाट तेस्रो दूरीमा अवस्थित छ र यसको वातावरण, पानी, भूमि र जैविक विविधताले पृथ्वीलाई अन्य ग्रहहरूबाट विशेष बनाएको छ। पृथ्वीको घुम्ने गति, अक्षको झुकाव र वायुमण्डलीय संरचनाले मौसम, मौसमी चक्र र जैविक जीवनलाई सन्तुलनमा राख्छ।
-</p><p class="sub-headings">पृथ्वीको भौतिक संरचना</p><p>
-• पृथ्वीको व्यास करिब १२,७४२ किलोमिटर छ ।  </p><p>
-• यसको कुल द्रव्यमान करिब ५.९७ × १०²⁴ किलोग्राम छ ।  </p><p>
-• पृथ्वीको सतहको ७१% भाग जलाशयले ढाकिएको छ र बाँकी २९% भूमि हो ।  
-</p><p class="sub-headings">पृथ्वीको आन्तरिक तह</p><p class="sec-sub-heading">1. कोर (Core):</p>
-<p>• पृथ्वीको केन्द्रमा स्थित, मुख्य रूपमा लोहा र निकेलले बनेको छ ।</p>
-<p>• आन्तरिक कोर ठोस छ भने बाहिरी कोर तरल अवस्थामा छ, जसले पृथ्वीको चुम्बकीय क्षेत्र उत्पादन गर्छ ।</p>
-<p class="sec-sub-heading">2. म्यान्टल (Mantle):</p>
-<p>• कोर र क्रस्टबीचको तह, जहाँ ग्याँस र प्लाज्मा जस्ता पदार्थको क्रमिक प्रवाह हुन्छ ।</p>
-<p>• यो चट्टानहरूको घनत्व अनुसार चल्ने प्रक्रिया पृथ्वीको प्लेट टेक्टोनिक्सलाई चलाउँछ ।</p>
-<p class="sec-sub-heading">3. क्रस्ट (Crust):</p>
-<p>• पृथ्वीको बाहिरी सतह, जसमा महादेश र महासागरको आधार निर्माण भएको छ ।</p>
-<p>• मान्छे र अन्य जीवजन्तु यही सतहमा बसोबास गर्छन् ।</p>
-<p class="sub-headings">पृथ्वीको वायुमण्डल</p><p>
-• पृथ्वीको वायुमण्डल मुख्य रूपमा नाइट्रोजन (७८%) र अक्सिजन (२१%) बाट बनेको छ ।  </p><p>
-• बाँकी १% अन्य ग्यासहरू जस्तै अर्गन, कार्बन डाइअक्साइड, नियोन आदि छन् ।  </p><p>
-• वायुमण्डलले पृथ्वीलाई सूर्यको हानिकारक विकिरणबाट रक्षा गर्दछ र मौसम तथा जलवायु प्रणालीलाई सन्तुलनमा राख्छ ।  
-</p><p class="sub-headings">पृथ्वीप्रति प्रभाव र जीवन</p><p class="sec-sub-heading">1. जलवायु र मौसम:</p>
-<p>पृथ्वीको अक्षको झुकाव र घुम्ने गतिले मौसमको विभिन्न प्रकार सिर्जना गर्दछ।</p>
-<p class="sec-sub-heading">2. जीवनको आधार:</p>
-<p>पृथ्वीमा पानी, आक्सीजन, माटो र अन्य जैविक आवश्यक तत्वहरूको उपलब्धताले जीवन सम्भव बनाउँछ।</p>
-<p class="sec-sub-heading">3. पृथ्वीको चुम्बकीय क्षेत्र:</p>
-<p>पृथ्वीको तरल बाहिरी कोरले उत्पन्न गरेको चुम्बकीय क्षेत्रले जीवजन्तु र मानवलाई हानिकारक सौर्य विकिरणबाट सुरक्षा गर्छ।</p>
-<p class="sub-headings">पृथ्वीको भविष्य</p><p>
-• पृथ्वी लगातार सूर्यको चारैतिर परिक्रमा गर्दै छ र यसको अक्षीय झुकावले मौसम परिवर्तन गरिरहेको छ।  
-</p><p>
-• मानवीय गतिविधिले वातावरण र जलवायुमा असर पुर्‍याइरहेको छ, जसले दीर्घकालीन रूपमा जीवनको संरचनामा चुनौती दिन सक्छ।  
-</p><p>
-• वैज्ञानिकहरूको लक्ष्य पृथ्वीको प्राकृतिक स्रोतको संरक्षण गर्दै जीवनको स्थायित्व सुनिश्चित गर्नु हो।  
-</p><p>
-पृथ्वी जीवनको अभूतपूर्व गहना हो। यसको संरचना, जलवायु र जैविक प्रणालीले लाखौं वर्षदेखि जीवनलाई सम्भव बनाउँदै आएको छ। मानव जातिले यसलाई सुरक्षित राख्नुको साथै वातावरणीय सन्तुलन कायम गर्नु अत्यावश्यक छ।  
-</p>`
-        },
-        {
-            id: 18,
-            title: "Mercury",
-            author: "Komal Chaudhary",
-            date: "August 26, 2025",
-            category: "Science",
-            imageUrl:
-                "https://www.dropbox.com/scl/fi/m7k1oygybviq4vthk93ro/id18.jpg?rlkey=37fym867un6qwhkyxvdc1eale&st=ohzoeh4d&&raw=1",
-            summary: `बुध ग्रह सूर्य नजिकको सबैभन्दा सानो ग्रह हो। यसको सतह कठोर छ र धेरै खालका क्रेटरले भरिएको छ।`,
-            content: `<p class="sub-headings">परिचय</p><p>
-बुध सूर्यबाट नजिकको पहिलो ग्रह हो र सौर्यमण्डलको सबैभन्दा सानो ग्रह मानिन्छ। यसको वातावरण अत्यन्तै पतलो छ र त्यहाँ तापक्रम दिनमा अत्यन्तै उच्च र रातमा अत्यन्तै कम हुन्छ। बुधमा जीवन सम्भव छैन, तर यसले ग्रहहरूको बनावट र सौर्यमण्डलको उत्पत्ति बुझ्न महत्त्वपूर्ण जानकारी दिन्छ।
-</p><p class="sub-headings">भौतिक विशेषताहरू</p><p>
-• बुधको व्यास करिब ४,८९२ किलोमिटर छ, जुन पृथ्वीको करिब ३७% मात्र हो।  
-</p><p>
-• यसको द्रव्यमान पृथ्वीको करिब ५.५% मात्र छ।  
-</p><p>
-• सतहमा ठूलो संख्या क्रेटर, पहाड र रेखाचित्र (Rupes) पाइन्छ।  
-</p><p class="sub-headings">बुधको वातावरण र तापक्रम</p><p>
-• बुधको वायुमण्डल अत्यन्त पतलो छ, मुख्य रूपमा सोडियम, हिलियम र अर्गन जस्ता ग्यासहरू पाइएको छ।  
-</p><p>
-• सूर्यको अत्यधिक नजिक हुँदा सतहको तापक्रम ४३० डिग्री सेल्सियससम्म पुग्छ।  
-</p><p>
-• रातको समयमा तापक्रम -१८० डिग्री सेल्सियससम्म घट्छ।  
-</p><p class="sub-headings">बुधको कक्षा र गति</p><p>
-• बुध सूर्यको वरिपरि ८८ दिनमा परिक्रमा पूरा गर्छ। 
-</p><p>
-• यसको अक्ष लगभग ठाडो छ, जसले मौसमीय भिन्नतालाई नगण्य बनाउँछ।  
-</p><p>
-• बुधको घुम्ने गति सुस्त छ, एक दिन (एक घुमाइ) करिब ५८.६ पृथ्वी दिनको बराबर छ।  
-</p><p class="sub-headings">बुधका रोचक तथ्यहरू</p><p>
-• बुधमा ठूलो ग्रेनाइटिक क्रेटरहरू र गहिरा घाटीहरू पाइन्छ, जसले यसको पुरानो सतहको प्रमाण दिन्छ।  
-</p><p>
-• ग्रहको सतहमा पानीको बरफ सम्भावित छ, विशेष गरी ध्रुवीय छायाँयुक्त क्षेत्रहरूमा।  
-</p><p>
-• बुधको गुरुत्वाकर्षण पृथ्वीको करिब ३७% मात्र छ, जसले त्यहाँको वस्तुहरूको तौल कम बनाउँछ।  
-</p><p>
-</p><p class="sub-headings">वैज्ञानिक महत्त्व</p><p>
-• बुधको अध्ययनले सौर्यमण्डलको प्रारम्भिक अवस्था र ग्रहहरूको विकास प्रक्रिया बुझ्न मद्दत गर्दछ।  
-</p><p>
-• NASA र ESA जस्ता अन्तर्राष्ट्रिय अन्तरिक्ष एजेन्सीहरूले बुधमा मिशन पठाइसकेका छन्, जस्तै MESSENGER मिशन, जसले ग्रहको संरचना र चुम्बकीय क्षेत्रबारे महत्वपूर्ण डेटा सङ्कलन गरेको छ।  
-</p><p>
-बुध सौर्यमण्डलको अध्ययनमा अद्वितीय ग्रह हो। यसको तापमान भिन्नता, पतलो वातावरण र क्रेटरहरूले भरिएको सतहले यसलाई वैज्ञानिक दृष्टिले अन्वेषणको लागि आकर्षक बनाएको छ। भविष्यमा पनि बुधका रहस्यहरू उजागर गर्न नयाँ मिशनहरू आयोजना गरिनेछन्।  
-</p>`
-        },
-        {
-            id: 19,
-            title: "Venus",
-            author: "Komal Chaudhary",
-            date: "August 26, 2025",
-            category: "Science",
-            imageUrl:
-                "https://www.dropbox.com/scl/fi/ghxsei77hmdn2fa1fxhij/id19.jpg?rlkey=egsfid21j1tnmzmny3h8tzyev&st=8vchlt7d&&raw=1",
-            summary: `शुक्र ग्रह सूर्यबाट दोस्रो ग्रह हो र पृथ्वीको नजिकको ‘भाइ’ ग्रह मानिन्छ। यसको घना बादल, उच्च तापमान र विषाक्त वातावरणले यसलाई अत्यन्तै रोचक र चुनौतीपूर्ण बनाउँछ।`,
-            content: `<p class="sub-headings">परिचय</p><p>
-शुक्र सूर्यबाट दोस्रो ग्रह हो र पृथ्वीको आकार र संरचनाको दृष्टिले सबैभन्दा मिल्दोजुल्दो ग्रह मानिन्छ। तर यसको वातावरण अत्यन्तै असहज छ। घना बादलहरूले ग्रहलाई छोपेका छन्, जसले गर्दा सतह सधैं अँध्यारो र उच्च तापमानयुक्त छ। शुक्र ग्रहलाई प्राचीन कालदेखि ‘सन्ध्याकालीन तारो’ वा ‘प्रभात तारो’को रूपमा चिनिन्थ्यो। यस ग्रहको अध्ययनले ग्रहहरूको वायुमण्डल, जलवायु र पृथ्वीको भविष्य बुझ्न महत्वपूर्ण भूमिका खेल्छ।  
-</p><p class="sub-headings">भौतिक विशेषताहरू</p><p>
-• शुक्रको व्यास करिब १२,१०४ किलोमिटर छ, जुन पृथ्वीको करिब ९५% हो।  </p><p>
-• यसको द्रव्यमान पृथ्वीको करिब ८२% छ।  </p><p>
-• ग्रहको घनत्व पृथ्वी जस्तो छ, जसले यसलाई ‘पृथ्वीको दिदी’ भनेर पनि चिनाउँछ।  </p><p>
-• सतहमा ठूला ज्वालामुखी, पहाड, घाटी र क्रेटरहरू पाइन्छन्।  </p><p>
-</p><p class="sub-headings">वायुमण्डल र तापक्रम</p><p>
-• शुक्रको वायुमण्डल मुख्य रूपमा कार्बन डाइअक्साइड (९६%) र नाइट्रोजन (३%) बाट बनेको छ।  </p><p>
-• यो अत्यन्तै घना वायुमण्डलले ग्रीनहाउस प्रभाव सिर्जना गरेको छ, जसले सतहको तापक्रम करिब ४६० डिग्री सेल्सियससम्म पुर्‍याउँछ।  </p><p>
-• बादलहरू सल्फ्युरिक एसिड (H₂SO₄) बाट बनेका छन्, जसले वातावरणलाई अत्यधिक विषाक्त बनाएको छ।  </p><p>
-• शुक्रमा दिन र रातको तापक्रम लगभग समान हुन्छ किनभने घना वायुमण्डलले ऊष्मा ग्रहण गर्दछ।  </p><p>
-</p><p class="sub-headings">कक्षा र घुम्ने गति</p><p>
-• शुक्र सूर्यको वरिपरि परिक्रमा २२५ पृथ्वी दिनमा पूरा गर्छ।  </p><p>
-• यसको अक्ष लगभग ठाडो छ (३ डिग्री झुकाव), जसले मौसमीय परिवर्तन नगण्य बनाउँछ।  </p><p>
-• शुक्रको आफ्नै घुमाइ अति सुस्त छ, एक दिन (एक घुमाइ) करिब २४३ पृथ्वी दिन बराबर छ।  </p><p>
-• यसले सूर्यको वरिपरि परिक्रमा गर्दा पछाडि घुमिरहेको जस्तो देखिन्छ, जसलाई ‘प्रतिगामी घुमाइ’ (Retrograde Rotation) भनिन्छ।  </p><p>
-</p><p class="sub-headings">सतह र भूगोल</p><p>
-• शुक्रको सतह पहाड, पठार, ज्वालामुखी, र गहिरा घाटीहरूले भरिएको छ।  </p><p>
-• Maxwell Montes सबैभन्दा अग्लो पर्वत हो, करिब ११ किलोमिटर उचाइसम्म पुग्छ।  </p><p>
-• सतहमा ज्वालामुखी सक्रिय हुन सक्छन्, तर वैज्ञानिकहरूले हालसम्म सक्रिय ज्वालामुखीको पुष्टि गरेका छैनन्।</p><p>  
-• सतह कठोर छ र धेरै भागमा क्रेटरले ढाकिएको छ, जसले ग्रहको पुरानो भूगोलको प्रमाण दिन्छ।  
-</p><p class="sub-headings">वैज्ञानिक महत्त्व</p><p>
-• शुक्र ग्रहको अध्ययनले पृथ्वीको वातावरणीय परिवर्तन र ग्रीनहाउस प्रभावको वास्तविकता बुझ्न सहयोग गर्दछ।  </p><p>
-• विभिन्न मिशनहरूले शुक्रको सतह र वायुमण्डलको विस्तृत अध्ययन गरेका छन्, जस्तै NASAको Magellan मिशनले राडार नक्शा तयार गरेको छ।  </p><p>
-• शुक्रमा पानीको सम्भावना अतीतमा थोरै मात्र पाइएको अनुमान छ, तर आज सतह पूर्णरूपेण सुख्खा छ।  
-</p><p class="sub-headings">रोचक तथ्यहरू</p><p>
-• शुक्र पृथ्वीको सबैभन्दा नजिकको ग्रह हो, तर यसको विषाक्त वातावरणले मानव अवलोकनलाई चुनौती दिएको छ।  </p><p>
-• शुक्र ग्रहलाई प्राचीन संस्कृतिहरूले प्रेम र सौन्दर्यको देवीसँग जोडेर पूजा गर्ने चलन थियो।  </p><p>
-• आजको दिनसम्म, Venus मिशनहरू मार्फत यसको सतहको नक्शा र वायुमण्डलको अध्ययन जारी छ।  
-</p><p class="sub-headings">निष्कर्ष</p><p>
-शुक्र ग्रह वैज्ञानिक दृष्टिले अत्यन्तै रोचक छ। यसको घना वायुमण्डल, विषाक्त बादल, उच्च तापक्रम र प्रतिगामी घुमाइले यसलाई सौर्यमण्डलमा विशेष बनाएको छ। पृथ्वीको नजिकको ‘दिदी’ भए पनि यसको वातावरणले जीवनको संभावना असम्भव बनाएको छ। भविष्यमा पनि यस ग्रहका रहस्यहरू उजागर गर्न अन्तरिक्ष एजेन्सीहरूले नयाँ मिशनहरू पठाउने योजना बनाइरहेका छन्।  
-</p>`
-        },
-        {
-            id: 20,
-            title: "Mars",
-            author: "Komal Chaudhary",
-            date: "August 26, 2025",
-            category: "Science",
-            imageUrl:
-                "https://www.dropbox.com/scl/fi/58i3fpkqluf3pwszao95q/id20.jpg?rlkey=q3pbpx4hynw72hqpzdcazdwg2&st=mhp4xjsc&&raw=1",
-            summary: `मंगल ग्रह सूर्यबाट चौथो ग्रह हो र रातो ग्रहको रूपमा चिनिन्छ। यसको सतह, घाटी र पर्वतहरूले वैज्ञानिक अध्ययनका लागि अत्यन्त रोचक बनाउँछ।`,
-            content: `<p class="sub-headings">परिचय</p><p>
-मंगल सूर्यबाट चौथो ग्रह हो र यसको सतह रातो रङले ढाकिएको छ, जसका कारण यसलाई 'रातो ग्रह' भनिन्छ। मंगल पृथ्वीको तुलनामा सानो छ तर यसको भूगोल, वायुमण्डल र सम्भावित जल स्रोतका कारण वैज्ञानिकहरूको ध्यान केन्द्रित छ। मंगल ग्रहमा जीवनको संकेत खोज्ने प्रयास आज पनि जारी छ, र यसले मानवको भविष्यको सम्भावित बस्तीको संभावना प्रस्तुत गर्दछ।  
-</p><p class="sub-headings">भौतिक विशेषताहरू</p><p>
-• मंगल ग्रहको व्यास करिब ६,७९२ किलोमिटर छ, पृथ्वीको करिब आधा।  </p><p>
-• यसको द्रव्यमान पृथ्वीको करिब १०.७% मात्र छ।  </p><p>
-• मंगलको सतहको मुख्य रङ अक्साइड-लोहा (Iron Oxide) को कारण रातो छ।  </p><p>
-• सतहमा ठूला पर्वत, घाटी, ज्वालामुखी र क्रेटरहरू पाइन्छन्।  </p><p>
-</p><p class="sub-headings">सतह र भूगोल</p><p>
-• Olympus Mons सबैभन्दा ठूलो ज्वालामुखी हो, करिब २२ किलोमिटर उचाइ र ६०० किलोमिटर व्यासको छ।  </p><p>
-• Valles Marineris ठूलो घाटी प्रणाली हो, ४,००० किलोमिटर लामो र ७ किलोमिटर गहिरो।  </p><p>
-• सतहमा धूलो तुफानहरू सामान्य छन्, जसले ग्रहको जलवायु र अध्ययनमा चुनौती पुर्‍याउँछन्।  </p><p>
-</p><p class="sub-headings">वायुमण्डल र तापक्रम</p><p>
-• मंगलको वायुमण्डल मुख्य रूपले कार्बन डाइअक्साइड (९५%) र नाइट्रोजन (२.६%) बाट बनेको छ।  </p><p>
-• सतहमा अक्सिजनको मात्रा अत्यन्तै कम छ, त्यसैले मानव बास असम्भव छ।  </p><p>
-• दिनको तापक्रम करिब २० डिग्री सेल्सियस सम्म पुग्न सक्छ तर रातको तापक्रम -१२५ डिग्री सेल्सियससम्म घट्छ।  
-</p><p class="sub-headings">कक्षा र घुम्ने गति</p><p>
-• मंगल सूर्यको वरिपरि परिक्रमा ६८७ पृथ्वी दिनमा पूरा गर्छ।  </p><p>
-• यसको एक दिन (Sol) करिब २४.६ घण्टा लामो हुन्छ।  </p><p>
-• अक्ष झुकाव २५.२ डिग्री छ, जसले पृथ्वीजस्तो मौसमीय चक्र सिर्जना गर्दछ। 
-</p><p class="sub-headings">जल स्रोत र सम्भावित जीवन</p><p>
-• मंगलमा अतीतमा पानीको अस्तित्व रहेको प्रमाण पाइन्छ।</p><p>  
-• ध्रुवीय छायाँयुक्त क्षेत्रहरूमा हिउँ र जमेको पानी पाइएको छ।  </p><p>
-• वैज्ञानिकहरू मंगलमा सूक्ष्म जीवहरूको सम्भावना खोज्ने प्रयास गरिरहेका छन्।  </p><p>
-</p><p class="sub-headings">वैज्ञानिक मिशनहरू</p><p>
-• NASA, ESA र अन्य अन्तर्राष्ट्रिय एजेन्सीहरूले मंगलमा विभिन्न मिशन पठाएका छन्, जस्तै Mars Rover Perseverance, Curiosity र Mars Orbiter Mission।  </p><p>
-• यी मिशनहरूले मंगलको सतह, भूगोल, वायुमण्डल र सम्भावित जीवन संकेतहरूको विस्तृत अध्ययन गरेका छन्।  </p><p>
-• भविष्यमा मानव बस्ती र अनुसन्धानको लागि मंगल ग्रहको तयारी भइरहेको छ।  
-</p><p class="sub-headings">रोचक तथ्यहरू</p><p>
-• मंगल ग्रहको सतहमा पृथ्वी जस्तो दिन–रातको चक्र हुन्छ तर रातको समय धेरै चिसो हुन्छ।  </p><p>
-• रातो रङको कारण ग्रहलाई 'रातो ग्रह' भनिन्छ।  </p><p>
-• मंगलको गुरुत्वाकर्षण पृथ्वीको करिब ३७% मात्र छ, जसले त्यहाँको वस्तुहरूको तौल कम बनाउँछ।  
-</p><p class="sub-headings">निष्कर्ष</p><p>
-मंगल ग्रह सौर्यमण्डलमा मानव खोज र भविष्यको सम्भावित बस्तीको दृष्टिले अत्यन्त महत्त्वपूर्ण ग्रह हो। यसको भूगोल, जलाशय र वायुमण्डलको अध्ययनले विज्ञान र अन्तरिक्ष अनुसन्धानमा नयाँ दृष्टिकोण ल्याएको छ। भविष्यमा मानिसले मंगलमा बस्ती बसाउने सम्भावना रहेको छ र यसले मानव सभ्यताको नयाँ अध्याय खोल्नेछ।  
-</p>`
-        },
-        {
-            id: 21,
-            title: "Jupiter",
-            author: "Komal Chaudhary",
-            date: "August 26, 2025",
-            category: "Science",
-            imageUrl:
-                "https://www.dropbox.com/scl/fi/icrpsrubt3iagun3kgrgy/id21.jpg?rlkey=2x5j8egi2g9fiwlzpmee15aw4&st=wxko7hq7&&raw=1",
-            summary: `बृहस्पति सौर्यमण्डलको सबैभन्दा ठूलो ग्रह हो। यसको विशाल आकार, गैसयुक्त संरचना र ठूलो गुरुत्वाकर्षणले सौर्यमण्डललाई स्थिर राख्न महत्वपूर्ण भूमिका खेल्छ।`,
-            content: `<p class="sub-headings">परिचय</p><p>
-बृहस्पति सौर्यमण्डलको सबैभन्दा ठूलो ग्रह हो र यसलाई 'ग्यास जायन्ट' भनिन्छ। यसको घना गैसयुक्त संरचना, विशाल तुफान र चुम्बकीय क्षेत्रले यसलाई अन्य ग्रहहरूबाट अलग बनाउँछ। बृहस्पतिको गुरुत्वाकर्षण शक्ति सौर्यमण्डलका अन्य ग्रहहरूको कक्षालाई स्थिर राख्न सहयोग पुर्‍याउँछ।  
-</p><p class="sub-headings">भौतिक विशेषताहरू</p><p>
-• बृहस्पतिको व्यास करिब १,४२,८०० किलोमिटर छ, पृथ्वीभन्दा करिब ११ गुणा ठूलो।  </p><p>
-• यसको द्रव्यमान पृथ्वीको करिब ३१८ गुणा छ।  </p><p>
-• बृहस्पति मुख्य रूपले हाइड्रोजन (९०%) र हीलियम (१०%) बाट बनेको छ।  </p><p>
-• सतह छैन, तर गैसको स्तर र वायुमण्डलीय बनावटले यसको भव्य दृश्य प्रस्तुत गर्छ।  </p><p>
-</p><p class="sub-headings">वायुमण्डल र हवाएँ</p><p>
-• बृहस्पतिको वायुमण्डल मुख्य रूपले हाइड्रोजन र हीलियमबाट बनेको छ।  </p><p>
-• यसमा ठूलो रङको धुम्मधारे बादल प्रणाली छ, जसले ग्रहलाई कालो, पहेंलो, रातो र सेतो पट्टिहरूमा विभाजन गरेको देखिन्छ।  </p><p>
-• महान लाल धब्बा (Great Red Spot) पृथ्वीभन्दा ठूलो आँधी प्रणाली हो, जुन सयौं वर्षदेखि सक्रिय छ।  </p><p>
-• हवाएँ करिब ६०० किलोमिटर प्रतिघण्टा गतिमा चल्छन्।  
-</p><p class="sub-headings">कक्षा र घुम्ने गति</p><p>
-• बृहस्पति सूर्यको वरिपरि ४,३३३ पृथ्वी दिनमा परिक्रमा गर्छ।  </p><p>
-• यसको एक दिन (एक घुमाइ) मात्र ९.९८ घण्टा लामो हुन्छ</p><p>।  
-• अक्ष झुकाव लगभग ३.१३ डिग्री छ, जसले मौसमीय परिवर्तन नगण्य बनाउँछ।  
-</p><p class="sub-headings">चुम्बकीय क्षेत्र र उपग्रह</p><p>
-• बृहस्पतिको चुम्बकीय क्षेत्र अत्यन्त प्रबल छ, पृथ्वीको करिब १४ गुणा।  </p><p>
-• यसले सौर्य कणबाट ग्रह र यसको उपग्रहहरूको सुरक्षा गर्दछ।  </p><p>
-• बृहस्पतिको ८९ भन्दा बढी उपग्रहहरू छन्, जसमध्ये चार प्रमुख उपग्रहलाई 'गैलीलियो moons' भनिन्छ: Io, Europa, Ganymede र Callisto।  </p><p>
-• Europa उपग्रहमा जमेको सतहभित्र तरल पानीको सम्भावना छ, जसले जीवनको खोजमा वैज्ञानिकहरूको ध्यान तानेको छ।  
-</p><p class="sub-headings">वैज्ञानिक महत्त्व</p><p>
-• बृहस्पति सौर्यमण्डलको प्रारम्भिक विकास र ग्रहहरूको गठन बुझ्न महत्त्वपूर्ण ग्रह हो।  </p><p>
-• NASA र ESA जस्ता अन्तर्राष्ट्रिय एजेन्सीहरूले Juno मिशन पठाएर बृहस्पतिको वायुमण्डल, चुम्बकीय क्षेत्र र गुरुत्वाकर्षण अध्ययन गरेका छन्।  </p><p>
-• बृहस्पति विशाल गुरुत्वाकर्षणको कारण धूमकेतु र क्षुद्रग्रहहरूलाई परिक्रमा मार्गबाट हटाएर सौर्यमण्डलमा स्थायित्व राख्छ।  
-</p><p class="sub-headings">रोचक तथ्यहरू</p><p>
-• बृहस्पति सतह नभएको ‘ग्यास जायन्ट’ भए पनि यसको वातावरणमा आँधी, बादल र तेज हवाएँ अविरल छन्। </p><p> 
-• महान लाल धब्बा करिब ३५० वर्षदेखि सक्रिय आँधी प्रणालीको रूपमा रहिरहेको छ।  </p><p>
-• बृहस्पति आफ्नो विशाल आकार र गुरुत्वाकर्षणले सौर्यमण्डलका ग्रहहरूको कक्षालाई स्थिर राख्न मद्दत गर्छ।  
-</p><p class="sub-headings">निष्कर्ष</p><p>
-बृहस्पति सौर्यमण्डलको विशाल र शक्तिशाली ग्रह हो। यसको ग्यासयुक्त संरचना, विशाल गुरुत्वाकर्षण, चुम्बकीय क्षेत्र र उपग्रहहरूले यसलाई विज्ञानको दृष्टिले अत्यन्त रोचक बनाउँछ। बृहस्पतिको अध्ययनले सौर्यमण्डलको उत्पत्ति, ग्रहहरूको संरचना र भविष्यको अनुसन्धानमा नयाँ दृष्टिकोण प्रदान गर्दछ।  
-</p>`
-        },
-        {
-            id: 22,
-            title: "Saturn",
-            author: "Komal Chaudhary",
-            date: "August 26, 2025",
-            category: "Science",
-            imageUrl:
-                "https://www.dropbox.com/scl/fi/d8valp2n1g71a77pj34k8/id22.jpg?rlkey=ux8uqb8s6j6ns5mk0vmpxgesz&st=z5azhrg5&&raw=1",
-            summary: `शनि ग्रह सौर्यमण्डलको छैटौं ग्रह हो र आफ्ना आकर्षक औँठी जस्तो रिङ्सको कारण प्रसिद्ध छ। यसको गैसयुक्त संरचना, विशाल रिङ प्रणाली र धेरै उपग्रहहरूले यसलाई वैज्ञानिक दृष्टिले रोचक बनाउँछ।`,
-            content: `<p class="sub-headings">परिचय</p><p>
-शनि सूर्यबाट छैटौं ग्रह हो र 'ग्यास जायन्ट'को रूपमा चिनिन्छ। यसको सबैभन्दा विशेष विशेषता यसको सुन्दर र स्पष्ट रिङ प्रणाली हो, जुन लाखौं बरफ र ढुङ्गाका कणहरूबाट बनेको छ। शनि विशाल आकारको गैस ग्रह हो र यसको गुरुत्वाकर्षण, वायुमण्डल र उपग्रहहरू सौर्यमण्डलको अध्ययनमा महत्त्वपूर्ण भूमिका खेल्छन्।  
-</p><p class="sub-headings">भौतिक विशेषताहरू</p><p>
-• शनिको व्यास करिब १,२०,५३६ किलोमिटर छ, पृथ्वीभन्दा करिब ९.४ गुणा ठूलो।  </p><p>
-• यसको द्रव्यमान पृथ्वीको करिब ९५ गुणा छ।  </p><p>
-• मुख्य रूपले हाइड्रोजन (९६%) र हीलियम (३%) बाट बनेको छ।</p><p>  
-• सतह नभए पनि गैसको स्तर र बादलहरूको बनावटले यसलाई विशाल र आकर्षक बनाउँछ।  
-</p><p class="sub-headings">रिङ प्रणाली</p><p>
-• शनिको रिङ प्रणाली अत्यन्तै विस्तृत र जटिल छ। </p><p> 
-• मुख्य रिङहरू A, B, C, D, E, F, G मा विभाजित छन्।  </p><p>
-• रिङ प्रणाली लाखौं साना बरफ र ढुङ्गाका कणहरूले बनेको छ, जसले सूर्यको प्रकाश परावर्तित गर्दा अद्भुत दृश्य उत्पन्न गर्छ।  </p><p>
-• रिङहरूको मोटाई करिब १०० मीटर मात्र छ, तर व्यास लाखौं किलोमिटर फैलिएको छ।  
-</p><p class="sub-headings">वायुमण्डल र हवाएँ</p><p>
-• शनिको वायुमण्डल मुख्य रूपले हाइड्रोजन र हीलियमबाट बनेको छ।  </p><p>
-• यहाँ ठूलो आँधी, बादल र वायुमण्डलीय प्रणाली सक्रिय छ।</p><p>  
-• हवाएँ करिब १,८०० किलोमिटर प्रतिघण्टा गतिमा चल्छन्।  </p><p>
-• शनिको वायुमण्डलीय संरचना बृहस्पतिको भन्दा हल्का छ तर त्यसले पनि विशाल आँधी उत्पन्न गर्छ।  
-</p><p class="sub-headings">कक्षा र घुम्ने गति</p><p>
-• शनि सूर्यको वरिपरि १०,७३४ पृथ्वी दिनमा परिक्रमा गर्छ।  </p><p>
-• यसको एक दिन (एक घुमाइ) करिब १०.७ घण्टा लामो छ।  </p><p>
-• अक्ष झुकाव लगभग २६.७ डिग्री छ, जसले मौसमीय चक्र र ऋतु परिवर्तन सम्भव बनाउँछ।  
-</p><p class="sub-headings">उपग्रहहरू</p><p>
-• शनिका ८२ भन्दा बढी उपग्रहहरू छन्।  </p><p>
-• सबैभन्दा प्रसिद्ध उपग्रह टाइटान हो, जसको वातावरण पृथ्वीको प्रारम्भिक वातावरण जस्तो मानिन्छ।  </p><p>
-• Enceladus उपग्रहमा पानीको फव्वारा पाइएको छ, जसले जीवनको सम्भावनाको संकेत दिन्छ।  </p><p>
-• अन्य प्रमुख उपग्रहहरू Mimas, Rhea, Dione, Iapetus र Hyperion हुन्।  
-</p><p class="sub-headings">वैज्ञानिक महत्त्व</p><p>
-• शनि र यसको उपग्रहहरूको अध्ययनले गैस जायन्ट ग्रहहरूको गठन र संरचना बुझ्न सहयोग पुर्‍याउँछ।  </p><p>
-• Cassini–Huygens मिशनले शनि र यसको रिङ प्रणालीको विस्तृत अध्ययन गरेर महत्वपूर्ण डेटा उपलब्ध गराएको छ।</p><p>  
-• शनिको गुरुत्वाकर्षण सौर्यमण्डलको अन्य ग्रहहरूको कक्षालाई स्थिर राख्न मद्दत गर्दछ।  
-</p><p class="sub-headings">रोचक तथ्यहरू</p><p>
-• शनि सबैभन्दा कम घनत्व भएको ग्रह हो, जसले पानीमा तैरिन सक्छ भन्ने सिद्धान्त प्रस्तुत गरेको छ।  </p><p>
-• यसको रिङ प्रणाली अन्य ग्रहको तुलनामा अत्यन्तै स्पष्ट र आकर्षक छ।  </p><p>
-• शनि ग्रहमा आँधी, बादल र हवाहरू निरन्तर चलिरहेका छन्, जसले यसको वातावरणलाई गतिशील बनाउँछ।  
-</p><p class="sub-headings">निष्कर्ष</p><p>
-शनि सौर्यमण्डलको एक अद्भुत ग्रह हो। यसको विशाल आकार, रिङ प्रणाली, गैसयुक्त संरचना र उपग्रहहरूले यसलाई वैज्ञानिक दृष्टिले रोचक बनाउँछ। शनि ग्रहको अध्ययनले ग्रह निर्माण, वायुमण्डलीय प्रक्रिया र सौर्यमण्डलको संरचना बुझ्न नयाँ दृष्टिकोण प्रदान गर्दछ। भविष्यमा यस ग्रहका रहस्यहरू उजागर गर्न अन्तरिक्ष एजेन्सीहरूले नयाँ मिशनहरू पठाउने योजना बनाइरहेका छन्।  
-</p>`
-        },
-        {
-            id: 23,
-            title: "Neptune",
-            author: "Komal Chaudhary",
-            date: "August 26, 2025",
-            category: "Science",
-            imageUrl:
-                "https://www.dropbox.com/scl/fi/derzqwaqtqimutex9j90j/id23.jpg?rlkey=04e2byeszxbzsok9ehm5mn7qn&st=wto8csgm&&raw=1",
-            summary: `वरुण ग्रह सूर्यबाट आठौं ग्रह हो र सौर्यमण्डलको सबैभन्दा टाढाको गैस जायन्ट मानिन्छ। यसको गाढा निलो रङ, शक्तिशाली आँधी र धेरै उपग्रहहरूले यसलाई वैज्ञानिक दृष्टिले आकर्षक बनाउँछ।`,
-            content: `<p class="sub-headings">परिचय</p><p>
-वरुण सूर्यबाट आठौं ग्रह हो र सौर्यमण्डलको सबैभन्दा टाढाको गैस जायन्ट मानिन्छ। यसको गाढा निलो रङ मेटेन ग्यासको कारण हुन्छ। वरुण ग्रह अत्यन्तै ठुलो, शक्तिशाली आँधी र अत्यन्त चिसो वातावरण भएको ग्रह हो। यसको अध्ययनले सौर्यमण्डलको बाहिरी ग्रहहरूको संरचना, वायुमण्डल र जलवायु प्रणाली बुझ्न महत्त्वपूर्ण योगदान दिएको छ।  
-</p><p class="sub-headings">भौतिक विशेषताहरू</p><p>
-• वरुणको व्यास करिब ४९,२४६ किलोमिटर छ, पृथ्वीभन्दा करिब ३.९ गुणा ठूलो।  </p><p>
-• यसको द्रव्यमान पृथ्वीको करिब १७ गुणा छ।  </p><p>
-• मुख्य रूपमा हाइड्रोजन, हीलियम र मेटेन ग्यासले बनेको छ।  </p><p>
-• सतह छैन, तर वायुमण्डलीय संरचना र बादलहरूले यसलाई ठुलो र आकर्षक बनाउँछ।  
-</p><p class="sub-headings">वायुमण्डल र हवाएँ</p><p>
-• वरुणको वायुमण्डल हाइड्रोजन, हीलियम र मेटेन ग्यासको मिश्रण हो।  </p><p>
-• ग्रहमा तेज हवाहरू चल्छन्, गति २,१०० किलोमिटर प्रतिघण्टा पुग्न सक्छ।  </p><p>
-• मेटेन ग्यासले सूर्यको प्रकाशलाई सोस्छ र गाढा निलो रङ उत्पन्न गर्दछ।  </p><p>
-• वायुमण्डलमा बादल र आँधी निरन्तर गतिशील छन्।  
-</p><p class="sub-headings">कक्षा र घुम्ने गति</p><p>
-• वरुण सूर्यको वरिपरि ६०,१८६ पृथ्वी दिनमा परिक्रमा गर्छ।  </p><p>
-• यसको एक दिन (एक घुमाइ) करिब १७.२ घण्टा लामो हुन्छ।  </p><p>
-• अक्ष झुकाव लगभग २८.३ डिग्री छ, जसले ऋतु परिवर्तन र मौसमीय चक्रलाई प्रभाव पार्छ।  </p><p>
-</p><p class="sub-headings">उपग्रहहरू</p><p>
-• वरुणसँग १४ ज्ञात उपग्रहहरू छन्।  </p><p>
-• सबैभन्दा प्रसिद्ध उपग्रह ट्राइटन हो, जसले उल्टो परिक्रमा (Retrograde Orbit) गर्दछ।  </p><p>
-• ट्राइटनमा ग्यास ज्वालामुखी सक्रिय छ र यसमा नाइट्रोजन ग्यास फ्याँक्ने प्रवृत्ति पाइन्छ।  </p><p>
-• अन्य उपग्रहहरूमा Nereid, Proteus, Larissa र Despina समावेश छन्।  
-</p><p class="sub-headings">वैज्ञानिक महत्त्व</p><p>
-• वरुणको अध्ययनले सौर्यमण्डलको बाहिरी ग्रहहरूको संरचना, वायुमण्डलीय प्रणाली र जलवायु बुझ्न सहयोग पुर्‍याउँछ।  </p><p>
-• Voyager 2 मिशनले १९८९ मा वरुणको विस्तृत अध्ययन गर्दै यसको रिङ प्रणाली र उपग्रहहरूको डेटा सङ्कलन गरेको थियो।  </p><p>
-• वरुणमा तेज हवाहरू, आँधी र बादल प्रणालीले ग्रहको वातावरणको अन्वेषणलाई चुनौतीपूर्ण बनाएको छ।  
-</p><p class="sub-headings">रोचक तथ्यहरू</p><p>
-• वरुण सौर्यमण्डलको सबैभन्दा टाढाको गैस जायन्ट हो।  </p><p>
-• यसको तेज हवाहरूले सौर्यमण्डलमा सबैभन्दा उच्च गति हावाको रेकर्ड राखेको छ।  </p><p>
-• गाढा निलो रङ यसको मेटेन ग्यासको कारण उत्पन्न भएको हो।  </p><p>
-• वरुणको उपग्रह ट्राइटन उल्टो परिक्रमा गर्ने एकमात्र ठूलो उपग्रह हो।  
-</p><p class="sub-headings">निष्कर्ष</p><p>
-वरुण ग्रह सौर्यमण्डलको बाहिरी ग्रहहरूको अध्ययनमा महत्त्वपूर्ण भूमिका खेल्छ। यसको गाढा निलो रङ, तेज हवाहरू, रिङ प्रणाली र उपग्रहहरूले वैज्ञानिक दृष्टिले यसको अनुसन्धानलाई रोचक बनाउँछ। भविष्यमा वरुणका रहस्यहरू उजागर गर्न नयाँ मिशनहरू आयोजना गरिने योजना छ, जसले सौर्यमण्डलको संरचना र ग्रहहरूको विकास प्रक्रिया बुझ्न सहयोग पुर्‍याउनेछ।  
-</p>`
-        },
-        {
-            id: 24,
-            title: "Uranus",
-            author: "Komal Chaudhary",
-            date: "August 26, 2025",
-            category: "Science",
-            imageUrl:
-                "https://www.dropbox.com/scl/fi/up4cscv94aw0fr9y9wllt/id24.jpg?rlkey=8k0gxdk41exjt88vywiiid89g&st=aeg00fec&&raw=1",
-            summary: `अरुण ग्रह सूर्यबाट सातौं ग्रह हो र अनौठो अक्षीय झुकावको कारण यसको घुमाइ र ऋतु प्रणाली अनौठो छ। यसको निलो–हरियो रङ, गैसयुक्त संरचना र रिङ प्रणालीले यसलाई विशेष बनाउँछ।`,
-            content: `<p class="sub-headings">परिचय</p><p>
-अरुण सूर्यबाट सातौं ग्रह हो र सौर्यमण्डलको गैस जायन्ट वर्गमा पर्छ। यसको अनौठो अक्षीय झुकाव करिब ९८ डिग्री छ, जसले यसलाई लगभग साइडवेज घुम्ने ग्रह बनाउँछ। अरुणको निलो–हरियो रङ मेटेन ग्यासको कारण हुन्छ। यसको अध्ययनले बाहिरी ग्रहहरूको संरचना, वायुमण्डल र मौसम प्रणाली बुझ्न सहयोग गर्दछ।  
-</p><p class="sub-headings">भौतिक विशेषताहरू</p><p>
-• अरुणको व्यास करिब ५०,७२४ किलोमिटर छ, पृथ्वीभन्दा करिब ४ गुणा ठूलो।  </p><p>
-• यसको द्रव्यमान पृथ्वीको करिब १४.५ गुणा छ।  </p><p>
-• मुख्य रूपले हाइड्रोजन, हीलियम र मेटेन ग्यासले बनेको छ।  </p><p>
-• सतह नभए पनि यसको गैसको स्तर र बादलहरूले यसलाई ठुलो र आकर्षक बनाउँछ।  
-</p><p class="sub-headings">वायुमण्डल र हवाएँ</p><p>
-• अरुणको वायुमण्डलमा हाइड्रोजन, हीलियम र मेटेन ग्यासको मिश्रण छ।  </p><p>
-• मेटेन ग्यासले सूर्यको प्रकाश सोस्छ र निलो–हरियो रंग उत्पन्न गर्छ।  </p><p>
-• हवाहरू अपेक्षाकृत कम गतिमा चल्छन्, करिब 900 किलोमिटर प्रतिघण्टा।  </p><p>
-• वायुमण्डलमा बादल, आँधी र गैसको संरचना निरन्तर गतिशील छन्।  
-</p><p class="sub-headings">कक्षा र घुम्ने गति</p><p>
-• अरुण सूर्यको वरिपरि ३०,६७५ पृथ्वी दिनमा परिक्रमा गर्छ।  </p><p>
-• यसको एक दिन (एक घुमाइ) करिब १७.२४ घण्टा लामो हुन्छ। </p><p> 
-• अक्ष झुकाव करिब ९८ डिग्री छ, जसले ग्रहलाई लगभग साइडवेज घुम्ने बनाउँछ।  </p><p>
-• यसको अक्षीय झुकावले अरुणमा चरम ऋतु परिवर्तन र अद्वितीय मौसमीय अवस्था सिर्जना गर्दछ।  
-</p><p class="sub-headings">रिङ प्रणाली र उपग्रहहरू</p><p>
-• अरुणसँग १३ ज्ञात रिङहरू छन्, जसले धेरै सुक्ष्म तर ठुला कणहरू समेटेका छन्।  </p><p>
-• यसको २७ उपग्रहहरू छन्, जसमा प्रमुख उपग्रहहरूमा Miranda, Ariel, Umbriel, Titania र Oberon छन्।  </p><p>
-• उपग्रहहरूको अध्ययनले अरुणको गुरुत्वाकर्षण, वातावरण र ऐतिहासिक विकास बुझ्न सहयोग गर्दछ।  
-</p><p class="sub-headings">वैज्ञानिक महत्त्व</p><p>
-• अरुण ग्रहको अध्ययनले सौर्यमण्डलको बाहिरी ग्रहहरूको संरचना, वायुमण्डलीय प्रक्रिया र अक्षीय झुकावको प्रभाव बुझ्न सहयोग पुर्‍याउँछ।  </p><p>
-• Voyager 2 मिशनले १९८६ मा अरुणको विस्तृत अध्ययन गर्दै रिङ प्रणाली र उपग्रहहरूको डेटा सङ्कलन गरेको थियो।  </p><p>
-• अरुणको विशिष्ट अक्षीय झुकावले ग्रहहरूको गठन र विकासका सैद्धान्तिक मोडेलहरूमा नयाँ दृष्टिकोण दिएको छ।  
-</p><p class="sub-headings">रोचक तथ्यहरू</p><p>
-• अरुण सौर्यमण्डलको अनौठो अक्षीय झुकाव भएको ग्रह हो।  </p><p>
-• यसको निलो–हरियो रङ मेटेन ग्यासको कारण उत्पन्न भएको हो।  </p><p>
-• अरुणको रिङ प्रणाली शनिको भन्दा कम स्पष्ट भए पनि वैज्ञानिक दृष्टिले महत्वपूर्ण छ।  </p><p>
-• उपग्रहहरूको अध्ययनले बाहिरी ग्रहहरूको ऐतिहासिक विकास बुझ्न सहयोग पुर्‍याउँछ।  
-</p><p class="sub-headings">निष्कर्ष</p><p>
-अरुण ग्रह सौर्यमण्डलको गैस जायन्टहरूको अनौठो ग्रह हो। यसको अक्षीय झुकाव, निलो–हरियो रङ, रिङ प्रणाली र उपग्रहहरूले यसलाई रोचक बनाउँछ। अरुणको अध्ययनले ग्रहहरूको गठन, वायुमण्डलीय प्रक्रिया र बाहिरी सौर्यमण्डल बुझ्न नयाँ दृष्टिकोण प्रदान गर्दछ। भविष्यमा यस ग्रहका रहस्यहरू उजागर गर्न नयाँ मिशनहरू आयोजना गरिनेछन्।  
-</p>`
-        },
-        {
-            id: 25,
-            title: "Pluto",
-            author: "Komal Chaudhary",
-            date: "August 26, 2025",
-            category: "Science",
-            imageUrl:
-                "https://www.dropbox.com/scl/fi/eavngc3g9he7opavxyyex/id25.jpg?rlkey=hww356pfzvyo19n624sfng4be&st=dod1j8ua&&raw=1",
-            summary: `प्लुटो सूर्यबाट नौौं ग्रह (या बौद्धिक ग्रह) हो। यसको सानो आकार, बर्फीला सतह र अन्धकारमय वातावरणले यसलाई सौर्यमण्डलको सबैभन्दा रोचक र रहस्यमय ग्रह बनाएको छ।`,
-            content: `<p class="sub-headings">परिचय</p><p>
-प्लुटो सूर्यबाट नौौं ग्रह (या बौद्धिक ग्रह) हो। २००६ मा यसको स्थिति 'बौद्धिक ग्रह' (Dwarf Planet) मा परिमार्जन भएको छ। यसको सतह मुख्य रूपमा बर्फ र मिथेन ग्यासले ढाकिएको छ। प्लुटो सौर्यमण्डलको बाहिरी भागमा अवस्थित छ र यसको अध्ययनले सौर्यमण्डलको उत्पत्ति र विकास बुझ्न सहयोग पुर्‍याउँछ।  
-</p><p class="sub-headings">भौतिक विशेषताहरू</p><p>
-• प्लुटोको व्यास करिब २,३७० किलोमिटर छ, पृथ्वीको करिब १८% मात्र।  </p><p>
-• यसको द्रव्यमान पृथ्वीको ०.२% जति छ।  </p><p>
-• सतह मुख्य रूपमा बर्फ र ढुङ्गा मिश्रित छ।  </p><p>
-• सतहमा ठूला पहाड, घाटी र क्रेटरहरू पाइन्छन्।  
-</p><p class="sub-headings">वायुमण्डल र तापक्रम</p><p>
-• प्लुटोको वायुमण्डल अत्यन्तै पतलो छ, मुख्य रूपमा नाइट्रोजन, मीथेन र कार्बन मोनोअक्साइड ग्यासले बनेको छ।  </p><p>
-• सतहको तापक्रम करिब -२२३ डिग्री सेल्सियस सम्म पुग्छ।</p><p>  
-• वायुमण्डल सधैं पतलो रहन्छ र सूर्यको दूरीको कारण प्लुटोको मौसम प्रणाली न्यून छ।  
-</p><p class="sub-headings">कक्षा र घुम्ने गति</p><p>
-• प्लुटो सूर्यको वरिपरि परिक्रमा ९,५८३ पृथ्वी दिनमा पूरा गर्छ।  </p><p>
-• यसको एक दिन (एक घुमाइ) करिब ६.४६ घण्टा लामो हुन्छ।  </p><p>
-• अक्ष झुकाव करिब १२७ डिग्री छ, जसले चरम ऋतु परिवर्तन र विशिष्ट दिन–रातको चक्र सिर्जना गर्छ।  
-</p><p class="sub-headings">उपग्रहहरू</p><p>
-• प्लुटोसँग ५ ज्ञात उपग्रहहरू छन्।  </p><p>
-• सबैभन्दा प्रसिद्ध उपग्रह चारोन हो, जसको आकार प्लुटोको लगभग आधा छ।  </p><p>
-• अन्य उपग्रहहरूमा Nix, Hydra, Kerberos र Styx समावेश छन्।  </p><p>
-• चारोन र प्लुटो एक अर्काको वरिपरि केन्द्रित गुरुत्वाकर्षण बिन्दुमा घुम्छन्, जसले तिनीहरूको परस्पर गुरुत्वीय सम्बन्ध देखाउँछ।  
-</p><p class="sub-headings">वैज्ञानिक महत्त्व</p><p>
-• प्लुटोको अध्ययनले सौर्यमण्डलको बाहिरी भाग, बौद्धिक ग्रहहरूको संरचना र ऐतिहासिक गठन बुझ्न सहयोग पुर्‍याउँछ।  </p><p>
-• NASA को New Horizons मिशनले २०१५ मा प्लुटोको विस्तृत तस्बिर र डेटा उपलब्ध गराएको थियो।  </p><p>
-• मिशनले प्लुटोको सतह, वायुमण्डल र उपग्रहहरूको विस्तृत जानकारी प्रदान गर्यो।  
-</p><p class="sub-headings">रोचक तथ्यहरू</p><p>
-• प्लुटो सौर्यमण्डलको सबैभन्दा टाढाको ज्ञात बौद्धिक ग्रह हो।  </p><p>
-• यसको सतहमा बर्फ, मेटेन र नाइट्रोजनको मिश्रण पाइन्छ</p><p>।  
-• चारोन उपग्रहसँगको गुरुत्वीय सम्बन्धले अनौठो परिक्रमा र घुमाइ प्रणाली सिर्जना गरेको छ।  </p><p>
-• प्लुटोको वायुमण्डल अत्यन्तै पतलो भए पनि सौर्य प्रभावका कारण परिवर्तनशील रहन्छ।  </p><p>
-</p><p class="sub-headings">निष्कर्ष</p><p>
-प्लुटो सौर्यमण्डलको बाहिरी भागको रहस्यमय ग्रह हो। यसको सानो आकार, बर्फीला सतह, पतलो वायुमण्डल र चारोनसँगको सम्बन्धले वैज्ञानिक दृष्टिले यसलाई अनौठो बनाएको छ। प्लुटोको अध्ययनले सौर्यमण्डलको गठन, बौद्धिक ग्रहहरूको संरचना र बाहिरी सौर्यमण्डलको वातावरण बुझ्न नयाँ दृष्टिकोण प्रदान गर्दछ। भविष्यमा यस ग्रहका रहस्यहरू उजागर गर्न नयाँ मिशनहरू पठाइनेछन्।  
-</p>`
-        },
-        {
-            id: 26,
-            title: "The Moon",
-            author: "Komal Chaudhary",
-            date: "August 26, 2025",
-            category: "Science",
-            imageUrl:
-                "https://www.dropbox.com/scl/fi/aco6i1w71de9311nfziue/id26.jpg?rlkey=1es8mbku0qumcjtkawc3yxtvl&st=lbnyxe9r&&raw=1",
-            summary: `चन्द्रमा पृथ्वीको एक मात्र प्राकृतिक उपग्रह हो। यसको सतह, गुरुत्वाकर्षण, र चन्द्रविभाजन मानव जीवन र विज्ञानको लागि अत्यन्तै महत्वपूर्ण छ।`,
-            content: `<p class="sub-headings">परिचय</p><p>
-चन्द्रमा पृथ्वीको एक मात्र प्राकृतिक उपग्रह हो र पृथ्वीको जीवनमा गहिरो प्रभाव पार्ने खगोलीय पिण्ड हो। यसको गुरुत्वाकर्षण, परिक्रमण र सतह विशेषताहरूले पृथ्वीमा ज्वार–भाट्टी, मौसमीय चक्र र जीवनशैलीमा प्रभाव पार्छ। चन्द्रमा पृथ्वीको वरिपरि परिक्रमा गर्दै मानव इतिहासमा अनुसन्धान र अन्वेषणको केन्द्र बनेको छ।  
-</p><p class="sub-headings">भौतिक विशेषताहरू</p><p>
-• चन्द्रमाको व्यास करिब ३,४७४ किलोमिटर छ, पृथ्वीको करिब २७% मात्र।  </p><p>
-• यसको द्रव्यमान पृथ्वीको करिब १/८० छ।  </p><p>
-• सतहमा क्रेटर, पहाड, घाटी, र प्राचीन ज्वालामुखी अवशेष पाइन्छ।  </p><p>
-• सतहको रंग मुख्य रूपमा खैरो–सेतो छ, जो चट्टान र धूलो (regolith) ले बनेको छ।  
-</p><p class="sub-headings">कक्षा र परिक्रमण</p><p>
-• चन्द्रमा पृथ्वीको वरिपरि करिब २७.३ दिनमा परिक्रमा गर्छ (साइडेरियल मन्थ)।  </p><p>
-• पृथ्वीको गुरुत्वाकर्षणको कारण चन्द्रमा स्थिर कक्षमा रहन्छ।  </p><p>
-• चन्द्रमा पृथ्वीसँग टाइडल लॉक अवस्थामा छ, जसको कारण हामीले सँधै यसको एउटै अनुहार मात्र देख्छौं।  
-</p><p class="sub-headings">गुरुत्वाकर्षण र प्रभाव</p><p>
-• चन्द्रमाको गुरुत्वाकर्षण पृथ्वीको करिब १६.५% मात्र छ।  </p><p>
-• यसको गुरुत्वाकर्षणले पृथ्वीमा ज्वार–भाट्टी (Tides) उत्पन्न गर्छ।  </p><p>
-• ज्वार–भाट्टी समुद्री जीवन र तटीय पारिस्थितिक प्रणालीको लागि महत्वपूर्ण छन्।  
-</p><p class="sub-headings">वायुमण्डल र तापक्रम</p><p>
-• चन्द्रमाको लगभग कुनै वायुमण्डल छैन।  </p><p>
-• यसको सतहमा तापक्रम दिनमा करिब १२७ डिग्री सेल्सियस र रातमा -१७३ डिग्री सेल्सियस पुग्छ।  </p><p>
-• वायुमण्डल नभएको कारण यहाँ मौसम, वर्षा र हवाहरू छैनन्।  
-</p><p class="sub-headings">सतह र भूगोल</p><p>
-• चन्द्रमाको सतहमा क्रेटरहरू जस्तै Tycho, Copernicus र Clavius अत्यन्त प्रसिद्ध छन्।  </p><p>
-• Maria (साना समुद्रहरू) ज्वालामुखी क्रियाकलापबाट बनेको तरिकाले फाटेको मैदान हो।  </p><p>
-• पहाड, उपत्यका र घाटीहरूले चन्द्रमालाई विविध भूगोलिक बनावट दिएको छ।  
-</p><p class="sub-headings">वैज्ञानिक महत्त्व</p><p>
-• चन्द्रमा पृथ्वीको इतिहास, उत्पत्ति र सौर्यमण्डलको प्रारम्भिक अवस्था बुझ्न महत्त्वपूर्ण छ।  </p><p>
-• Apollo मिशनहरूले मानवलाई चन्द्रमामा पठाएर प्रत्यक्ष अध्ययन र चट्टानका नमूना सङ्कलन गराएका छन्।  </p><p>
-• चन्द्रमामा जल स्रोत, धूलो संरचना र खनिजहरूको अध्ययनले भविष्यको अनुसन्धान र सम्भावित बस्तीका लागि आधार तयार गरेको छ।  
-</p><p class="sub-headings">रोचक तथ्यहरू</p><p>
-• चन्द्रमा पृथ्वीको जीवन र जैविक चक्रमा गहिरो प्रभाव पार्छ।  </p><p>
-• यहाँ मानिसले पहिलो पटक १९६९ मा उतरिसकेका छन्।  </p><p>
-• चन्द्रमाको सतहमा स्थायी पानीको हिउँको सम्भावना छ, मुख्यतया ध्रुवीय क्षेत्रमा।  </p><p>
-• भविष्यमा चन्द्रमा मानव बस्ती र अन्तरिक्ष अनुसन्धानको केन्द्र बन्ने संभावना छ।  
-</p><p class="sub-headings">निष्कर्ष</p><p>
-चन्द्रमा पृथ्वीको एक महत्वपूर्ण प्राकृतिक उपग्रह हो। यसको गुरुत्वाकर्षण, भूगोल, सतह र ज्वार–भाट्टीले पृथ्वीको जीवन, विज्ञान र मानव अनुसन्धानमा ठूलो भूमिका खेल्छ। भविष्यमा चन्द्रमामा मानव बस्ती, वैज्ञानिक मिशन र अन्तरिक्ष अन्वेषणले नयाँ ज्ञान र सम्भावनाहरू खोल्नेछन्।  
-</p>`
-        },
-        {
-            id: 27,
-            title: "K2-18b",
-            author: "Komal Chaudhary",
-            date: "August 26, 2025",
-            category: "Science",
-            imageUrl:
-                "https://www.dropbox.com/scl/fi/u85jqb000t0f2jbdezkb0/id27.png?rlkey=j5coixxa59zyk35jnzxjusv0r&st=slp7219o&&raw=1",
-            summary: `K2-18b एक बाह्य सौर्यमण्डल ग्रह हो, जुन पृथ्वी जस्तो जीवनको सम्भावना भएको exoplanetको रूपमा चिनिन्छ। यसको पानीयुक्त वातावरण र ‘ह्याबिटेबल जोन’मा अवस्थाले यसलाई वैज्ञानिक दृष्टिले अत्यन्त रोचक बनाएको छ।`,
-            content: `<p class="sub-headings">परिचय</p><p>
-K2-18b एक बाह्य सौर्यमण्डल ग्रह हो जुन पृथ्वीबाट करिब १२१ प्रकाश वर्ष टाढा, Leo नक्षत्रमा अवस्थित छ। यो ग्रह Kepler Space Telescope द्वारा २०१५ मा खोजिएको थियो। यसको विशेषता भनेको यो आफ्नो ताराको 'ह्याबिटेबल जोन'मा रहेको exoplanet हो, जसमा जीवन रहने सम्भावना रहेको छ।  
-</p><p class="sub-headings">भौतिक विशेषताहरू</p><p>
-• K2-18b को व्यास पृथ्वीको करिब २.७ गुणा ठूलो छ।  </p><p>
-• यसको द्रव्यमान पृथ्वीको करिब ८.६ गुणा छ।  </p><p>
-• मुख्य रूपमा चट्टानी कोर र ग्यास वातावरण भएको 'सुपर अर्थ' ग्रहको श्रेणीमा पर्छ।  </p><p>
-• सतहको संरचना पूर्ण रूपमा ज्ञात छैन, तर पानी वा बर्फको उपस्थितिको संभावना वैज्ञानिकहरूले देखाएका छन्।  
-</p><p class="sub-headings">वायुमण्डल</p><p>
-• K2-18b को वायुमण्डलमा पानीको वाष्प, हाइड्रोजन र हीलियमको मिश्रण पाइएको छ।  </p><p>
-• २०१९ मा हावामा पानीको संकेत पहिलो पटक पत्ता लागेको थियो।  </p><p>
-• यसको वायुमण्डलको अध्ययनले भविष्यमा जीवन सम्भावित ग्रहहरूको खोजीमा नयाँ दिशा दिएको छ।  
-</p><p class="sub-headings">कक्षा र तापमान</p><p>
-• K2-18b आफ्नो ताराको वरिपरि करिब ३३ दिनमा परिक्रमा गर्छ।  </p><p>
-• यस ग्रह आफ्नो तारा नजिक भएकाले परिक्रमा छोटो छ, तर ताराको कम चमक र ‘ह्याबिटेबल जोन’ले पानी तरल अवस्था रहन सक्छ।  </p><p>
-• अनुमानित सतही तापक्रम २५–१५० डिग्री सेल्सियसको दायरा हुन सक्छ, जसले तरल पानीको सम्भावना दिन्छ।  
-</p><p class="sub-headings">वैज्ञानिक महत्त्व</p><p>
-• K2-18b exoplanetको अध्ययनले पृथ्वी जस्तो जीवनको खोजीमा महत्व राख्छ।  </p><p>
-• NASA र ESA का मिशनहरूले यस ग्रहको वायुमण्डल, तापमान र संरचनाको अध्ययन जारी राखिरहेका छन्।  </p><p>
-• यो ग्रह ‘सुपर अर्थ’ को श्रेणीमा पर्दा, वैज्ञानिकहरूले यसको भौतिक र रासायनिक संरचना बुझ्न प्रयोग गरिरहेका छन्।  
-</p><p class="sub-headings">रोचक तथ्यहरू</p><p>
-• K2-18b पहिलो exoplanet हो जसको वायुमण्डलमा पानीको उपस्थितिको संकेत भेटिएको थियो।  </p><p>
-• यसको तारासँगको दूरी र ह्याबिटेबल जोनमा अवस्थाले जीवन सम्भावनाको खोजीलाई प्रोत्साहित गरेको छ।  </p><p>
-• भविष्यमा James Webb Space Telescope जस्ता आधुनिक उपकरणहरूले यस ग्रहको वातावरण, बादल, र सम्भावित जैविक गतिविधि अध्ययन गर्ने योजना छ।  
-</p><p class="sub-headings">निष्कर्ष</p><p>
-K2-18b exoplanetको रूपमा वैज्ञानिक दृष्टिले अत्यन्त रोचक ग्रह हो। यसको पानीयुक्त वायुमण्डल, ह्याबिटेबल जोन र पृथ्वी जस्तो आकारले यसलाई जीवन सम्भावित ग्रहको रूपमा चिनाएको छ। भविष्यमा यस ग्रहमा जीवनको खोजी, वातावरणको विस्तृत अध्ययन र exoplanet विज्ञानमा नयाँ योगदानको संभावना छ।  
-</p>`
-        },
-        {
-            id: 28,
-            title: "TRAPPIST-1e",
-            author: "Komal Chaudhary",
-            date: "August 26, 2025",
-            category: "Science",
-            imageUrl:
-                "https://www.dropbox.com/scl/fi/r99gibad1oh22xy6lwweq/id28.png?rlkey=uugf0rocszm3lva91g8wz390l&st=0l0ooavx&&raw=1",
-            summary: `TRAPPIST-1e एक बाह्य सौर्यमण्डल ग्रह हो, जुन आफ्नो ताराको ‘ह्याबिटेबल जोन’मा रहेको छ। यस ग्रहमा पानीको उपस्थितिको संभावना र पृथ्वी जस्तो सतहले यसलाई जीवन सम्भावित ग्रहको रूपमा बनाउँछ।`,
-            content: `<p class="sub-headings">परिचय</p><p>
-TRAPPIST-1e बाह्य सौर्यमण्डलको एक प्रमुख exoplanet हो, जुन TRAPPIST-1 ताराको सातवटा ज्ञात ग्रहमध्ये एक हो। यो ग्रह पृथ्वी जस्तो जीवन सम्भावित वातावरणको कारण वैज्ञानिक दृष्टिले अत्यन्त रोचक मानिन्छ। यसको खोजी २०१७ मा TRAPPIST (Transiting Planets and Planetesimals Small Telescope) परियोजनाबाट गरिएको थियो।  
-</p><p class="sub-headings">भौतिक विशेषताहरू</p><p>
-• TRAPPIST-1e को व्यास पृथ्वीको लगभग ०.९३ गुणा छ।  </p><p>
-• यसको द्रव्यमान पृथ्वीको करिब ०.७५ गुणा छ।  </p><p>
-• सतह ठोस चट्टानबाट बनेको छ, जसले यसलाई ‘सुपर अर्थ’ श्रेणीमा राख्छ।  </p><p>
-• यसको गुरुत्वाकर्षण पृथ्वीको करिब ९०% जति छ।  
-</p><p class="sub-headings">वायुमण्डल</p><p>
-• TRAPPIST-1e को वायुमण्डलमा नाइट्रोजन, कार्बन डाइअक्साइड र सम्भावित पानीको वाष्प रहेको अनुमान छ</p><p>।  
-• यसको अध्ययनले जीवन सम्भावित परिस्थितिहरू र exoplanet वायुमण्डलको संरचना बुझ्न सहयोग पुर्‍याउँछ।  </p><p>
-• James Webb Space Telescope ले यस ग्रहको वायुमण्डलको विश्लेषणमा नयाँ जानकारी दिन सक्ने संभावना छ।  
-</p><p class="sub-headings">कक्षा र तापमान</p><p>
-• TRAPPIST-1e आफ्नो ताराको वरिपरि करिब ६.१ दिनमा परिक्रमा गर्छ।  </p><p>
-• यसको तारासँगको नजिकता ‘ह्याबिटेबल जोन’मा रहेकोले सतहमा पानी तरल अवस्थामा रहन सक्ने संभावना दिन्छ।  </p><p>
-• अनुमानित सतही तापक्रम -३०°C देखि १०°C सम्म हुन सक्छ, जसले जीवन सम्भावित अवस्था उत्पन्न गर्छ।  
-</p><p class="sub-headings">वैज्ञानिक महत्त्व</p><p>
-• TRAPPIST-1e exoplanetहरूको अध्ययनमा महत्वपूर्ण छ, विशेष गरी जीवन सम्भावना, पानीको उपस्थिती र सतहको संरचनाका कारण।  </p><p>
-• यसको अध्ययनले पृथ्वी जस्ता ग्रहहरूको खोजी र भविष्यका मिशनहरूमा मार्गदर्शन गर्दछ।  </p><p>
-• वायुमण्डल र सतह संरचनाको अध्ययनले ग्रह विज्ञानमा नयाँ दृष्टिकोण दिन्छ।  
-</p><p class="sub-headings">रोचक तथ्यहरू</p><p>
-• TRAPPIST-1e सौर्यमण्डल बाहिरको जीवन सम्भावित exoplanet हो।  </p><p>
-• यसको सतह ठोस छ, तर तापमान र वायुमण्डलले जीवनलाई सम्भावित बनाउँछ।  </p><p>
-• यस ग्रहले वैज्ञानिकहरूलाई पानीयुक्त र जीवन सम्भावित ग्रहहरूको खोजीमा ठूलो सहायता गरेको छ।  </p><p>
-• भविष्यमा TRAPPIST-1e को अध्ययनले exoplanet विज्ञानमा नयाँ खोज र अनुसन्धानको मार्ग प्रशस्त गर्नेछ।  
-</p><p class="sub-headings">निष्कर्ष</p><p>
-TRAPPIST-1e बाह्य सौर्यमण्डलमा जीवन सम्भावित ग्रहको रूपमा अत्यन्त रोचक छ। यसको ठोस सतह, पानीयुक्त वायुमण्डल र ह्याबिटेबल जोनमा अवस्थाले यसलाई exoplanet अनुसन्धानमा विशेष बनाएको छ। भविष्यमा यस ग्रहको वायुमण्डल, सतह र जीवन सम्भावित अवस्था अध्ययन गरेर वैज्ञानिकहरूले जीवन खोजी र बाहिरी ग्रहहरूको समझमा नयाँ योगदान दिनेछन्।  
-</p>`
-        },
-        {
-            id: 29,
-            title: "Betelgeuse",
-            author: "Komal Chaudhary",
-            date: "August 26, 2025",
-            category: "Science",
-            imageUrl:
-                "https://www.dropbox.com/scl/fi/m79cxiko81t9aj4iflie1/id29.jpg?rlkey=l3nxnpuxe8ccggh6shr3ooa22&st=20rpn6jt&&raw=1",
-            summary: `Betelgeuse रातो सुपरजाइन्ट तारा हो, जुन ओरायन नक्षत्रमा अवस्थित छ। यसको विशाल आकार, चमक र जीवनको अन्तिम चरणले खगोलशास्त्रमा यसलाई अत्यन्त रोचक बनाएको छ।`,
-            content: `<p class="sub-headings">परिचय</p><p>
-Betelgeuse सूर्यभन्दा हजारौं गुणा ठूलो रातो सुपरजाइन्ट तारा हो, जुन Orion नक्षत्रको बाँया काँधमा अवस्थित छ। यसको नाम अरबी शब्द “Ibt al-Jauzā” बाट आएको हो, जसको अर्थ ‘जोडेको बालकको काँध’ हो। Betelgeuse हाम्रो दृष्टिबाट अत्यन्त चम्किलो देखिन्छ र रातको आकाशमा सजिलै देखिने तारा हो।  
-</p><p class="sub-headings">भौतिक विशेषताहरू</p><p>
-• Betelgeuse को व्यास करिब 1,000–1,200 सूर्यको बराबर छ।  </p><p>
-• यसको द्रव्यमान करिब 20–25 सूर्य द्रव्यमानको बराबर छ।  </p><p>
-• सतहको तापक्रम करिब 3,500 डिग्री केल्विन छ, जुन सूर्यको तुलनामा कम छ।  </p><p>
-• यसको अत्यधिक विशालता र सतही तापमानले यसलाई रातो रंग दिएको छ।  
-</p><p class="sub-headings">चमक र दूरी</p><p>
-• Betelgeuse पृथ्वीबाट करिब 640 प्रकाश वर्ष टाढा अवस्थित छ।  </p><p>
-• यसको चमक प्रायः परिवर्तनशील छ, जुन यसको सतहमा हुने विशाल द्रव्यमान परिवर्तन र नायकायनिक गतिविधिको कारण हो।  </p><p>
-• यो रातको आकाशमा आठौँ सबैभन्दा चम्किलो तारा मानिन्छ।  
-</p><p class="sub-headings">जीवन र अन्तिम चरण</p><p>
-• Betelgeuse मुख्य अनुक्रमको जीवन समाप्त गरी सुपरजाइन्ट चरणमा प्रवेश गरेको छ।  </p><p>
-• भविष्यमा यसले सुपरनोभा विस्फोटको रूपमा आफ्नो जीवन समाप्त गर्ने अनुमान छ।  </p><p>
-• सुपरनोभा विस्फोट पछि, यसको केन्द्रमा न्यूट्रोन स्टार वा ब्ल्याक होल बन्ने संभावना छ।  
-</p><p class="sub-headings">वैज्ञानिक महत्त्व</p><p>
-• Betelgeuse को अध्ययनले सुपरजाइन्ट तारा र सुपरनोभा प्रक्रिया बुझ्न सहयोग पुर्‍याउँछ।  </p><p>
-• यसको चमक, द्रव्यमान, र सतही गतिविधिहरूले ताराको अन्तिम चरणका मोडेलहरू परीक्षण गर्न प्रयोग गरिन्छ।  </p><p>
-• खगोलशास्त्रमा Betelgeuse ले तारा विकास, नाभिकीय संलयन र सुपरनोभा विस्फोटको अध्ययनमा योगदान पुर्‍याएको छ।  
-</p><p class="sub-headings">रोचक तथ्यहरू</p><p>
-• Betelgeuse रातो रंग भएको सुपरजाइन्ट हो।  </p><p>
-• यसको आकार सूर्यको आकारभन्दा लगभग 1,000–1,200 गुणा ठूलो छ।  </p><p>
-• भविष्यमा यसको सुपरनोभा विस्फोट पृथ्वीबाट रातमा दिन जस्तो उज्यालो देखिने संभावना छ।  </p><p>
-• Betelgeuse नियमित रूपमा चमक परिवर्तन गर्ने परिवर्तनशील तारा हो।  
-</p><p class="sub-headings">निष्कर्ष</p><p>
-Betelgeuse रातो सुपरजाइन्ट तारा हो जसको विशालता, चमक र जीवनको अन्तिम चरणले खगोलशास्त्रमा यसलाई अत्यन्त रोचक बनाएको छ। यसको अध्ययनले सुपरजाइन्ट तारा, सुपरनोभा विस्फोट, र ताराको जीवनचक्र बुझ्न सहयोग पुर्‍याउँछ। भविष्यमा यसको सुपरनोभा विस्फोटले खगोल विज्ञानमा नयाँ अध्ययन र खोजहरूको मार्ग प्रशस्त गर्नेछ।  
-</p>`
-        },
-        {
-            id: 30,
-            title: "Proxima Centauri",
-            author: "Komal Chaudhary",
-            date: "August 26, 2025",
-            category: "Science",
-            imageUrl:
-                "https://www.dropbox.com/scl/fi/et46i8ww2gg90ua6q707h/id30.jpg?rlkey=tx3dvpokui4zjrhv8dszjeev6&st=rlbk6um8&&raw=1",
-            summary: `Proxima Centauri सूर्यको सबैभन्दा नजिकको तारा हो, जुन अल्फा सेन्टोरी प्रणालीमा अवस्थित छ। यो रातो बौना तारा हो र यसको विशेषता exoplanet खोज र खगोलशास्त्रमा महत्वपूर्ण छ।`,
-            content: `<p class="sub-headings">परिचय</p><p>
-Proxima Centauri सूर्यबाट करिब 4.24 प्रकाश वर्ष टाढा रहेको नजिकको तारा हो। यो अल्फा सेन्टोरी तारा प्रणालीको सदस्य हो र मुख्यतया रातो बौना (Red Dwarf) तारा हो। यसको खोजाले नजिकका ताराहरूको अध्ययन र exoplanet खोजमा नयाँ दिशाहरू खोलेको छ।  
-</p><p class="sub-headings">भौतिक विशेषताहरू</p><p>
-• Proxima Centauri सूर्यको तुलनामा करिब 12% व्यास र 12% द्रव्यमान भएको रातो बौना तारा हो।  </p><p>
-• सतहको तापक्रम लगभग 3,050–3,100 केल्विन छ, जुन सूर्यको तुलनामा कम छ।  </p><p>
-• यसको चमक सूर्यको करिब 0.0017 गुणा मात्र छ, जसले यसलाई आँखाले देख्न कठिन बनाउँछ।  
-</p><p class="sub-headings">कक्षा र दूरी</p><p>
-• Proxima Centauri आफ्नो सौर्यमण्डलबाट पृथ्वीमा 4.24 प्रकाश वर्ष टाढा अवस्थित छ।  </p><p>
-• यो अल्फा सेन्टोरी प्रणालीसँग गुरुत्वीय सम्बन्धमा छ र Alpha Centauri A र B तारा जोडीको वरिपरि घुम्दछ।  </p><p>
-• यसको नजिकको अवस्थाले वैज्ञानिकहरूलाई exoplanet खोज र अध्ययनमा सहयोग पुर्‍याएको छ।  
-</p><p class="sub-headings">Exoplanet र जीवन सम्भावना</p><p>
-• Proxima Centauri को वरिपरि कम्तीमा दुई ज्ञात exoplanetहरू छन्: Proxima b र Proxima c।  </p><p>
-• Proxima b ताराको ह्याबिटेबल जोनमा अवस्थित छ र पानी तरल अवस्थामा रहन सक्ने संभावना छ।  </p><p>
-• यस ग्रहमा जीवनको सम्भावना खोज्न James Webb Space Telescope र अन्य मिशनहरूले अध्ययन गरिरहेका छन्।  
-</p><p class="sub-headings">वैज्ञानिक महत्त्व</p><p>
-• Proxima Centauri नजिकको रातो बौना तारा भएकाले exoplanet खोज, जीवन सम्भावित ग्रहहरूको अध्ययन, र रातो बौना ताराहरूको गतिविधि बुझ्न महत्वपूर्ण छ।  </p><p>
-• यसको तारामा हुने फ्लेयर्स र चुंबकीय गतिविधिहरूले ग्रहको वातावरण र जीवन सम्भावना अध्ययनमा चुनौती पुर्‍याउँछ।  </p><p>
-• नजिकको दूरीले भविष्यमा अन्तरतारकीय अन्वेषण र मानव अनुसन्धानका लागि प्राथमिक लक्ष्य बनाउँछ।  
-</p><p class="sub-headings">रोचक तथ्यहरू</p><p>
-• Proxima Centauri सूर्यको सबैभन्दा नजिकको तारा हो।  </p><p>
-• यो रातो बौना तारा हो र यसको चमक कम छ।  </p><p>
-• Proxima b ग्रह ताराको ह्याबिटेबल जोनमा रहेकोले जीवन खोजीको प्रमुख लक्ष्य हो।  </p><p>
-• भविष्यमा यस तारा प्रणालीको अध्ययनले पृथ्वी बाहिर जीवन सम्भावनाको खोजीलाई मार्गदर्शन गर्नेछ।  
-</p><p class="sub-headings">निष्कर्ष</p><p>
-Proxima Centauri नजिकको रातो बौना तारा हो, जसको विशेषता exoplanet खोज, जीवन सम्भावित ग्रहहरूको अध्ययन, र खगोल विज्ञानमा यसको महत्त्वपूर्ण भूमिका हो। यसको अध्ययनले हाम्रो सौर्यमण्डल बाहिर जीवनको सम्भावना बुझ्न र नजिकका तारा प्रणालीको अन्वेषणमा नयाँ दृष्टिकोण प्रदान गरेको छ। भविष्यमा यस प्रणालीको अनुसन्धानले अन्तरतारकीय अन्वेषण र exoplanet विज्ञानमा ठूलो योगदान पुर्‍याउनेछ।  
-</p>`
-        },
-        {
-            id: 31,
-            title: "Black Hole",
-            author: "Komal Chaudhary",
-            date: "August 26, 2025",
-            category: "Science",
-            imageUrl:
-                "https://www.dropbox.com/scl/fi/yng8qqcne83cr07j60ndn/id31.jpg?rlkey=bvyh0r4enkqkbxp0ca9orbxid&st=grne66bz&&raw=1",
-            summary: `ब्ल्याकहोल अन्तरिक्षको ती भाग हो जहाँ गुरुत्वाकर्षण यति प्रबल हुन्छ कि प्रकाश समेत बाहिर निस्कन सक्दैन। यसले खगोलशास्त्र र ब्रह्माण्डको संरचना बुझ्न अत्यन्त महत्वपूर्ण योगदान पुर्‍याउँछ।`,
-            content: `<p class="sub-headings">परिचय</p><p>
-ब्ल्याकहोल अन्तरिक्षमा यस्तो क्षेत्र हो जहाँ गुरुत्वाकर्षण शक्ति अत्यन्तै प्रबल हुन्छ। यसले प्रकाश, कण, र यहाँ पुग्ने कुनै पनि वस्तु बाहिर निस्कन दिन्दैन। ब्ल्याकहोलहरूको अस्तित्व सामान्यतया तारा मृत्युको अन्तिम चरण, सुपरनोभा विस्फोट वा विशाल ग्यालक्सीहरूको केन्द्रमा पाइन्छ।  
-</p><p class="sub-headings">प्रकारहरू</p><p>
-• **स्टेलर मास ब्ल्याकहोल (Stellar-mass Black Hole):**  
-ताराको जीवनको अन्त्यपछि बनेको ब्ल्याकहोल। यसको द्रव्यमान सूर्यको करिब ३–२० गुणा हुन्छ।  
-</p><p>
-• **सुपरम्यासिभ ब्ल्याकहोल (Supermassive Black Hole):**  
-ग्यालक्सीको केन्द्रमा अवस्थित विशाल ब्ल्याकहोल। यसको द्रव्यमान लाखौं देखि अरबौं सूर्य द्रव्यमान बराबर हुन्छ।  
-</p><p>
-• **इंटरमीडियेट मास ब्ल्याकहोल (Intermediate-mass Black Hole):**  
-स्टेलर र सुपरम्यासिभ ब्ल्याकहोलको बीचको द्रव्यमान भएको ब्ल्याकहोल।  
-</p><p class="sub-headings">भौतिक संरचना</p><p>
-• **सिङ्गुलारिटी (Singularity):** ब्ल्याकहोलको केन्द्र, जहाँ घनत्व अनन्त हुन्छ र समय–स्थान विनाश हुन्छ। </p><p> 
-• **इभेन्ट होराइजन (Event Horizon):** ब्ल्याकहोलको “सुरक्षा सीमा” जहाँबाट प्रकाश समेत बाहिर निस्कन सक्दैन।  </p><p>
-• **एक्स्ट्रिमग्राभिटेशनल प्रभाव (Extreme Gravitational Effects):** ब्ल्याकहोलले आसपासको अन्तरिक्ष र समयलाई विकृत पार्दछ।  
-</p><p class="sub-headings">गुरुत्वाकर्षण र प्रभाव</p><p>
-• ब्ल्याकहोलको गुरुत्वाकर्षण यति प्रबल छ कि नजिकको तारा र गैसहरूलाई आफ्नो ओरालोमा तान्छ।  </p><p>
-• यसले **अक्रेशन डिस्क (Accretion Disk)** बनाउँछ, जहाँ पदार्थ उच्च गतिमा घुम्दै तापमानमा अत्यधिक वृद्धि हुन्छ।  </p><p>
-• ब्ल्याकहोलले **जेट्स (Jets)** समेत उत्सर्जन गर्न सक्छ, जसले प्रकाश वर्ष टाढासम्म ऊर्जा पुर्‍याउँछ।  
-</p><p class="sub-headings">वैज्ञानिक महत्त्व</p><p>
-• ब्ल्याकहोलको अध्ययनले सामान्य सापेक्षता, गुरुत्वाकर्षण, र ब्रह्माण्डको विकास बुझ्न मद्दत गर्दछ।  </p><p>
-• LIGO र Virgo जस्ता ग्राभिटेशनल वेभ डिटेक्टरहरूले ब्ल्याकहोल मर्जिंग घटनाहरू पत्ता लगाएका छन्।  </p><p>
-• ब्ल्याकहोलहरूले ग्यालक्सीको विकास, ताराको जीवनचक्र र ब्रह्माण्डको संरचना बुझ्न महत्वपूर्ण योगदान पुर्‍याउँछन्।  
-</p><p class="sub-headings">रोचक तथ्यहरू</p><p>
-• ब्ल्याकहोलको गुरुत्वाकर्षण यति शक्तिशाली हुन्छ कि समय र स्थान स्वयं विकृत हुन्छ।  </p><p>
-• Event Horizon Telescope ले पहिलो पटक २०१९ मा M87 ब्ल्याकहोलको छवि सार्वजनिक गरेको थियो।  </p><p>
-• ब्ल्याकहोल नदेखिने भए पनि यसको प्रभाव वरिपरि रहेको पदार्थ र प्रकाशको माध्यमबाट अध्ययन गरिन्छ। </p><p> 
-• ब्ल्याकहोलको मर्जिंगले ग्राभिटेशनल वेभ उत्सर्जन गर्दछ, जसले ब्रह्माण्डको इतिहास बुझ्न सहयोग पुर्‍याउँछ।  
-</p><p class="sub-headings">निष्कर्ष</p><p>
-ब्ल्याकहोल अन्तरिक्षको रहस्यमय र अत्यन्त शक्तिशाली खगोलीय पिण्ड हो। यसको अध्ययनले गुरुत्वाकर्षण, समय–स्थान, ताराहरूको जीवन, र ब्रह्माण्डको विकास बुझ्न महत्वपूर्ण योगदान पुर्‍याउँछ। भविष्यमा ब्ल्याकहोल अनुसन्धानले खगोल विज्ञान, भौतिकशास्त्र र ब्रह्माण्डीय रहस्यहरू उजागर गर्नेछ।  
-</p>`
-        },
-        {
-            id: 32,
-            title: "James Webb Space Telescope",
-            author: "Komal Chaudhary",
-            date: "August 26, 2025",
-            category: "Science",
-            imageUrl:
-                "https://www.dropbox.com/scl/fi/ktr9bnoxlvx1j25pmoj9d/id32.jpg?rlkey=g0uclp38897qdmvdvyruuc380&st=g2l02v2t&&raw=1",
-            summary: `James Webb Space Telescope (JWST) अन्तरिक्षको सबैभन्दा उन्नत अवलोकन गर्ने उपकरण हो। यसले ब्रह्माण्डको प्रारम्भिक ताराहरू, ग्रह प्रणाली र exoplanet वायुमण्डलको अध्ययनमा नयाँ क्रान्ति ल्याएको छ।`,
-            content: `<p class="sub-headings">परिचय</p><p>
-James Webb Space Telescope (JWST) NASA, ESA र CSA को संयुक्त परियोजना हो। यो Hubble Space Telescope को उत्तराधिकारी हो र अन्तरिक्षको अवलोकनमा नयाँ युग सुरु गरेको छ। JWST मुख्यतया अवरक्त (Infrared) प्रकाशमा अवलोकन गर्छ, जसले धूलो र गैसले ढाकिएका क्षेत्रहरू हेर्न सम्भव बनाउँछ।  
-</p><p class="sub-headings">भौतिक संरचना</p><p>
-• मुख्य दर्पण (Primary Mirror) 6.5 मीटर व्यासको छ, जुन Hubble को दर्पणभन्दा तीन गुणा ठूलो छ।  </p><p>
-• दर्पण गोल्ड–कोटेड छ, जसले अवरक्त प्रकाश राम्रोसँग प्रतिबिम्बित गर्न सक्छ।  </p><p>
-• JWST मा पाँचवटा मुख्य उपकरण छन्: NIRCam, NIRSpec, MIRI, FGS/NIRISS।  </p><p>
-• सोलर शील्ड पाँचवटा तहको छ, जसले सूर्यको तापबाट उपकरणलाई सुरक्षा दिन्छ।  
-</p><p class="sub-headings">अवरक्त अवलोकन र क्षमता</p><p>
-• JWST ले लामो तरंगदैर्ध्यको अवरक्त प्रकाश (0.6–28.5 माइक्रोमीटर) अवलोकन गर्छ।  </p><p>
-• यसले प्रारम्भिक ब्रह्माण्ड, पहिले बनेका ताराहरू र आकाशगंगा (galaxy) को गठन अध्ययन गर्न सक्षम छ।  </p><p>
-• Exoplanet वायुमण्डलमा पानी, मीथेन, कार्बन डाइअक्साइड र अन्य जैविक संकेतहरूको खोजी गर्न सकिन्छ।  
-</p><p class="sub-headings">अन्तरिक्षमा स्थिति</p><p>
-• JWST पृथ्वीबाट करिब 1.5 मिलियन किलोमिटर टाढा L2 Lagrange point मा अवस्थित छ।  </p><p>
-• यो दूरदर्शन स्थिर छ र पृथ्वी तथा सूर्यको प्रकाश र तापबाट सुरक्षित छ।  </p><p>
-• L2 स्थितिले लामो समयसम्म एकै क्षेत्र हेर्ने सुविधा प्रदान गर्दछ।  
-</p><p class="sub-headings">वैज्ञानिक महत्त्व</p><p>
-• JWST ले ब्रह्माण्डको प्रारम्भ, ताराको निर्माण, आकाशगंगाको विकास, र ग्रह प्रणालीको अध्ययनमा क्रान्ति ल्याएको छ।  </p><p>
-• Exoplanet अध्ययनले जीवन सम्भावित ग्रहहरूको खोजीलाई नयाँ दिशा दिएको छ।  </p><p>
-• प्रारम्भिक ब्रह्माण्डको गहिरो दृश्य र भौतिक संरचना बुझ्न मद्दत गर्दछ।  
-</p><p class="sub-headings">रोचक तथ्यहरू</p><p>
-• JWST को वजन करिब ६,५०० किलोग्राम छ।  </p><p>
-• यसको सोलर शील्ड कारको आकारको छ र उपकरणलाई -๒३०°C तापक्रमसम्म सुरक्षित राख्छ।  </p><p>
-• JWST को प्रमुख लक्ष्य ब्रह्माण्डको पहिलो प्रकाश, प्रारम्भिक ताराहरू, ग्यालक्सीहरूको गठन, र exoplanet वातावरणको अध्ययन हो।  </p><p>
-• यसले Hubble Space Telescope भन्दा १०–१०० गुणा बढी संवेदनशीलता प्रदान गर्दछ।  
-</p><p class="sub-headings">निष्कर्ष</p><p>
-James Webb Space Telescope अन्तरिक्षको अनुसन्धानमा क्रान्तिकारी उपकरण हो। यसको अवरक्त क्षमता, विशाल दर्पण र आधुनिक उपकरणले ब्रह्माण्डको प्रारम्भ, ताराहरू, ग्यालक्सीहरू र जीवन सम्भावित exoplanetहरूको अध्ययनमा नयाँ युग सुरु गरेको छ। भविष्यमा JWST ले ब्रह्माण्डीय रहस्यहरूको खोजी र अन्तरिक्ष विज्ञानमा ठुलो योगदान दिनेछ।  
-</p>`
-        },
-        {
-            id: 33,
-            title: "Hubble Space Telescope",
-            author: "Komal Chaudhary",
-            date: "August 26, 2025",
-            category: "Science",
-            imageUrl:
-                "https://www.dropbox.com/scl/fi/z7n91463eflubm88lzv8d/id33.jpg?rlkey=eayusf0me5kxsqrkw3ymorrca&st=k3mfawa9&&raw=1",
-            summary: `Hubble Space Telescope (HST) पृथ्वीको कक्षमा अवस्थित एक प्रसिद्ध अवलोकन उपकरण हो। यसले ब्रह्माण्डको प्रारम्भदेखि आधुनिक समयसम्म ताराहरू, ग्यालक्सीहरू र ब्रह्माण्डीय घटनाहरूको अध्ययनमा अमूल्य योगदान पुर्‍याएको छ।`,
-            content: `<p class="sub-headings">परिचय</p><p>
-Hubble Space Telescope (HST) NASA र ESA को संयुक्त परियोजना हो, जुन पृथ्वीको कक्षमा २४ अप्रिल १९९० मा प्रक्षेपण गरिएको थियो। यसको उद्देश्य ब्रह्माण्डको उच्च–रिजोल्युसन अवलोकन गरेर खगोलशास्त्रमा नयाँ ज्ञान प्राप्त गर्नु हो। HST ले दृश्य (Visible), अल्ट्राभायोलेट (UV) र नजिकको अवरक्त (Near-Infrared) प्रकाशमा अवलोकन गर्छ।  
-</p><p class="sub-headings">भौतिक संरचना</p><p>
-• HST को मुख्य दर्पण २.४ मीटर व्यासको छ।  </p><p>
-• यसको उपकरणमा Wide Field Camera 3 (WFC3), Advanced Camera for Surveys (ACS), Cosmic Origins Spectrograph (COS), Space Telescope Imaging Spectrograph (STIS) आदि छन्।  </p><p>
-• HST सौर्य प्यानल र डाटा ट्रान्समिशन प्रणाली सहित सुसज्जित छ।  </p><p>
-• यसको निर्माण र डिजाइनले दीर्घकालीन कक्षीय कार्यकाल सुनिश्चित गरेको छ।  
-</p><p class="sub-headings">कक्षा र स्थिति</p><p>
-• HST पृथ्वीको सतहबाट करिब ५४० किलोमिटर माथि कक्षमा घुम्छ।  </p><p>
-• यसले पृथ्वीको वायुमण्डलको प्रभाव बिना प्रत्यक्ष अवलोकन गर्न सक्षम बनाउँछ।  </p><p>
-• कक्षीय गति करिब २७,३६० किलोमिटर/घण्टा छ र पृथ्वीलाई ९५ मिनेटमा एक चक्र पूरा गर्छ।  
-</p><p class="sub-headings">वैज्ञानिक योगदान</p><p>
-• HST ले ब्रह्माण्डको विस्तार दर (Hubble Constant) मापन गर्न महत्वपूर्ण भूमिका खेलेको छ।  </p><p>
-• ग्यालक्सीहरूको गठन, ताराहरूको जीवनचक्र, सुपरनोभा विस्फोट, काला पदार्थ (Dark Matter) र अन्धकार ऊर्जा (Dark Energy) सम्बन्धी अध्ययनमा योगदान दिएको छ।  </p><p>
-• हजारौं अति–उच्च रिजोल्युसन छविहरू उपलब्ध गराएर खगोल विज्ञानलाई नयाँ दृष्टिकोण दिएको छ।  
-</p><p class="sub-headings">रोचक तथ्यहरू</p><p>
-• HST को वजन करिब ११,१०० किलोमात्र छ।  </p><p>
-• यसले अबसम्म करिब १.5 मिलियन भन्दा बढी अवलोकन छविहरू संकलन गरेको छ।  </p><p>
-• Hubble को छविहरूले ब्रह्माण्डको गहिरो संरचना र ताराहरूको जन्म र मृत्यु देखाएको छ।  </p><p>
-• HST ले विज्ञान र लोकप्रिय संस्कृति दुबैमा ठूलो प्रभाव पारेको छ, खगोलशास्त्रको सबैभन्दा प्रसिद्ध उपकरण मानिन्छ।  
-</p><p class="sub-headings">निष्कर्ष</p><p>
-Hubble Space Telescope ब्रह्माण्डीय अवलोकनमा क्रान्तिकारी उपकरण हो। यसको उच्च–रिजोल्युसन छविहरू, दृश्य र अल्ट्राभायोलेट अवलोकन क्षमता, र दीर्घकालीन सेवा खगोलशास्त्रको इतिहासमा अमूल्य योगदान भएको छ। HST ले ब्रह्माण्डको संरचना, ताराहरू र ग्यालक्सीहरूको विकास, र ब्रह्माण्डीय घटनाहरू बुझ्न नयाँ मार्ग प्रशस्त गरेको छ। भविष्यमा HST को डेटा र खोजहरूले अन्तरिक्ष विज्ञानमा निरन्तर योगदान दिनेछ।  
-</p>`
-        },
-
-                   {
-                 id: 34,
-                 title: "All in One Intro of Nepal",
-                 author: "Komal Chaudhary",
-                 date: "August 27, 2025",
-                 category: "Country",
-                 imageUrl: "https://www.dropbox.com/scl/fi/k5b917mq9yb24bbsswgbt/id34.jpg?rlkey=79r9liep7hr04v93dcir2v9s2&st=1zaz75y4&&raw=1",
-                 summary:
-                     `नेपाल, हिमालको काखमा बसेको शान्ति र सौन्दर्यको देश, जहाँ सगरमाथा र बुद्धको जन्मभूमि एकसाथ भेटिन्छ।
-साँस्कृतिक विविधता, प्राकृतिक सम्पदा र अतिथि सत्कारले भरिएको यो भूमिले संसारलाई अहिंसा र प्रेमको सन्देश दिन्छ।
-`,
-                 content: `<p>
-                 नेपाल दक्षिण एशियामा अवस्थित एउटा भूपरिवेष्ठित देश हो, जुन भारत र चीनबीचमा रहेको छ। यसको कुल क्षेत्रफल करिब १,४७,५१६ वर्ग किलोमिटर छ र उत्तरदेखि दक्षिणसम्म करिब १९३ किलोमिटर र पूर्वदेखि पश्चिमसम्म करिब ८८५ किलोमिटर फैलिएको छ। नेपाल विश्वको सबैभन्दा अग्लो शिखर सगरमाथाको घर हो जसको उचाइ ८,८४८.८६ मिटर छ। देश भौगोलिक हिसाबले हिमालय, मध्यपहाड र तराई गरी तीन भागमा विभाजित छ। उत्तरमा हिमालमा चिसो र कठोर जलवायु पाइन्छ भने दक्षिणी तराईमा उष्णकटिबंधीय तातो मौसम पाइन्छ।
-</p><p>
-इतिहासका दृष्टिले नेपाल एक प्राचीन सभ्यता भएको देश हो। यहाँ लिच्छवि, मल्ल र शाह वंशका शासकहरूले दीर्घकालसम्म शासन गरेका छन्। १८औँ शताब्दीमा पृथ्वीनारायण शाहले नेपाल एकीकरण गरेर आधुनिक नेपाल राज्यको आधार तयार पारेका थिए। त्यसपछि नेपालले आन्तरिक राजनीतिक उतारचढाव, राणा शासन, पञ्चायती व्यवस्था, प्रजातन्त्र र गणतन्त्रको यात्रा गरेको छ। अहिले नेपाल संघीय लोकतान्त्रिक गणतन्त्रको रूपमा परिचित छ।
-</p><p>
-संस्कृति र परम्पराका हिसाबले नेपाल अत्यन्तै विविध छ। यहाँ करिब १२५ भन्दा बढी जातजाति र १२३ भन्दा बढी भाषाभाषी समुदायहरू बसोबास गर्छन्। हिन्दु धर्म र बौद्ध धर्म यहाँका मुख्य धर्म हुन्, जसले समाजको परम्परा, चाडपर्व र जीवनशैलीलाई गहिरो प्रभाव पारेका छन्। दशैं, तिहार, होली, ल्होसार, तीज, माघे संक्रान्ति, बुद्ध जयन्ती लगायतका पर्वहरू विभिन्न समुदायहरूले उत्साहपूर्वक मनाउँछन्। परम्परागत नृत्य, संगीत, कला र वास्तुकला नेपालको पहिचान बनेका छन्। काठमाडौं उपत्यकाका दरबार स्क्वायर, स्तुपा र मन्दिरहरू यसैको उदाहरण हुन्, जसले युनेस्को विश्व सम्पदा सूचीमा स्थान पाएका छन्।
-</p><p>
-क्षेत्रीय हिसाबले नेपाल पाँच विकास क्षेत्र र सात प्रदेशमा विभाजित छ। तराई क्षेत्रमा उर्वर भूमि र कृषि उत्पादनको आधार छ भने मध्यपहाड क्षेत्र सांस्कृतिक विविधता र बसोबासको केन्द्र हो। हिमालय क्षेत्रमा चरन, याक पालन र हिमाल आरोहण प्रमुख छन्। प्रत्येक क्षेत्रले आफ्नो विशेष पहिचान बोकेको छ।
-</p><p>
-जनसंख्याको दृष्टिले नेपालमा करिब ३ करोड भन्दा बढी मानिस बस्छन्। युवाशक्ति बढी भएको राष्ट्र नेपालमा ग्रामीण क्षेत्रका मानिसहरू अझै पनि कृषि, पशुपालन र श्रममा आधारित छन्। शहरी क्षेत्र भने आधुनिक विकास र प्रविधितर्फ उन्मुख हुँदै गएको छ।
-</p><p>
-विश्वप्रति योगदानको कुरा गर्दा नेपाल शान्ति र सहिष्णुताको प्रतीक मानिन्छ। भगवान गौतम बुद्धको जन्मभूमि लुम्बिनी नेपालमै हो, जसले विश्वलाई अहिंसा, दया र शान्तिको सन्देश दिएको छ। त्यस्तै, नेपाल शान्ति सेनामा योगदान दिने मुलुकहरूमध्ये अग्रपंक्तिमा छ, जहाँ हजारौं नेपाली सैनिकहरूले संयुक्त राष्ट्रसंघको शान्ति मिशनमा सेवा गरेका छन्। नेपालले हिमाल आरोहणमा पनि ठूलो योगदान दिएको छ, जहाँ नेपाली शेर्पा समुदायले विश्वका आरोहीहरूलाई मार्गदर्शन गर्दै आएका छन्।
-</p><p>
-नेपालको अर्थतन्त्र मुख्यतया कृषि, पर्यटन, रेमिट्यान्स र जलविद्युतमा आधारित छ। पर्यटन नेपालका लागि जीवनरेखा जस्तै हो। विश्वभरका पर्यटकहरू हिमाल आरोहण, ट्रेकिङ, धार्मिक स्थल अवलोकन र सांस्कृतिक पर्यटनका लागि नेपाल आउँछन्। सगरमाथा, अन्नपूर्ण, लुम्बिनी, चितवन राष्ट्रिय निकुञ्ज जस्ता स्थानहरूले नेपाललाई विश्वसामु चिनाएका छन्। जलविद्युत नेपालको अर्को ठूलो सम्भावना हो, जसले भविष्यमा ऊर्जा निर्यात गर्ने क्षमता बोकेको छ।
-</p><p>
-समग्रमा भन्नुपर्दा, नेपाल एउटा सानो भए पनि विश्वमा सांस्कृतिक, ऐतिहासिक र प्राकृतिक सम्पदाका कारण अत्यन्त महत्वपूर्ण मुलुक हो। यसको भौगोलिक विविधता, धार्मिक सहिष्णुता, सांस्कृतिक सम्पदा, शान्ति सन्देश र प्राकृतिक सौन्दर्यले नेपाललाई अद्वितीय बनाएको छ। नेपालले आफ्नो पहिचान विश्व समुदायमा शान्ति, पर्यटन र प्राकृतिक सम्पदाको माध्यमबाट स्थापित गरेको छ र भविष्यमा अझै ठूलो योगदान दिनसक्ने क्षमता बोकेको छ।
-                 </p>`
-             },
-                   {
-                 id: 35,
-                 title: "Nile : The Longest River",
-                 author: "Komal Chaudhary",
-                 date: "August 27, 2025",
-                 category: "River",
-                 imageUrl: "https://www.dropbox.com/scl/fi/ccl1xd8dom6wgs7wl6704/id35.jpg?rlkey=wlctplea2646afmoapmeb9dsk&st=yqpqdjtr&&raw=1",
-                 summary:
-                     `नाइल नदी, अफ्रिकाको जीवनरेखा जसले सहारा मरुभूमिलाई हरियालीमा बदलिदिन्छ।
-विश्वकै सबैभन्दा लामो नदी, जसको किनारमा प्राचीन मिस्र सभ्यता फस्टाएको थियो।`,
-                 content: `<p>
-                 नाइल नदी विश्वकै सबैभन्दा लामो नदी मानिन्छ, जसको लम्बाइ करिब ६,६५० किलोमिटर (४,१३० माइल) छ। यो अफ्रिकाका ११ देशहरू — युगान्डा, इथियोपिया, केन्या, टान्जानिया, रवाण्डा, बुरुन्डी, दक्षिण सुडान, सुडान, डेमोक्रेटिक रिपब्लिक अफ कङ्गो, इरिट्रिया र अन्ततः मिस्र हुँदै भूमध्य सागरमा मिसिन्छ। नाइल दुई प्रमुख उपनदीहरूबाट बनेको छ — सेतो नाइल (White Nile) र निलो नाइल (Blue Nile)। सेतो नाइल युगान्डा र टान्जानियाको विक्टोरिया तालबाट सुरु हुन्छ भने निलो नाइल इथियोपियाको टाना तालबाट सुरु भएर सुडानमा सेतो नाइलसँग मिसिन्छ। यी दुई नदीको संगम खार्तुम, सुडानमा हुन्छ, जहाँबाट नाइल एकैमुखी भएर उत्तरतर्फ बहन्छ र मिस्रको विशाल मरुभूमिलाई हरियाली र जीवनको आधार दिन्छ।
-</p><p>
-इतिहासमा नाइल नदीलाई “मिस्रको आत्मा” भनिएको छ। हजारौं वर्षअघि प्राचीन मिस्र सभ्यता नाइल नदीकै किनारमा विकसित भएको थियो। नदीको वार्षिक बाढीले मरुभूमिका सुकेका जमिनलाई उर्वर बनाइदिने हुँदा मिस्रका मानिसहरूले खेती गर्न सकेका थिए। यसैले गहुँ, जौ, तरकारी र अन्य अन्नपात उत्पादन भई मिस्र आफैंलाई मात्र होइन, अरू क्षेत्रलाई पनि खाद्यान्न आपूर्ति गर्ने केन्द्र बन्यो। नाइल नदीमा आधारित कृषिले मिस्रलाई सभ्यता, राजनीति, धर्म र कलामा अग्रगामी बनायो। यहाँका पिरामिड, मन्दिर र कलात्मक संरचनाहरू नदीकै वरिपरि बनेका थिए, जसले आजसम्म विश्वलाई आकर्षित गर्छन्।
-</p><p>
-नाइल नदी केवल कृषि मात्र होइन, यातायात र व्यापारका लागि पनि आधार बन्यो। प्राचीन समयमा मानिसहरूले नदीमार्ग प्रयोग गरेर सामान आदानप्रदान गर्थे। यसरी नाइलले अफ्रिकाका भित्री क्षेत्र र भूमध्यसागरलाई जोड्ने महत्वपूर्ण मार्गको काम गर्यो। मिस्रका फरोहहरूले नदीलाई आफ्नो शक्ति र जीवनको प्रतीक मानेर यसलाई धार्मिक दृष्टिले समेत महत्व दिए। उनीहरूको विश्वास थियो कि नाइल देवताहरूको वरदान हो।
-</p><p>
-आजको समयमा पनि नाइल नदी करिब ३० करोड भन्दा बढी मानिसहरूको जीवनको आधार बनेको छ। मिस्र र सुडानमा कृषिका लागि नाइलको पानी अत्यावश्यक छ। विश्वप्रसिद्ध अस्वान बाँध (Aswan High Dam) यही नदीमा बनाइएको छ, जसले मिस्रलाई विद्युत उत्पादन, सिंचाइ, बाढी नियन्त्रण र जलस्रोत व्यवस्थापनमा मद्दत पुर्‍याएको छ। तर, नाइल नदीको उपयोग र बाँडफाँडको विषय आज पनि विवादास्पद छ, किनकि धेरै मुलुकहरूले यसमा निर्भर गर्ने हुँदा पानीको अधिकारबारे तानातान हुने गरेको छ।
-</p><p>
-सांस्कृतिक दृष्टिले नाइल अझै पनि गीत, कविता, कथा र धार्मिक विश्वासमा बसोबास गर्छ। मिस्रका लोकगीत र परम्परामा नाइललाई आमा समान मानिएको छ, जसले जीवन दिने शक्ति बोकेको छ। नाइल नदी केवल एक भौगोलिक धारा होइन, यो सम्पूर्ण अफ्रिकी सभ्यता र संस्कृतिको मेरुदण्ड हो। यसको किनारमा बसेका मानिसहरूको इतिहास, कला, धर्म र संस्कृतिलाई जोड्ने धरोहर हो।
-</p><p>
-समग्रमा नाइल नदी प्रकृतिको एउटा अद्वितीय उपहार हो जसले अफ्रिकाको भूगोल, इतिहास, सभ्यता र वर्तमान जीवनशैलीलाई गहिरो प्रभाव पारेको छ। यो नदी बिना प्राचीन मिस्र सभ्यता सम्भव नै थिएन, र आज पनि नाइलले करोडौं मानिसलाई जीवन, कृषि, ऊर्जा र संस्कृतिको आधार दिइरहेको छ। त्यसैले नाइललाई विश्वकै जीवन दिने महान नदी भनिन्छ।
-                 </p>`
-             },
-                    {
-                 id: 36,
-                 title: "Mount Everest : The Top of Earth",
-                 author: "Komal Chaudhary",
-                 date: "August 27, 2025",
-                 category: "Mountains",
-                 imageUrl: "https://www.dropbox.com/scl/fi/334n2j2nng1zaajfzcqvu/id36.jpg?rlkey=12vuxza0ormi184e3lp5hrzmc&st=nmuu8ito&&raw=1",
-                 summary:
-                     `
-                     सगरमाथा, आकाशलाई छुने पृथ्वीको शिर जसले मानव साहस र प्रकृतिको महानतालाई एकैसाथ बोल्छ।
-`,
-                 content: `<p>
-                 सगरमाथा, जसलाई अंग्रेजीमा Mount Everest भनिन्छ, विश्वकै सबैभन्दा अग्लो हिमाल हो। यसको उचाइ समुद्री सतहबाट ८,८४८.८६ मिटर (२९,०३१.७ फिट) छ, जुन नेपाल र चीन (तिब्बत)को सिमानामा अवस्थित छ। नेपालीहरूले यसलाई “सगरमाथा” भन्छन् जसको अर्थ “आकाशको शिर” हुन्छ भने तिब्बती भाषामा यसलाई “चोमोलुङ्मा” भनिन्छ जसको अर्थ “विश्वकी आमा देवी” भन्ने हुन्छ। यसको भौगोलिक संरचना हिमालय पर्वत श्रृंखलाको महालंगुर हिमाल क्षेत्रमा पर्छ, जसमा लोहत्से, मकालु, चो-ओयू जस्ता अन्य विशाल शिखरहरू पनि रहेका छन्।
-</p><p>
-इतिहासतर्फ फर्किँदा, सगरमाथाको उचाइको पहिलो नापजाँच सन् १८५६ मा ब्रिटिश सर्वेक्षण टोलीले गरेको थियो, जसले यसलाई संसारकै अग्लो शिखर भनेर घोषणा गर्‍यो। त्यसबेला यसलाई “पीक XV” भनिन्थ्यो। पछि १८६५ मा यसलाई “Mount Everest” नाम दिइयो, ब्रिटिश सर्वेयर जनरल सर जर्ज एभरेस्टको सम्मानमा।
-</p><p>
-सगरमाथामा पहिलो सफल आरोहण २९ मे १९५३ मा न्यूजील्याण्डका सर एडमन्ड हिलारी र नेपालका तेन्जिङ नोर्गे शेर्पाले गरेका थिए। उनीहरूको सफलता विश्व इतिहासमा महान उपलब्धि मानिन्छ। त्यसभन्दा अघि धेरै आरोहण प्रयास भएका थिए तर सबै असफल भएका थिए। त्यसयता सगरमाथा हजारौं आरोहीहरूको सपना बनेको छ, र विश्वका हरेक कुनाबाट मानिसहरू यसलाई चढ्न नेपाल आउँछन्।
-</p><p>
-सगरमाथा केवल एक हिमाल मात्र होइन, यसले नेपालको सांस्कृतिक र धार्मिक जीवनमा पनि गहिरो स्थान ओगटेको छ। नेपालमा सगरमाथालाई देवत्वको रूपमा मानिन्छ। शेर्पा समुदायका लागि यो हिमाल पवित्र देवीको रूप हो, जसलाई “मायोलाङ संग्मा” भनेर पुकारिन्छ। त्यहाँका मानिसहरूको विश्वास छ कि हिमाल देवताको घर हो, जसलाई अपमान गर्ने कार्यले अप्रीतिकर परिणाम ल्याउन सक्छ।
-</p><p>
-सगरमाथा क्षेत्रलाई आज “सगरमाथा राष्ट्रिय निकुञ्ज” भनेर चिनिन्छ, जुन UNESCO को विश्व सम्पदा सूचीमा पनि सूचीकृत छ। यो क्षेत्रमा अनगिन्ती हिमतालहरू, हिमनदीहरू, गहिरा खोँचहरू, वनस्पति र जीवजन्तु पाइन्छन्। यहाँ हिमालीन भालु, हिम चित्तल, रेड पाण्डा, हावामा उड्ने बर्हम चिल र अन्य दुर्लभ प्रजातिहरू पाइन्छन्।
-</p><p>
-आर्थिक दृष्टिले हेर्दा, सगरमाथा नेपालको पर्यटन उद्योगको मेरुदण्ड हो। प्रत्येक वर्ष हजारौं विदेशी पर्यटक यहाँ पुग्छन्, जसले नेपाललाई ठूलो मात्रामा राजस्व ल्याउँछ। आरोहण अनुमति, गाइड, पोर्टर, आवास, खाना, यातायात आदि मार्फत हजारौं स्थानीय शेर्पा र अन्य नेपालीहरूको जीविकोपार्जन सगरमाथासँगै गाँसिएको छ।
-</p><p>
-तर, सगरमाथामा चढाइ सजिलो छैन। यहाँको चिसो, हावा पातलो हुनु, हिमपहिरो, बर्फानी आँधी, क्रेभास र “डेथ जोन” (८,००० मिटरभन्दा माथि) आरोहीहरूको जीवनका लागि ठूलो चुनौती हुन्छ। धेरै मानिसहरूले आरोहण क्रममा ज्यान गुमाएका छन्, जसका कारण सगरमाथालाई एक “सुन्दर तर खतरनाक स्वप्न” पनि भनिन्छ। साथै पछिल्लो दशकमा बढ्दो पर्यटक संख्या, अत्यधिक फोहोर, जलवायु परिवर्तन र हिमनदीहरूको पग्लनाले वातावरणीय चुनौती पनि बढाएको छ।
-</p><p>
-विश्व योगदानतर्फ हेर्दा, सगरमाथा केवल नेपालकै गौरव नभई सम्पूर्ण मानव सभ्यताको प्रेरणाको प्रतीक हो। यसले मानवीय साहस, धैर्य, दृढता र प्रकृतिप्रतिको सम्मानलाई विश्वभरि उजागर गरेको छ। संसारका हरेक ठाउँबाट मानिसहरू यहाँ आउँछन्, जसले नेपाललाई सांस्कृतिक, सामाजिक र आर्थिक दृष्टिले विश्व नक्सामा चम्काएको छ।
-                 </p>`
-             },
-        /*            {
-                 id: 16,
-                 title: "",
-                 author: "Komal Chaudhary",
-                 date: "August 25, 2025",
-                 category: "Tech",
-                 imageUrl: "https://placehold.co/600x400/8b5cf6/ffffff?text=Space",
-                 summary:
-                     ``,
-                 content: `<p></p>`
-             },
-        */
-    ];
-    const categories = [
-        "All",
-        "Tech",
-        "Biography",
-        "Science",
-        "Country",
-        "Books",
-        "River",
-        "Mountains",
-        "Music",
-        "Business",
-        "Education",
-        "History",
-        "Art",
-        "Sports",
-    ];
-
-    // --- STATE MANAGEMENT ---
-    let state = {
-        searchTerm: "",
-        selectedCategory: "All",
-        sortOrder: localStorage.getItem("blog-sortOrder") || "newest",
-        favorites: JSON.parse(localStorage.getItem("blog-favorites")) || [],
-        theme: localStorage.getItem("blog-theme") || "light"
-    };
-
-    // --- DOM ELEMENTS ---
-    const postsContainer = document.getElementById("posts-container");
-    const categoriesContainer = document.getElementById("categories-container");
-    const searchInput = document.getElementById("search-input");
-    const sortSelect = document.getElementById("sort-select");
-    const themeToggle = document.getElementById("theme-toggle");
-    const themeIconMoon = document.getElementById("theme-icon-moon");
-    const themeIconSun = document.getElementById("theme-icon-sun");
-    const listView = document.getElementById("list-view");
-    const postView = document.getElementById("post-view");
-    const backButton = document.getElementById("back-button");
-    const postContentContainer = document.getElementById(
-        "post-content-container"
-    );
-    const postNavigationContainer = document.getElementById("post-navigation");
-    const noResultsContainer = document.getElementById("no-results");
-
-    // Sidebar elements
-    const sidebarMenu = document.getElementById("sidebar-menu");
-    const sidebarOverlay = document.getElementById("sidebar-overlay");
-    const hamburgerBtn = document.getElementById("hamburger-btn");
-    const sidebarCloseBtn = document.getElementById("sidebar-close-btn");
-    const favoritesListContainer = document.getElementById(
-        "favorites-list-container"
-    );
-
-    // --- RENDER FUNCTIONS ---
-
-    const renderCategories = () => {
-        categoriesContainer.innerHTML = "";
-        categories.forEach(category => {
-            const button = document.createElement("button");
-            button.textContent = category;
-            button.className = `px-4 py-2 text-sm font-medium rounded-full whitespace-nowrap transition-colors duration-200 ${
-                state.selectedCategory === category
-                    ? "bg-blue-600 text-white"
-                    : "bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-200 hover:bg-gray-200 dark:hover:bg-gray-700"
-            }`;
-            button.addEventListener("click", () => {
-                state.selectedCategory = category;
-                renderAll();
-            });
-            categoriesContainer.appendChild(button);
-        });
-    };
-
-    const renderPosts = () => {
-        postsContainer.innerHTML = "";
-        const filteredPosts = getFilteredAndSortedPosts();
-
-        noResultsContainer.classList.toggle("hidden", filteredPosts.length > 0);
-
-        filteredPosts.forEach((post, index) => {
-            const isFavorite = state.favorites.includes(post.id);
-            const card = document.createElement("div");
-            card.className =
-                "bg-white dark:bg-gray-800 rounded-xl shadow-lg overflow-hidden transform hover:-translate-y-1 transition-all duration-300 group";
-            card.innerHTML = `
+    filteredPosts.forEach((post, index) => {
+      const isFavorite = state.favorites.includes(post.id);
+      const card = document.createElement("div");
+      card.className =
+        "bg-white dark:bg-gray-800 rounded-xl shadow-lg overflow-hidden transform hover:-translate-y-1 transition-all duration-300 group";
+      card.innerHTML = `
                         <div class="relative">
                             <img class="w-full h-48 object-cover" src="${
-                                post.imageUrl
+                              post.imageUrl
                             }" alt="${
-                                post.title
-                            }" onerror="this.onerror=null;this.src='https://placehold.co/600x400/cccccc/ffffff?text=Error';">
+        post.title
+      }" onerror="this.onerror=null;this.src='https://placehold.co/600x400/cccccc/ffffff?text=Error';">
                             <div class="absolute top-2 left-2 bg-black/50 text-white text-xs font-bold px-2 py-1 rounded-full">#${
-                                index + 1
+                              index + 1
                             }</div>
                             <button data-favorite-id="${
-                                post.id
+                              post.id
                             }" class="favorite-btn absolute top-2 right-2 p-2 rounded-full bg-white/70 dark:bg-gray-900/70 text-yellow-500 hover:bg-white dark:hover:bg-gray-900 transition-colors duration-200">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24" fill="${
-                                    isFavorite ? "currentColor" : "none"
+                                  isFavorite ? "currentColor" : "none"
                                 }" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
                             </button>
                         </div>
                         <div class="p-6 cursor-pointer" data-post-id="${
-                            post.id
+                          post.id
                         }">
                             <p class="text-sm font-semibold text-blue-600 dark:text-blue-400">${
-                                post.category
+                              post.category
                             }</p>
                             <h2 class="mt-2 text-xl font-bold text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors duration-300">${
-                                post.title
+                              post.title
                             }</h2>
                             <p class="text-sm text-gray-500 dark:text-gray-400 mt-2">By ${
-                                post.author
+                              post.author
                             } on ${post.date}</p>
                             <p class="text-gray-700 dark:text-gray-300 mt-4 h-20 overflow-hidden">${
-                                post.summary
+                              post.summary
                             }</p>
                             <div class="mt-4">
                                 <span class="text-blue-600 dark:text-blue-400 font-semibold group-hover:underline">Read more &rarr;</span>
                             </div>
                         </div>
                     `;
-            postsContainer.appendChild(card);
-        });
-    };
+      postsContainer.appendChild(card);
+    });
+  };
 
-    const renderFavoritesSidebar = () => {
-        favoritesListContainer.innerHTML = "";
-        if (state.favorites.length === 0) {
-            favoritesListContainer.innerHTML = `<p class="text-center text-gray-500 dark:text-gray-400">Star an article to save it here.</p>`;
-            return;
-        }
+  const renderFavoritesSidebar = () => {
+    favoritesListContainer.innerHTML = "";
+    if (state.favorites.length === 0) {
+      favoritesListContainer.innerHTML = `<p class="text-center text-gray-500 dark:text-gray-400">Star an article to save it here.</p>`;
+      return;
+    }
 
-        const favoritePosts = allPosts.filter(post =>
-            state.favorites.includes(post.id)
-        );
-        favoritePosts.forEach(post => {
-            const item = document.createElement("div");
-            item.className =
-                "flex items-center justify-between p-2 rounded-md hover:bg-gray-100 dark:hover:bg-gray-700";
-            item.innerHTML = `
+    const favoritePosts = allPosts.filter((post) =>
+      state.favorites.includes(post.id)
+    );
+    favoritePosts.forEach((post) => {
+      const item = document.createElement("div");
+      item.className =
+        "flex items-center justify-between p-2 rounded-md hover:bg-gray-100 dark:hover:bg-gray-700";
+      item.innerHTML = `
                         <span class="font-semibold text-sm text-gray-800 dark:text-gray-200 cursor-pointer truncate pr-2" data-post-id="${post.id}">${post.title}</span>
                         <button class="remove-favorite-btn flex-shrink-0 p-1 rounded-full hover:bg-red-100 dark:hover:bg-red-900" data-favorite-id="${post.id}">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-red-500"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
                         </button>
                     `;
-            favoritesListContainer.appendChild(item);
-        });
-    };
+      favoritesListContainer.appendChild(item);
+    });
+  };
 
-    const renderFullPost = postId => {
-        const post = allPosts.find(p => p.id === postId);
-        if (!post) return;
+  const renderFullPost = (postId) => {
+    const post = allPosts.find((p) => p.id === postId);
+    if (!post) return;
 
-        const isFavorite = state.favorites.includes(post.id);
-        postContentContainer.innerHTML = `
+    const isFavorite = state.favorites.includes(post.id);
+    postContentContainer.innerHTML = `
                     <img class="w-full h-64 md:h-96 object-cover rounded-xl shadow-lg mb-8" src="${
-                        post.imageUrl
+                      post.imageUrl
                     }" alt="${
-                        post.title
-                    }" onerror="this.onerror=null;this.src='https://placehold.co/600x400/cccccc/ffffff?text=Error';">
+      post.title
+    }" onerror="this.onerror=null;this.src='https://placehold.co/600x400/cccccc/ffffff?text=Error';">
                     <div class="flex justify-between items-start">
                         <div>
                             <p class="text-md font-semibold text-blue-600 dark:text-blue-400">${
-                                post.category
+                              post.category
                             }</p>
                             <h1 class="mt-2 text-3xl sm:text-4xl lg:text-5xl font-extrabold text-gray-900 dark:text-white tracking-tight">${
-                                post.title
+                              post.title
                             }</h1>
                             <p class="text-md text-gray-500 dark:text-gray-400 mt-4">By ${
-                                post.author
+                              post.author
                             } on ${post.date}</p>
                         </div>
                         <button id="full-post-favorite-btn" data-favorite-id="${
-                            post.id
+                          post.id
                         }" class="p-2 rounded-full text-yellow-500 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors duration-200 flex-shrink-0 ml-4">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24" fill="${
-                                isFavorite ? "currentColor" : "none"
+                              isFavorite ? "currentColor" : "none"
                             }" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
                         </button>
                     </div>
                     <div class="prose lg:prose-xl mt-8 max-w-none text-gray-800 dark:text-gray-200">${
-                        post.content
+                      post.content
                     }</div>
                 `;
 
-        // Navigation
-        const filteredPosts = getFilteredAndSortedPosts();
-        const currentIndex = filteredPosts.findIndex(p => p.id === postId);
-        const prevPost =
-            currentIndex > 0 ? filteredPosts[currentIndex - 1] : null;
-        const nextPost =
-            currentIndex < filteredPosts.length - 1
-                ? filteredPosts[currentIndex + 1]
-                : null;
+    // Navigation
+    const filteredPosts = getFilteredAndSortedPosts();
+    const currentIndex = filteredPosts.findIndex((p) => p.id === postId);
+    const prevPost = currentIndex > 0 ? filteredPosts[currentIndex - 1] : null;
+    const nextPost =
+      currentIndex < filteredPosts.length - 1
+        ? filteredPosts[currentIndex + 1]
+        : null;
 
-        postNavigationContainer.innerHTML = "";
-        if (prevPost) {
-            const prevButton = document.createElement("button");
-            prevButton.dataset.postId = prevPost.id;
-            prevButton.className =
-                "post-nav-btn inline-flex items-center gap-2 text-blue-600 dark:text-blue-400 hover:underline font-semibold group";
-            prevButton.innerHTML = `<span class="transform group-hover:-translate-x-1 transition-transform duration-300"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 19-7-7 7-7"/><path d="M19 12H5"/></svg></span>Previous Article`;
-            postNavigationContainer.appendChild(prevButton);
-        }
-        postNavigationContainer.appendChild(
-            document.createElement("div")
-        ).className = "flex-grow"; // Spacer
-        if (nextPost) {
-            const nextButton = document.createElement("button");
-            nextButton.dataset.postId = nextPost.id;
-            nextButton.className =
-                "post-nav-btn inline-flex items-center gap-2 text-blue-600 dark:text-blue-400 hover:underline font-semibold group";
-            nextButton.innerHTML = `Next Article<span class="transform group-hover:translate-x-1 transition-transform duration-300"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></span>`;
-            postNavigationContainer.appendChild(nextButton);
-        }
+    postNavigationContainer.innerHTML = "";
+    if (prevPost) {
+      const prevButton = document.createElement("button");
+      prevButton.dataset.postId = prevPost.id;
+      prevButton.className =
+        "post-nav-btn inline-flex items-center gap-2 text-blue-600 dark:text-blue-400 hover:underline font-semibold group";
+      prevButton.innerHTML = `<span class="transform group-hover:-translate-x-1 transition-transform duration-300"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 19-7-7 7-7"/><path d="M19 12H5"/></svg></span>Previous Article`;
+      postNavigationContainer.appendChild(prevButton);
+    }
+    postNavigationContainer.appendChild(
+      document.createElement("div")
+    ).className = "flex-grow"; // Spacer
+    if (nextPost) {
+      const nextButton = document.createElement("button");
+      nextButton.dataset.postId = nextPost.id;
+      nextButton.className =
+        "post-nav-btn inline-flex items-center gap-2 text-blue-600 dark:text-blue-400 hover:underline font-semibold group";
+      nextButton.innerHTML = `Next Article<span class="transform group-hover:translate-x-1 transition-transform duration-300"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></span>`;
+      postNavigationContainer.appendChild(nextButton);
+    }
 
-        // Show the view
-        listView.classList.add("hidden");
-        postView.classList.remove("hidden");
-        window.scrollTo(0, 0);
-    };
+    // Show the view
+    listView.classList.add("hidden");
+    postView.classList.remove("hidden");
+    window.scrollTo(0, 0);
+  };
 
-    const applyTheme = () => {
-        if (state.theme === "dark") {
-            document.documentElement.classList.add("dark");
-            themeIconMoon.classList.add("hidden");
-            themeIconSun.classList.remove("hidden");
-        } else {
-            document.documentElement.classList.remove("dark");
-            themeIconMoon.classList.remove("hidden");
-            themeIconSun.classList.add("hidden");
-        }
-    };
+  const applyTheme = () => {
+    if (state.theme === "dark") {
+      document.documentElement.classList.add("dark");
+      themeIconMoon.classList.add("hidden");
+      themeIconSun.classList.remove("hidden");
+    } else {
+      document.documentElement.classList.remove("dark");
+      themeIconMoon.classList.remove("hidden");
+      themeIconSun.classList.add("hidden");
+    }
+  };
 
-    const renderAll = () => {
-        renderCategories();
-        renderPosts();
-        renderFavoritesSidebar();
-    };
+  const renderAll = () => {
+    renderCategories();
+    renderPosts();
+    renderFavoritesSidebar();
+  };
 
-    // --- HELPER FUNCTIONS ---
-    const getFilteredAndSortedPosts = () => {
-        let filtered = allPosts
-            .filter(
-                post =>
-                    state.selectedCategory === "All" ||
-                    post.category === state.selectedCategory
-            )
-            .filter(post =>
-                post.title
-                    .toLowerCase()
-                    .includes(state.searchTerm.toLowerCase())
-            );
+  // --- HELPER FUNCTIONS ---
+  const getFilteredAndSortedPosts = () => {
+    let filtered = allPosts
+      .filter(
+        (post) =>
+          state.selectedCategory === "All" ||
+          post.category === state.selectedCategory
+      )
+      .filter((post) =>
+        post.title.toLowerCase().includes(state.searchTerm.toLowerCase())
+      );
 
-        // Apply sorting
-        switch (state.sortOrder) {
-            case "oldest":
-                filtered.sort((a, b) => new Date(a.date) - new Date(b.date));
-                break;
-            case "alpha-asc":
-                filtered.sort((a, b) => a.title.localeCompare(b.title));
-                break;
-            case "alpha-desc":
-                filtered.sort((a, b) => b.title.localeCompare(a.title));
-                break;
-            case "newest":
-            default:
-                filtered.sort((a, b) => new Date(b.date) - new Date(a.date));
-                break;
-        }
+    // Apply sorting
+    switch (state.sortOrder) {
+      case "oldest":
+        filtered.sort((a, b) => new Date(a.date) - new Date(b.date));
+        break;
+      case "alpha-asc":
+        filtered.sort((a, b) => a.title.localeCompare(b.title));
+        break;
+      case "alpha-desc":
+        filtered.sort((a, b) => b.title.localeCompare(a.title));
+        break;
+      case "newest":
+      default:
+        filtered.sort((a, b) => new Date(b.date) - new Date(a.date));
+        break;
+    }
 
-        return filtered;
-    };
+    return filtered;
+  };
 
-    // --- EVENT HANDLERS ---
+  // --- EVENT HANDLERS ---
 
-    const handleThemeToggle = () => {
-        state.theme = state.theme === "light" ? "dark" : "light";
-        localStorage.setItem("blog-theme", state.theme);
-        applyTheme();
-    };
+  const handleThemeToggle = () => {
+    state.theme = state.theme === "light" ? "dark" : "light";
+    localStorage.setItem("blog-theme", state.theme);
+    applyTheme();
+  };
 
-    const handleSearch = e => {
-        state.searchTerm = e.target.value;
-        renderPosts();
-    };
+  const handleSearch = (e) => {
+    state.searchTerm = e.target.value;
+    renderPosts();
+  };
 
-    const handleSortChange = e => {
-        state.sortOrder = e.target.value;
-        localStorage.setItem("blog-sortOrder", state.sortOrder);
-        renderPosts();
-    };
+  const handleSortChange = (e) => {
+    state.sortOrder = e.target.value;
+    localStorage.setItem("blog-sortOrder", state.sortOrder);
+    renderPosts();
+  };
 
-    const handleToggleFavorite = postId => {
-        if (state.favorites.includes(postId)) {
-            state.favorites = state.favorites.filter(id => id !== postId);
-        } else {
-            state.favorites.push(postId);
-        }
-        localStorage.setItem("blog-favorites", JSON.stringify(state.favorites));
-    };
+  const handleToggleFavorite = (postId) => {
+    if (state.favorites.includes(postId)) {
+      state.favorites = state.favorites.filter((id) => id !== postId);
+    } else {
+      state.favorites.push(postId);
+    }
+    localStorage.setItem("blog-favorites", JSON.stringify(state.favorites));
+  };
 
-    const handlePostSelect = postId => {
-        renderFullPost(postId);
-    };
+  const handlePostSelect = (postId) => {
+    renderFullPost(postId);
+  };
 
-    const openSidebar = () => {
-        sidebarMenu.classList.add("is-open");
-        sidebarOverlay.classList.add("is-open");
-    };
+  const openSidebar = () => {
+    sidebarMenu.classList.add("is-open");
+    sidebarOverlay.classList.add("is-open");
+  };
 
-    const closeSidebar = () => {
-        sidebarMenu.classList.remove("is-open");
-        sidebarOverlay.classList.remove("is-open");
-    };
+  const closeSidebar = () => {
+    sidebarMenu.classList.remove("is-open");
+    sidebarOverlay.classList.remove("is-open");
+  };
 
-    // --- EVENT LISTENERS ---
-    themeToggle.addEventListener("click", handleThemeToggle);
-    searchInput.addEventListener("input", handleSearch);
-    sortSelect.addEventListener("change", handleSortChange);
-    backButton.addEventListener("click", () => {
-        postView.classList.add("hidden");
-        listView.classList.remove("hidden");
-    });
+  // --- EVENT LISTENERS ---
+  themeToggle.addEventListener("click", handleThemeToggle);
+  searchInput.addEventListener("input", handleSearch);
+  sortSelect.addEventListener("change", handleSortChange);
+  backButton.addEventListener("click", () => {
+    postView.classList.add("hidden");
+    listView.classList.remove("hidden");
+  });
 
-    // Sidebar listeners
-    hamburgerBtn.addEventListener("click", openSidebar);
-    sidebarCloseBtn.addEventListener("click", closeSidebar);
-    sidebarOverlay.addEventListener("click", closeSidebar);
+  // Sidebar listeners
+  hamburgerBtn.addEventListener("click", openSidebar);
+  sidebarCloseBtn.addEventListener("click", closeSidebar);
+  sidebarOverlay.addEventListener("click", closeSidebar);
 
-    // Event delegation for dynamically created elements
-    document.body.addEventListener("click", e => {
-        // For post selection from card or favorites bar
-        const postLink = e.target.closest("[data-post-id]");
-        if (postLink) {
-            const postId = parseInt(postLink.dataset.postId, 10);
-            handlePostSelect(postId);
-            closeSidebar(); // Close sidebar if open
-        }
+  // Event delegation for dynamically created elements
+  document.body.addEventListener("click", (e) => {
+    // For post selection from card or favorites bar
+    const postLink = e.target.closest("[data-post-id]");
+    if (postLink) {
+      const postId = parseInt(postLink.dataset.postId, 10);
+      handlePostSelect(postId);
+      closeSidebar(); // Close sidebar if open
+    }
 
-        // For favoriting from the card view
-        const favoriteButton = e.target.closest(".favorite-btn");
-        if (favoriteButton) {
-            e.stopPropagation(); // Prevent card click
-            const postId = parseInt(favoriteButton.dataset.favoriteId, 10);
-            handleToggleFavorite(postId);
-            renderPosts();
-            renderFavoritesSidebar();
-        }
+    // For favoriting from the card view
+    const favoriteButton = e.target.closest(".favorite-btn");
+    if (favoriteButton) {
+      e.stopPropagation(); // Prevent card click
+      const postId = parseInt(favoriteButton.dataset.favoriteId, 10);
+      handleToggleFavorite(postId);
+      renderPosts();
+      renderFavoritesSidebar();
+    }
 
-        // For favoriting from the full post view
-        const fullPostFavoriteButton = e.target.closest(
-            "#full-post-favorite-btn"
-        );
-        if (fullPostFavoriteButton) {
-            const postId = parseInt(
-                fullPostFavoriteButton.dataset.favoriteId,
-                10
-            );
-            handleToggleFavorite(postId);
-            renderFullPost(postId);
-            renderFavoritesSidebar();
-        }
+    // For favoriting from the full post view
+    const fullPostFavoriteButton = e.target.closest("#full-post-favorite-btn");
+    if (fullPostFavoriteButton) {
+      const postId = parseInt(fullPostFavoriteButton.dataset.favoriteId, 10);
+      handleToggleFavorite(postId);
+      renderFullPost(postId);
+      renderFavoritesSidebar();
+    }
 
-        // For removing a favorite from the sidebar
-        const removeFavoriteButton = e.target.closest(".remove-favorite-btn");
-        if (removeFavoriteButton) {
-            const postId = parseInt(
-                removeFavoriteButton.dataset.favoriteId,
-                10
-            );
-            handleToggleFavorite(postId);
-            renderPosts(); // Re-render to update star icons
-            renderFavoritesSidebar();
-        }
+    // For removing a favorite from the sidebar
+    const removeFavoriteButton = e.target.closest(".remove-favorite-btn");
+    if (removeFavoriteButton) {
+      const postId = parseInt(removeFavoriteButton.dataset.favoriteId, 10);
+      handleToggleFavorite(postId);
+      renderPosts(); // Re-render to update star icons
+      renderFavoritesSidebar();
+    }
 
-        // For post navigation
-        const navButton = e.target.closest(".post-nav-btn");
-        if (navButton) {
-            const postId = parseInt(navButton.dataset.postId, 10);
-            handlePostSelect(postId);
-        }
-    });
+    // For post navigation
+    const navButton = e.target.closest(".post-nav-btn");
+    if (navButton) {
+      const postId = parseInt(navButton.dataset.postId, 10);
+      handlePostSelect(postId);
+    }
+  });
 
-    // --- INITIALIZATION ---
-    const init = () => {
-        applyTheme();
-        sortSelect.value = state.sortOrder;
-        renderAll();
-    };
+  // --- INITIALIZATION ---
+  const init = () => {
+    applyTheme();
+    sortSelect.value = state.sortOrder;
+    renderAll();
+  };
 
-    init();
+  init();
 });
