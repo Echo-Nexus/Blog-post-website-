@@ -1279,7 +1279,58 @@ Hubble Space Telescope ब्रह्माण्डीय अवलोकन�
 विश्व योगदानतर्फ हेर्दा, सगरमाथा केवल नेपालकै गौरव नभई सम्पूर्ण मानव सभ्यताको प्रेरणाको प्रतीक हो। यसले मानवीय साहस, धैर्य, दृढता र प्रकृतिप्रतिको सम्मानलाई विश्वभरि उजागर गरेको छ। संसारका हरेक ठाउँबाट मानिसहरू यहाँ आउँछन्, जसले नेपाललाई सांस्कृतिक, सामाजिक र आर्थिक दृष्टिले विश्व नक्सामा चम्काएको छ।
                  </p>`,
   },
-  /*            {
+  {
+    id: 37,
+    title: "3i-Atlas",
+    author: "Komal Chaudhary",
+    date: "December 19, 2025",
+    category: "Science",
+    imageUrl:
+      "https://assets.science.nasa.gov/content/dam/science/psd/solar-system/comets/multimedia/Comet%203I-ATLAS.gif?w=500&h=500&fit=clip&crop=faces%2Cfocalpoint",
+    summary: `3i Atlas is a powerful map of intelligence, intention, and impact—designed to turn insight into decisive action. It helps you navigate complexity with clarity, strategy, and purpose in a fast-changing world.`,
+    content: `<p>The 3i Atlas is a conceptual framework designed to help individuals and organizations navigate complexity in a structured yet human-centered way. Rather than functioning as a rigid system, it acts like a living map that adapts as understanding deepens and circumstances change. It recognizes that in a world overloaded with information, clarity is more valuable than volume.</p>
+
+<p>At the heart of the 3i Atlas lie three interconnected dimensions: Intelligence, Intention, and Impact. These dimensions are not isolated stages but continuous forces that influence one another. Together, they form a cycle of perception, decision, and consequence that mirrors real human behavior.</p>
+
+<p>Intelligence, the first pillar, represents the ability to perceive reality accurately. It goes beyond raw data or memorized knowledge and focuses on comprehension, awareness, and context. In the 3i Atlas, intelligence means seeing patterns, questioning assumptions, and understanding both visible and invisible forces at play.</p>
+
+<p>This form of intelligence values critical thinking and emotional awareness equally. It accepts that humans are not purely logical beings and that emotions, biases, and experiences shape how information is interpreted. By acknowledging these factors, the atlas promotes deeper and more honest understanding.</p>
+
+<p>As intelligence matures, it naturally leads to the second pillar: Intention. Intention is the deliberate choice of direction. It answers the question of why an action should be taken, not just how. Without intention, intelligence remains passive and unproductive.</p>
+
+<p>In the 3i Atlas, intention is rooted in values and purpose. It encourages alignment between what one knows and what one chooses to pursue. This alignment reduces internal conflict and increases consistency in decision-making.</p>
+
+<p>Intention also introduces discipline. It filters distractions and prevents reactive behavior driven by impulse or external pressure. Through intention, the atlas transforms awareness into meaningful commitment.</p>
+
+<p>The third pillar, Impact, represents the tangible outcomes of decisions and actions. Impact is where ideas meet reality. It is not limited to success or failure but includes all consequences—intended or unintended—that arise from action.</p>
+
+<p>The 3i Atlas places strong emphasis on accountability at this stage. It asks individuals to measure results honestly and to recognize their role in shaping outcomes. Impact is treated as feedback rather than judgment.</p>
+
+<p>What distinguishes the 3i Atlas from linear models is its cyclical nature. Impact feeds back into Intelligence, creating learning loops. Every outcome becomes new information, refining perception and improving future intentions.</p>
+
+<p>This continuous cycle allows growth over time. Mistakes are not endpoints but data points. Successes are not conclusions but references. The atlas thrives on iteration and reflection.</p>
+
+<p>The storytelling aspect of the 3i Atlas frames the user as a traveler rather than a controller. The world is dynamic, uncertain, and often unpredictable. The atlas does not eliminate uncertainty but equips the traveler to move through it wisely.</p>
+
+<p>In leadership contexts, the 3i Atlas helps bridge the gap between strategy and execution. Leaders can use it to ensure that decisions are informed, purposeful, and evaluated based on real impact rather than intention alone.</p>
+
+<p>In personal development, the atlas serves as a mirror. It reveals where understanding is shallow, where intentions are unclear, or where actions do not align with values. This self-awareness is the foundation of genuine growth.</p>
+
+<p>The 3i Atlas also emphasizes time as a crucial element. Intelligence evolves, intentions shift, and impacts unfold gradually. The framework respects patience and long-term thinking over instant results.</p>
+
+<p>Another key strength of the 3i Atlas is its universality. It can be applied to learning, relationships, innovation, governance, and creativity. Wherever decisions exist, the three dimensions are present.</p>
+
+<p>Rather than offering fixed answers, the atlas provides guiding questions. What do I truly understand? Why am I choosing this path? What effect will this create? These questions keep thinking active and grounded.</p>
+
+<p>The 3i Atlas ultimately promotes conscious living and responsible action. It encourages individuals to move from reaction to reflection and from intention to meaningful impact.</p>
+
+<p>In a rapidly changing world, the 3i Atlas stands as a reminder that progress is not accidental. It is the result of clear perception, deliberate choice, and thoughtful evaluation working together in harmony.</p>
+
+<p>By continuously cycling through Intelligence, Intention, and Impact, the 3i Atlas becomes more than a framework—it becomes a way of thinking, navigating, and evolving with purpose.</p>
+`,
+  },
+  /*           
+   {
                  id: 16,
                  title: "",
                  author: "Komal Chaudhary",
