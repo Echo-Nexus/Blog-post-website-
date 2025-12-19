@@ -19,7 +19,6 @@
     }
 */
 document.addEventListener("DOMContentLoaded", () => {
-
   const categories = [
     "All",
     "Tech",
@@ -44,7 +43,8 @@ document.addEventListener("DOMContentLoaded", () => {
     selectedCategory: "All",
     sortOrder: localStorage.getItem("blog-sortOrder") || "newest",
     favorites: JSON.parse(localStorage.getItem("blog-favorites")) || [],
-    theme: localStorage.getItem("blog-theme") || "light",
+    // Theme: site is dark-only
+    // (light mode removed per request)
   };
 
   // --- DOM ELEMENTS ---
@@ -52,15 +52,16 @@ document.addEventListener("DOMContentLoaded", () => {
   const categoriesContainer = document.getElementById("categories-container");
   const searchInput = document.getElementById("search-input");
   const sortSelect = document.getElementById("sort-select");
-  const themeToggle = document.getElementById("theme-toggle");
-  const themeIconMoon = document.getElementById("theme-icon-moon");
-  const themeIconSun = document.getElementById("theme-icon-sun");
+
   const listView = document.getElementById("list-view");
   const postView = document.getElementById("post-view");
   const backButton = document.getElementById("back-button");
   const postContentContainer = document.getElementById(
     "post-content-container"
   );
+
+  // Track which post is currently open in the full post view (null when list view is active)
+  let currentPostId = null;
   const postNavigationContainer = document.getElementById("post-navigation");
   const noResultsContainer = document.getElementById("no-results");
 
@@ -103,20 +104,22 @@ document.addEventListener("DOMContentLoaded", () => {
       const isFavorite = state.favorites.includes(post.id);
       const card = document.createElement("div");
       card.className =
-        "bg-white dark:bg-gray-800 rounded-xl shadow-lg overflow-hidden transform hover:-translate-y-1 transition-all duration-300 group";
+        "bg-white dark:bg-gray-800 rounded-xl shadow-lg overflow-hidden transform hover:-translate-y-1 hover:shadow-2xl transition-all duration-300 group border border-transparent dark:border-transparent hover:border-gray-200 dark:hover:border-gray-700";
       card.innerHTML = `
-                        <div class="relative">
+                        <div class="relative post-card-image">
                             <img class="w-full h-48 object-cover" src="${
                               post.imageUrl
                             }" alt="${
         post.title
       }" onerror="this.onerror=null;this.src='https://placehold.co/600x400/cccccc/ffffff?text=Error';">
-                            <div class="absolute top-2 left-2 bg-black/50 text-white text-xs font-bold px-2 py-1 rounded-full">#${
+                            <div class="absolute top-2 left-2 bg-black/50 text-white text-xs font-bold px-2 py-1 rounded-full post-badge">#${
                               index + 1
                             }</div>
                             <button data-favorite-id="${
                               post.id
-                            }" class="favorite-btn absolute top-2 right-2 p-2 rounded-full bg-white/70 dark:bg-gray-900/70 text-yellow-500 hover:bg-white dark:hover:bg-gray-900 transition-colors duration-200">
+                            }" class="favorite-btn absolute top-2 right-2 p-2 rounded-full bg-white/70 dark:bg-gray-900/70 ${
+        isFavorite ? "text-yellow-400" : "text-gray-300 hover:text-yellow-400"
+      } hover:bg-white dark:hover:bg-gray-900 transition-colors duration-200">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24" fill="${
                                   isFavorite ? "currentColor" : "none"
                                 }" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
@@ -171,6 +174,7 @@ document.addEventListener("DOMContentLoaded", () => {
   };
 
   const renderFullPost = (postId) => {
+    currentPostId = postId; // remember which post is open
     const post = allPosts.find((p) => p.id === postId);
     if (!post) return;
 
@@ -195,7 +199,9 @@ document.addEventListener("DOMContentLoaded", () => {
                         </div>
                         <button id="full-post-favorite-btn" data-favorite-id="${
                           post.id
-                        }" class="p-2 rounded-full text-yellow-500 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors duration-200 flex-shrink-0 ml-4">
+                        }" class="p-2 rounded-full ${
+      isFavorite ? "text-yellow-400" : "text-gray-300 hover:text-yellow-400"
+    } hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors duration-200 flex-shrink-0 ml-4">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24" fill="${
                               isFavorite ? "currentColor" : "none"
                             }" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
@@ -220,8 +226,10 @@ document.addEventListener("DOMContentLoaded", () => {
       const prevButton = document.createElement("button");
       prevButton.dataset.postId = prevPost.id;
       prevButton.className =
-        "post-nav-btn inline-flex items-center gap-2 text-blue-600 dark:text-blue-400 hover:underline font-semibold group";
-      prevButton.innerHTML = `<span class="transform group-hover:-translate-x-1 transition-transform duration-300"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 19-7-7 7-7"/><path d="M19 12H5"/></svg></span>Previous Article`;
+        "post-nav-btn inline-flex items-center gap-0 text-blue-600 dark:text-blue-400 hover:underline font-semibold group p-1";
+      prevButton.setAttribute("aria-label", "Previous article");
+      prevButton.title = "Previous article";
+      prevButton.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5" aria-hidden="true"><path d="m12 19-7-7 7-7"/></svg>`;
       postNavigationContainer.appendChild(prevButton);
     }
     postNavigationContainer.appendChild(
@@ -231,10 +239,16 @@ document.addEventListener("DOMContentLoaded", () => {
       const nextButton = document.createElement("button");
       nextButton.dataset.postId = nextPost.id;
       nextButton.className =
-        "post-nav-btn inline-flex items-center gap-2 text-blue-600 dark:text-blue-400 hover:underline font-semibold group";
-      nextButton.innerHTML = `Next Article<span class="transform group-hover:translate-x-1 transition-transform duration-300"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></span>`;
+        "post-nav-btn inline-flex items-center gap-0 text-blue-600 dark:text-blue-400 hover:underline font-semibold group p-1";
+      nextButton.setAttribute("aria-label", "Next article");
+      nextButton.title = "Next article";
+      nextButton.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5" aria-hidden="true"><path d="m12 5 7 7-7 7"/></svg>`;
       postNavigationContainer.appendChild(nextButton);
     }
+
+    // Make the post navigation sticky and add subtle spacing so it doesn't overlap content
+    postNavigationContainer.classList.add("sticky-post-nav");
+    postView.classList.add("has-sticky-nav");
 
     // Show the view
     listView.classList.add("hidden");
@@ -242,19 +256,16 @@ document.addEventListener("DOMContentLoaded", () => {
     window.scrollTo(0, 0);
   };
 
+  // Force dark theme only
   const applyTheme = () => {
-    if (state.theme === "dark") {
-      document.documentElement.classList.add("dark");
-      themeIconMoon.classList.add("hidden");
-      themeIconSun.classList.remove("hidden");
-    } else {
-      document.documentElement.classList.remove("dark");
-      themeIconMoon.classList.remove("hidden");
-      themeIconSun.classList.add("hidden");
-    }
+    const html = document.documentElement;
+    html.classList.add("dark");
+    html.setAttribute("data-theme", "dark");
   };
 
   const renderAll = () => {
+    // Normalize posts in case the data changes at runtime (ensures sorting & searching are accurate)
+    normalizePosts();
     renderCategories();
     renderPosts();
     renderFavoritesSidebar();
@@ -262,20 +273,27 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // --- HELPER FUNCTIONS ---
   const getFilteredAndSortedPosts = () => {
+    const term = state.searchTerm.trim().toLowerCase();
     let filtered = allPosts
-      .filter(
-        (post) =>
-          state.selectedCategory === "All" ||
-          post.category === state.selectedCategory
-      )
       .filter((post) =>
-        post.title.toLowerCase().includes(state.searchTerm.toLowerCase())
-      );
+        state.selectedCategory === "All"
+          ? true
+          : post.category === state.selectedCategory
+      )
+      .filter((post) => {
+        if (!term) return true;
+        // Use precomputed searchable text
+        return (post._searchable || "").includes(term);
+      });
 
-    // Apply sorting
+    // Apply sorting using normalized timestamps
     switch (state.sortOrder) {
       case "oldest":
-        filtered.sort((a, b) => new Date(a.date) - new Date(b.date));
+        filtered.sort((a, b) => {
+          const diff = (a._ts || 0) - (b._ts || 0);
+          if (diff !== 0) return diff;
+          return (a._id || 0) - (b._id || 0);
+        });
         break;
       case "alpha-asc":
         filtered.sort((a, b) => a.title.localeCompare(b.title));
@@ -285,7 +303,11 @@ document.addEventListener("DOMContentLoaded", () => {
         break;
       case "newest":
       default:
-        filtered.sort((a, b) => new Date(b.date) - new Date(a.date));
+        filtered.sort((a, b) => {
+          const diff = (b._ts || 0) - (a._ts || 0);
+          if (diff !== 0) return diff;
+          return (b._id || 0) - (a._id || 0);
+        });
         break;
     }
 
@@ -294,15 +316,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // --- EVENT HANDLERS ---
 
-  const handleThemeToggle = () => {
-    state.theme = state.theme === "light" ? "dark" : "light";
-    localStorage.setItem("blog-theme", state.theme);
-    applyTheme();
-  };
-
   const handleSearch = (e) => {
     state.searchTerm = e.target.value;
     renderPosts();
+    // Ensure results are visible when user searches
+    try {
+      postsContainer.scrollIntoView({ behavior: "smooth", block: "start" });
+    } catch (err) {
+      // ignore in unsupported environments
+    }
   };
 
   const handleSortChange = (e) => {
@@ -335,12 +357,16 @@ document.addEventListener("DOMContentLoaded", () => {
   };
 
   // --- EVENT LISTENERS ---
-  themeToggle.addEventListener("click", handleThemeToggle);
+  // Theme selector removed (dark-only)
   searchInput.addEventListener("input", handleSearch);
   sortSelect.addEventListener("change", handleSortChange);
   backButton.addEventListener("click", () => {
     postView.classList.add("hidden");
     listView.classList.remove("hidden");
+    currentPostId = null; // clear current post when going back to list
+    // Remove sticky navigation when returning to list
+    postNavigationContainer.classList.remove("sticky-post-nav");
+    postView.classList.remove("has-sticky-nav");
   });
 
   // Sidebar listeners
@@ -350,14 +376,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Event delegation for dynamically created elements
   document.body.addEventListener("click", (e) => {
-    // For post selection from card or favorites bar
-    const postLink = e.target.closest("[data-post-id]");
-    if (postLink) {
-      const postId = parseInt(postLink.dataset.postId, 10);
-      handlePostSelect(postId);
-      closeSidebar(); // Close sidebar if open
-    }
-
     // For favoriting from the card view
     const favoriteButton = e.target.closest(".favorite-btn");
     if (favoriteButton) {
@@ -366,24 +384,37 @@ document.addEventListener("DOMContentLoaded", () => {
       handleToggleFavorite(postId);
       renderPosts();
       renderFavoritesSidebar();
+      // Open sidebar so user sees their favorites immediately
+      openSidebar();
+      return;
     }
 
     // For favoriting from the full post view
     const fullPostFavoriteButton = e.target.closest("#full-post-favorite-btn");
     if (fullPostFavoriteButton) {
+      e.stopPropagation();
       const postId = parseInt(fullPostFavoriteButton.dataset.favoriteId, 10);
       handleToggleFavorite(postId);
+      // Keep all views in sync
+      renderPosts();
       renderFullPost(postId);
       renderFavoritesSidebar();
+      return;
     }
 
     // For removing a favorite from the sidebar
     const removeFavoriteButton = e.target.closest(".remove-favorite-btn");
     if (removeFavoriteButton) {
+      e.stopPropagation();
       const postId = parseInt(removeFavoriteButton.dataset.favoriteId, 10);
       handleToggleFavorite(postId);
       renderPosts(); // Re-render to update star icons
       renderFavoritesSidebar();
+      // If the user was viewing this post, update the full post view as well
+      if (currentPostId === postId && !postView.classList.contains("hidden")) {
+        renderFullPost(postId);
+      }
+      return;
     }
 
     // For post navigation
@@ -391,14 +422,145 @@ document.addEventListener("DOMContentLoaded", () => {
     if (navButton) {
       const postId = parseInt(navButton.dataset.postId, 10);
       handlePostSelect(postId);
+      return;
+    }
+
+    // For post selection from card or favorites bar (fallback)
+    const postLink = e.target.closest("[data-post-id]");
+    if (postLink) {
+      const postId = parseInt(postLink.dataset.postId, 10);
+      handlePostSelect(postId);
+      closeSidebar(); // Close sidebar if open
     }
   });
 
+  // Navigation helper for keyboard actions
+  const navigateToAdjacent = (direction) => {
+    if (!currentPostId) return;
+    const filtered = getFilteredAndSortedPosts();
+    const currentIndex = filtered.findIndex((p) => p.id === currentPostId);
+    if (currentIndex === -1) return;
+    const target =
+      direction === "prev"
+        ? currentIndex > 0
+          ? filtered[currentIndex - 1]
+          : null
+        : currentIndex < filtered.length - 1
+        ? filtered[currentIndex + 1]
+        : null;
+    if (target) {
+      renderFullPost(target.id);
+      // ensure visible
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+  };
+
+  // Keyboard shortcuts for productivity
+  document.addEventListener("keydown", (e) => {
+    const active = document.activeElement;
+    const isTyping =
+      active &&
+      (active.tagName === "INPUT" ||
+        active.tagName === "TEXTAREA" ||
+        active.isContentEditable);
+
+    // Ctrl/Cmd+K to focus search
+    if ((e.key === "k" || e.key === "K") && (e.ctrlKey || e.metaKey)) {
+      e.preventDefault();
+      searchInput.focus();
+      if (searchInput.select) searchInput.select();
+      return;
+    }
+
+    // Space to focus search when not typing in an input
+    if (e.key === " " && !isTyping) {
+      e.preventDefault();
+      searchInput.focus();
+      if (searchInput.select) searchInput.select();
+      return;
+    }
+
+    // Left/right arrows for prev/next article when a post is open
+    if (
+      (e.key === "ArrowLeft" || e.code === "ArrowLeft") &&
+      currentPostId &&
+      !isTyping
+    ) {
+      e.preventDefault();
+      navigateToAdjacent("prev");
+      return;
+    }
+    if (
+      (e.key === "ArrowRight" || e.code === "ArrowRight") &&
+      currentPostId &&
+      !isTyping
+    ) {
+      e.preventDefault();
+      navigateToAdjacent("next");
+      return;
+    }
+
+    // 'f' to toggle favorite for the current open post
+    if ((e.key === "f" || e.key === "F") && currentPostId && !isTyping) {
+      e.preventDefault();
+      handleToggleFavorite(currentPostId);
+      renderPosts();
+      renderFavoritesSidebar();
+      renderFullPost(currentPostId);
+      return;
+    }
+
+    // Escape: go back from full post, or close sidebar if open
+    if (e.key === "Escape") {
+      if (!postView.classList.contains("hidden")) {
+        e.preventDefault();
+        backButton.click();
+        return;
+      }
+      if (sidebarMenu.classList.contains("is-open")) {
+        e.preventDefault();
+        closeSidebar();
+        return;
+      }
+    }
+
+    // 'm' to toggle favorites menu
+    if ((e.key === "m" || e.key === "M") && !isTyping) {
+      e.preventDefault();
+      if (sidebarMenu.classList.contains("is-open")) closeSidebar();
+      else openSidebar();
+      return;
+    }
+  });
+
+  // Normalize posts for searching and sorting
+  const normalizePosts = () => {
+    if (!Array.isArray(allPosts)) return;
+    allPosts.forEach((post) => {
+      // Timestamp for robust sorting
+      const ts = Date.parse(post.date);
+      post._ts = Number.isFinite(ts) ? ts : 0;
+      // Numeric id for stable tie-breaks
+      post._id = Number(post.id) || 0;
+      // Precompute a searchable string (strip HTML from content)
+      const contentText = post.content
+        ? post.content.replace(/<[^>]+>/g, " ")
+        : "";
+      post._searchable = `${post.title || ""} ${post.summary || ""} ${
+        post.author || ""
+      } ${post.category || ""} ${contentText}`.toLowerCase();
+    });
+  };
+
   // --- INITIALIZATION ---
   const init = () => {
+    normalizePosts();
     applyTheme();
     sortSelect.value = state.sortOrder;
     renderAll();
+
+    // Listen to system theme changes and respect them if the user hasn't explicitly chosen a theme
+    // Theme is now fixed to dark only; no system-listener needed.
   };
 
   init();

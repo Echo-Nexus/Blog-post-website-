@@ -37,7 +37,7 @@
       };
     </script>
     <style>
-      /* Simple scrollbar styling for a better look */
+      /* Scrollbar styling */
       ::-webkit-scrollbar {
         width: 8px;
         height: 8px;
@@ -46,16 +46,107 @@
         background: #f1f1f1;
       }
       .dark ::-webkit-scrollbar-track {
-        background: #2d3748;
+        background: #1f2937;
       }
       ::-webkit-scrollbar-thumb {
-        background: #888;
+        background: linear-gradient(180deg, #9ca3af, #6b7280);
         border-radius: 10px;
+      }
+      .dark ::-webkit-scrollbar-thumb {
+        background: linear-gradient(180deg, #4b5563, #374151);
       }
       ::-webkit-scrollbar-thumb:hover {
         background: #555;
       }
-      /* Basic styles for the prose content from the data */
+
+      /* Improved background and header */
+      body {
+        background-image: linear-gradient(180deg, #f8fafc 0%, #ffffff 100%);
+        background-attachment: fixed;
+        color: #111827; /* ensure readable text in light mode */
+      }
+      .dark body {
+        background-image: linear-gradient(180deg, #071022 0%, #071624 100%);
+        color: #e5e7eb; /* readable text in dark mode */
+      }
+      header {
+        background: linear-gradient(
+          90deg,
+          rgba(255, 255, 255, 0.85),
+          rgba(241, 245, 249, 0.85)
+        );
+        backdrop-filter: blur(4px);
+      }
+      .dark header {
+        background: linear-gradient(
+          90deg,
+          rgba(2, 6, 23, 0.7),
+          rgba(6, 9, 20, 0.7)
+        );
+      }
+
+      /* Card and image styles */
+      .post-card-image {
+        position: relative;
+        overflow: hidden;
+      }
+      .post-card-image img {
+        transition: transform 0.6s ease, filter 0.3s ease;
+      }
+      .post-card-image:hover img {
+        transform: scale(1.05);
+        filter: brightness(0.95);
+      }
+      .post-badge {
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+      }
+      .favorite-btn {
+        transition: transform 0.15s ease, color 0.15s ease;
+      }
+      .favorite-btn:hover {
+        transform: scale(1.05);
+      }
+
+      /* Sidebar improved */
+      #sidebar-menu {
+        transform: translateX(-100%);
+        transition: transform 0.28s cubic-bezier(0.2, 0.9, 0.3, 1);
+      }
+      #sidebar-menu.is-open {
+        transform: translateX(0);
+      }
+      #sidebar-overlay {
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.28s cubic-bezier(0.2, 0.9, 0.3, 1),
+          visibility 0.28s;
+      }
+      #sidebar-overlay.is-open {
+        opacity: 1;
+        visibility: visible;
+      }
+
+      /* Prose adjustments */
+      /* Ensure low-contrast text classes remain readable in light mode */
+      html:not(.dark) .text-gray-100,
+      html:not(.dark) .text-gray-200,
+      html:not(.dark) .text-gray-300,
+      html:not(.dark) .text-gray-400,
+      html:not(.dark) .text-gray-500,
+      html:not(.dark) .text-white {
+        color: #111827 !important;
+      }
+
+      /* Make search input placeholder and text clearly visible in light mode */
+      html:not(.dark) #search-input::placeholder {
+        color: #6b7280 !important; /* Tailwind gray-500 */
+        opacity: 1 !important;
+      }
+      html:not(.dark) #search-input {
+        color: #111827 !important;
+        background-color: #f3f4f6 !important; /* Tailwind gray-100 */
+      }
+
       .prose h3 {
         font-size: 1.5rem; /* 24px */
         line-height: 2rem; /* 32px */
@@ -75,23 +166,48 @@
       .dark .prose code {
         background-color: #4a5568;
       }
-      /* Styles for the sidebar menu */
-      #sidebar-menu {
-        transform: translateX(-100%);
-        transition: transform 0.3s ease-in-out;
+
+      /* Sticky minimal navigation for full post view (reduced size) */
+      .sticky-post-nav {
+        position: fixed;
+        left: 50%;
+        transform: translateX(-50%);
+        bottom: 14px;
+        z-index: 60;
+        display: inline-flex;
+        gap: 8px;
+        align-items: center;
+        padding: 4px 10px;
+        border-radius: 9999px;
+        background: rgba(6, 8, 15, 0.45);
+        color: #e6eef8;
+        backdrop-filter: blur(6px);
+        box-shadow: 0 4px 14px rgba(2, 6, 23, 0.35);
+        font-size: 0.95rem;
       }
-      #sidebar-menu.is-open {
-        transform: translateX(0);
+      .sticky-post-nav .post-nav-btn {
+        background: rgba(255,255,255,0.02);
+        padding: 4px 6px; /* reduced */
+        border-radius: 9999px;
+        color: #e6eef8;
+        border: 1px solid rgba(255,255,255,0.03);
+        transition: background 120ms ease, transform 120ms ease;
+        font-size: 0.9rem;
       }
-      #sidebar-overlay {
-        opacity: 0;
-        visibility: hidden;
-        transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+      .sticky-post-nav .post-nav-btn:hover {
+        background: rgba(255,255,255,0.035);
+        transform: translateY(-1px);
       }
-      #sidebar-overlay.is-open {
-        opacity: 1;
-        visibility: visible;
+      /* Slightly smaller on very small screens */
+      @media (max-width: 420px) {
+        .sticky-post-nav { bottom: 8px; padding: 3px 6px; gap: 6px; }
+        .sticky-post-nav .post-nav-btn { padding: 4px 6px; font-size: 0.88rem; }
       }
+      /* Add bottom padding when sticky nav is present so it doesn't cover content */
+      .has-sticky-nav {
+        padding-bottom: 72px !important;
+      }
+
       .sub-headings {
         font-size: 25px;
         font-weight: bold;
@@ -176,7 +292,9 @@
                   <line x1="3" x2="21" y1="18" y2="18" />
                 </svg>
               </button>
-              <h1 class="text-2xl font-bold text-blue-600 dark:text-blue-400">
+              <h1
+                class="text-2xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-teal-500 dark:from-blue-400 dark:to-teal-300"
+              >
                 The Modern Dev
               </h1>
             </div>
@@ -211,50 +329,11 @@
                 </div>
               </div>
             </div>
-            <button
-              id="theme-toggle"
-              class="p-2 rounded-full text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 dark:focus:ring-offset-gray-800 focus:ring-blue-500"
-            >
-              <!-- Moon Icon -->
-              <svg
-                id="theme-icon-moon"
-                xmlns="http://www.w3.org/2000/svg"
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              >
-                <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z" />
-              </svg>
-              <!-- Sun Icon (hidden by default) -->
-              <svg
-                id="theme-icon-sun"
-                xmlns="http://www.w3.org/2000/svg"
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                class="hidden"
-              >
-                <circle cx="12" cy="12" r="4" />
-                <path d="M12 2v2" />
-                <path d="M12 20v2" />
-                <path d="m4.93 4.93 1.41 1.41" />
-                <path d="m17.66 17.66 1.41 1.41" />
-                <path d="M2 12h2" />
-                <path d="M20 12h2" />
-                <path d="m6.34 17.66-1.41 1.41" />
-                <path d="m19.07 4.93-1.41 1.41" />
-              </svg>
-            </button>
+
+              <!-- (music link and mobile category hamburger removed) -->
+
+
+            </div>
           </div>
         </div>
       </header>
