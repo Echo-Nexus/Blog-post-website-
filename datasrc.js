@@ -6,7 +6,7 @@ const allPosts = [
     id: 1,
     title: "About This App's Creator",
     author: "Komal Chaudhary",
-    date: "August 25, 2025",
+    date: "December 19, 2025",
     category: "Biography",
     imageUrl:
       "https://www.dropbox.com/scl/fi/bu8wupt023vg0u37kl2t3/id1.jpg?rlkey=353neh9rxdfde6kpezyb2bvb4&st=ctxd9rr9&&raw=1",
@@ -67,7 +67,7 @@ SoloLearn मा Python, Java, C++, JavaScript जस्ता धेरै भ�
     id: 2,
     title: "Future of Artificial Intelligence",
     author: "Komal Chaudhary",
-    date: "August 25, 2025",
+    date: "December 19, 2025",
     category: "Tech",
     imageUrl:
       "https://www.dropbox.com/scl/fi/mu2xvhnxmto9f941fsb3b/id2.jpg?rlkey=lmnig3t0q8he4p7m7wyw1u4jn&st=h07tu3nu&&raw=1",
@@ -126,7 +126,7 @@ SoloLearn मा Python, Java, C++, JavaScript जस्ता धेरै भ�
     id: 3,
     title: "Google",
     author: "Komal Chaudhary",
-    date: "August 25, 2025",
+    date: "December 19, 2025",
     category: "Tech",
     imageUrl:
       "https://www.dropbox.com/scl/fi/q78b026iahykc1j4e3zxk/id3.jpg?rlkey=dcswv80ci9bwmdkfy5k9thtvb&st=e5t58imr&&raw=1",
@@ -154,7 +154,7 @@ SoloLearn मा Python, Java, C++, JavaScript जस्ता धेरै भ�
     id: 4,
     title: "Mystery of The Universe",
     author: "Komal Chaudhary",
-    date: "August 25, 2025",
+    date: "December 19, 2025",
     category: "Science",
     imageUrl:
       "https://www.dropbox.com/scl/fi/pqfe0wseqxy2w5nbk4hc2/id4.jpg?rlkey=fk3409qhnt68glse9mzjq7etd&st=qu4053fk&&raw=1",
@@ -198,7 +198,7 @@ SoloLearn मा Python, Java, C++, JavaScript जस्ता धेरै भ�
     id: 5,
     title: "Microsoft",
     author: "Komal Chaudhary",
-    date: "August 25, 2025",
+    date: "December 19, 2025",
     category: "Tech",
     imageUrl:
       "https://www.dropbox.com/scl/fi/y1m9uwyajy474s5aqqxh7/id5.jpg?rlkey=75hy2684aedt9jim8uatiaw3t&st=zvi06zs9&&raw=1",
@@ -217,7 +217,7 @@ SoloLearn मा Python, Java, C++, JavaScript जस्ता धेरै भ�
     id: 6,
     title: "Open AI",
     author: "Komal Chaudhary",
-    date: "August 25, 2025",
+    date: "December 19, 2025",
     category: "Tech",
     imageUrl:
       "https://www.dropbox.com/scl/fi/amt04vu04fmet7tomx66l/id6.jpg?rlkey=dv9dl1ida0ik1dhco5pmndfih&st=ez7h4fsl&&raw=1",
@@ -235,7 +235,7 @@ SoloLearn मा Python, Java, C++, JavaScript जस्ता धेरै भ�
     id: 7,
     title: "Amazon",
     author: "Komal Chaudhary",
-    date: "August 25, 2025",
+    date: "December 19, 2025",
     category: "Tech",
     imageUrl:
       "https://www.dropbox.com/scl/fi/zv90rfn4cw4vvz36viy0e/id7.jpg?rlkey=ytztp9bi55h6zq4j74rj8qfax&st=5iwxv2kp&&raw=1",
@@ -254,7 +254,7 @@ SoloLearn मा Python, Java, C++, JavaScript जस्ता धेरै भ�
     id: 8,
     title: "Grok AI",
     author: "Komal Chaudhary",
-    date: "August 25, 2025",
+    date: "December 19, 2025",
     category: "Tech",
     imageUrl:
       "https://www.dropbox.com/scl/fi/zhaydhixk6larzyr5jwrv/id8.jpg?rlkey=gqq8kciyjx1z5kb51c0lors9l&st=u8r8cz2k&&raw=1",
@@ -273,7 +273,7 @@ Grok को एक विशेषता यसको “विशेष व्�
     id: 9,
     title: "Tiktok",
     author: "Komal Chaudhary",
-    date: "August 25, 2025",
+    date: "December 19, 2025",
     category: "Tech",
     imageUrl:
       "https://www.dropbox.com/scl/fi/xcfjx2ywj4573xvlpwh1d/id9.jpg?rlkey=oo4jjiolqjxlolp8chybctt0w&st=my8mmku0&&raw=1",
@@ -292,7 +292,7 @@ Grok को एक विशेषता यसको “विशेष व्�
     id: 10,
     title: "Facebook",
     author: "Komal Chaudhary",
-    date: "August 25, 2025",
+    date: "December 19, 2025",
     category: "Tech",
     imageUrl:
       "https://www.dropbox.com/scl/fi/jrusnfe1wutfwxfttxa8l/id10.jpg?rlkey=lk3qwuxdyhggjmhnw7qgh0drw&st=w56w70en&&raw=1",
@@ -311,7 +311,7 @@ Grok को एक विशेषता यसको “विशेष व्�
     id: 11,
     title: "YouTube",
     author: "Komal Chaudhary",
-    date: "August 25, 2025",
+    date: "December 19, 2025",
     category: "Tech",
     imageUrl:
       "https://www.dropbox.com/scl/fi/2rjz4ue8g4wvzd7htg6zn/id11.jpg?rlkey=uf0jx76h6lbqe5qd4olmhzz2x&st=5v3i9g4a&&raw=1",
@@ -331,7 +331,7 @@ Grok को एक विशेषता यसको “विशेष व्�
     id: 12,
     title: "Instagram",
     author: "Komal Chaudhary",
-    date: "August 25, 2025",
+    date: "December 19, 2025",
     category: "Tech",
     imageUrl:
       "https://www.dropbox.com/scl/fi/a415b4d8ylvxelvkoq3ph/id12.jpg?rlkey=0el3ujq773bll07rekxcndeuj&st=56hkbz3g&&raw=1",
@@ -350,7 +350,7 @@ Grok को एक विशेषता यसको “विशेष व्�
     id: 13,
     title: "DeepSeek",
     author: "Komal Chaudhary",
-    date: "August 25, 2025",
+    date: "December 19, 2025",
     category: "Tech",
     imageUrl:
       "https://www.dropbox.com/scl/fi/jlw6qvak77p2y6byvbp9e/id13.jpg?rlkey=r05raiimyh6uelykevv8jthjm&st=enln4gmj&&raw=1",
@@ -377,7 +377,7 @@ DeepSeek कम्पनीले सस्तो, प्रभावकार�
     id: 14,
     title: "Gemini AI (By Google)",
     author: "Komal Chaudhary",
-    date: "August 25, 2025",
+    date: "December 19, 2025",
     category: "Tech",
     imageUrl:
       "https://www.dropbox.com/scl/fi/0mxym7m8za0ton2wexl69/id14.jpg?rlkey=ynlic6zc355er0d84bxhiy2q8&st=b1scrnek&&raw=1",
@@ -392,7 +392,7 @@ Gemini AI वेब एप मार्फत ४० भन्दा बढी �
     id: 15,
     title: "Copilot",
     author: "Komal Chaudhary",
-    date: "August 25, 2025",
+    date: "December 19, 2025",
     category: "Tech",
     imageUrl:
       "https://www.dropbox.com/scl/fi/lnkix641i4tbe1gpjkzv4/id15.jpg?rlkey=4el97mgzxp5iped62nes4cohn&st=5h5fj1w1&&raw=1",
@@ -1329,12 +1329,528 @@ Hubble Space Telescope ब्रह्माण्डीय अवलोकन�
 <p>By continuously cycling through Intelligence, Intention, and Impact, the 3i Atlas becomes more than a framework—it becomes a way of thinking, navigating, and evolving with purpose.</p>
 `,
   },
-  /*           
+ 
+  {
+    id: 38,
+    title: "The Art of Control: Mastering Yourself and Your World",
+    author: "Komal Chaudhary",
+    date: "December 19, 2025",
+    category: "Lifestyle",
+    imageUrl:
+      "https://placehold.co/600x400/8b5cf6/ffffff?text=The+Art+of+Control",
+    summary: `Control is often misunderstood as domination over others or circumstances. In reality, true control begins within—the mind, emotions, and choices we make every day. This blog explores the philosophy, techniques, and lifelong journey of mastering the art of control.`,
+    content: `<p>Have you ever felt like life is pulling you in every direction, leaving you reacting rather than choosing? The truth is, control is not about having power over everything outside you. It's about mastering yourself first. From ancient philosophy to modern psychology, the concept of control has fascinated thinkers, leaders, and ordinary people alike.</p>
+
+<p><strong>The Roots of Control</strong></p>
+<p>Historically, the idea of control was closely linked to self-discipline. Stoic philosophers like Epictetus emphasized that "We cannot control external events, but we can control our responses." This distinction between internal and external control is vital. While we cannot stop a storm, we can decide whether to run in fear, dance in the rain, or find shelter calmly. Recognizing this is the first step in mastering control.</p>
+
+<p><strong>Control Over Emotions</strong></p>
+<p>Emotions are often the most challenging aspect to govern. Anger, fear, jealousy—these can cloud judgment and disrupt relationships. The art of control begins by acknowledging your emotions without being ruled by them. Techniques like mindfulness, journaling, and cognitive reframing allow us to pause and choose our responses thoughtfully. Imagine receiving criticism at work. Reacting impulsively might hurt your reputation, but responding calmly reflects mastery over yourself.</p>
+
+<p><strong>Discipline and Habit Formation</strong></p>
+<p>Control is also a practical skill honed over time. Habits are the invisible architecture of our lives. By creating consistent routines—early rising, exercise, focused learning, meditation—we build an inner framework that supports self-mastery. Modern research in neuroscience shows that repetition strengthens neural pathways, making disciplined actions almost automatic. In a way, discipline is like training your mind to respond to challenges gracefully instead of chaotically.</p>
+
+<p><strong>Control in Relationships</strong></p>
+<p>Interestingly, control is not about controlling others. True social mastery lies in influence and understanding. By controlling our reactions, we naturally encourage trust and respect. Leaders, negotiators, and successful individuals understand this principle intuitively. Emotional control and active listening allow people to navigate conflicts without losing themselves, creating environments where cooperation thrives.</p>
+
+<p><strong>The Balance Between Control and Letting Go</strong></p>
+<p>Paradoxically, the highest form of control involves knowing when to let go. Obsessive control leads to stress and rigidity, while complete surrender can make life chaotic. The art is to identify what you can influence, accept what you cannot, and act wisely in between. Think of a surfer riding a wave—they cannot control the ocean but can control their balance and timing.</p>
+
+<p><strong>Control in the Digital Age</strong></p>
+<p>In today's hyperconnected world, control extends to technology, information, and attention. Notifications, social media, and constant stimuli challenge our ability to remain centered. Practicing digital minimalism, scheduling focused work periods, and consciously managing inputs are modern adaptations of the ancient art of control. By mastering attention, we reclaim mental space and energy for meaningful pursuits.</p>
+
+<p><strong>The Lifelong Journey</strong></p>
+<p>Control is not a destination; it’s a lifelong journey. Every experience, failure, or success offers an opportunity to refine your self-mastery. From the moments you choose patience over anger, to the hours you dedicate to personal growth, control is the quiet power that shapes your destiny. It's not about perfection, but conscious, deliberate living.</p>
+
+<p>So, ask yourself today: Are you reacting to life, or are you mastering the art of control? The choice is yours, and it starts within.</p>
+
+<p>Remember, control is not about limiting freedom—it is the gateway to true freedom.</p>`,
+  },
+  {
+    id: 39,
+    title: "Cold Thinking in a Loud World",
+    author: "Komal Chaudhary",
+    date: "December 19, 2025",
+    category: "Lifestyle",
+    imageUrl: "https://placehold.co/600x400/8b5cf6/ffffff?text=Cold+Thinking",
+    summary: `In a world filled with constant noise, distractions, and emotional reactions, mastering cold, rational thinking is a superpower. It allows you to make decisions with clarity, focus, and purpose, rising above chaos.`,
+    content: `<p>Have you ever felt overwhelmed by endless chatter, notifications, and opinions? Today, the noise isn’t just around us—it invades our minds. The ability to think clearly and rationally amidst chaos is what I call "cold thinking," and it’s a superpower in itself.</p>
+
+<p>Cold thinking is the practice of observing facts objectively, analyzing situations calmly, and making decisions grounded in logic rather than impulse. In a world where everyone is screaming to be heard, those who can think coldly act decisively while others react emotionally.</p>
+
+<p>History is full of examples. Strategists like Napoleon Bonaparte and scientists like Albert Einstein relied on detached, focused thinking to make extraordinary decisions. Cold thinking allowed them to rise above distraction and emotional turbulence, achieving remarkable outcomes.</p>
+
+<p>Modern life has amplified the challenge. Social media, news feeds, and constant notifications trigger emotional responses constantly. Without cold thinking, it’s easy to react impulsively, getting swept along by the tide of external pressures.</p>
+
+<p>Practically, cold thinking starts with awareness: noticing when your emotions are taking over. Then comes patience—pausing before responding. Next is analysis—considering evidence, weighing options, and questioning assumptions. Finally, action—choosing a rational path forward rather than an emotional one.</p>
+
+<p>Emotions aren’t the enemy. Cold thinkers channel emotions rather than suppress them. Anger becomes motivation, fear turns into caution, and excitement fuels focus. By aligning feelings with rational thought, decisions are stronger and more sustainable.</p>
+
+<p>This approach also improves relationships. Responding thoughtfully rather than reacting impulsively reduces conflicts and builds trust. Emotional discipline enables calmer communication and deeper understanding.</p>
+
+<p>In business, cold thinking is invaluable. Impulsive leaders often fail, while those who analyze data and assess risks make better strategic choices. It enables innovation without being blinded by hype, turning calculated risks into lasting success.</p>
+
+<p>In education, cold thinking transforms knowledge into wisdom. Students who analyze, question, and reflect perform better than those who memorize blindly. It nurtures critical thinking and independent judgment.</p>
+
+<p>Developing cold thinking involves mindfulness, limiting distractions, reflection, and reading widely. Philosophy, history, and logic sharpen the mind’s ability to weigh perspectives and consequences accurately.</p>
+
+<p>Emotional literacy strengthens this skill. Understanding your triggers and distinguishing rational impulses from emotional reactions allows you to act with clarity and purpose.</p>
+
+<p>Technology can aid or hinder. While social media amplifies noise, tools like focus apps and curated feeds support calm, deliberate thought. Using technology intentionally reinforces your cold thinking ability.</p>
+
+<p>Courage is also required. Going against popular opinion or resisting peer pressure isn’t easy, but it builds credibility and strengthens decision-making over time.</p>
+
+<p>Psychologically, cold thinking reduces stress. Systematic analysis replaces anxiety with clarity, transforming challenges into manageable puzzles.</p>
+
+<p>Creativity thrives under cold thinking. A focused, undistracted mind generates innovative solutions more effectively than one reacting impulsively to noise.</p>
+
+<p>Leaders who embody cold thinking inspire trust. Calm, reasoned decisions earn respect and loyalty far more than loud or emotional actions.</p>
+
+<p>Ultimately, cold thinking is freedom. It frees you from chaos and external pressures, allowing deliberate action and long-term success. In a loud, chaotic world, the ability to think clearly and calmly is your secret superpower.</p>`,
+  },
+
+  {
+  id: 40,
+  title: "Discipline Is a Superpower",
+  author: "Komal Chaudhary",
+  date: "December 19, 2025",
+  category: "Lifestyle",
+  imageUrl: "https://placehold.co/600x400/8b5cf6/ffffff?text=Discipline",
+  summary:
+      `Discipline is more than following rules—it’s a transformative superpower. It shapes habits, strengthens self-control, and allows you to achieve long-term goals despite distractions or setbacks.`,
+  content: `<p>Have you ever wondered why some people achieve extraordinary results while others struggle despite equal talent? The secret often isn’t talent or luck—it’s discipline. Discipline is a superpower, one that transforms your mind, body, and life if cultivated consistently.</p>
+
+<p>At its core, discipline is the ability to control impulses, emotions, and actions, consistently choosing what aligns with long-term goals over instant gratification. Imagine a power that allows you to stay focused, calm, and effective regardless of chaos. That is discipline in action.</p>
+
+<p>History’s great achievers relied on discipline. Leonardo da Vinci meticulously studied art, science, and anatomy, while Marie Curie spent countless hours in the lab despite risks. Their disciplined commitment allowed them to exceed ordinary human limits.</p>
+
+<p>Discipline begins with small, consistent actions. Waking up early, prioritizing tasks, resisting distractions, and sticking to a schedule may seem mundane, but over time they compound into extraordinary results.</p>
+
+<p>In today’s era of constant distractions—social media, streaming, instant gratification—discipline is more crucial than ever. It acts as an invisible shield, protecting your time, energy, and focus.</p>
+
+<p>Discipline also empowers emotional control. It’s not rigidity; it’s the ability to pause before reacting, persevere through challenges, and face uncomfortable truths. Emotional discipline often outweighs physical strength in impact.</p>
+
+<p>Psychologically, discipline strengthens self-efficacy—the belief in your ability to succeed. Each decision to act in alignment with your goals reinforces confidence, resilience, and mental toughness.</p>
+
+<p>Lifestyle transforms under discipline. Consistent exercise, healthy eating, and structured routines create a strong foundation, turning your body and mind into efficient, high-performing systems.</p>
+
+<p>Motivation is fleeting, but discipline is reliable. Motivation comes and goes, while discipline is a lighthouse, guiding your actions even when you don’t feel like it. This consistency is the true superpower.</p>
+
+<p>Looking forward, discipline will define success in an increasingly complex world. Technology may handle tasks, but human focus, perseverance, and self-control remain irreplaceable. Those who cultivate discipline navigate challenges more effectively.</p>
+
+<p>Discipline doesn’t require perfection. Setbacks are feedback. Consistency, not flawlessness, is the hallmark of a disciplined life.</p>
+
+<p>To cultivate this superpower, start with clear goals and break them into daily steps. Minimize distractions, track progress, celebrate small wins, and learn from mistakes. Gradually, these actions become habits, and habits form the backbone of discipline.</p>
+
+<p>Accountability reinforces discipline. Sharing goals with someone you trust or tracking them publicly creates supportive structures that strengthen resolve.</p>
+
+<p>Discipline can even enhance creativity. Focused, structured routines free the mind to explore ideas deeply, leading to innovation and problem-solving.</p>
+
+<p>Sports exemplify discipline. Elite athletes succeed not solely due to talent, but because of relentless practice, routine, and dedication. Discipline multiplies natural ability into peak performance.</p>
+
+<p>In education, disciplined study habits outperform cramming. Regular, focused learning builds understanding, mastery, and long-term success.</p>
+
+<p>Business leaders also benefit. Strategic, disciplined decision-making avoids impulsive errors and fosters sustainable growth.</p>
+
+<p>Ultimately, discipline is paradoxically freedom. Controlling oneself allows freedom to achieve, grow, and shape destiny. Without discipline, external circumstances dictate life. With it, you control your path.</p>
+
+<p>Small, consistent disciplined actions compound over time, creating a life of achievement, resilience, and purpose. Discipline is a superpower—quiet but profound. Will you start cultivating it today?</p>`
+},
+
+{
+  id: 41,
+  title: "Mind Over Noise",
+  author: "Komal Chaudhary",
+  date: "December 19, 2025",
+  category: "Lifestyle",
+  imageUrl: "https://placehold.co/600x400/8b5cf6/ffffff?text=Mind+Over+Noise",
+  summary:
+      `In a world overwhelmed by constant noise, mastering control over your mind is the ultimate superpower. "Mind Over Noise" explores how focus, awareness, and disciplined thought allow you to rise above distractions and chaos.`,
+  content: `<p>We live in a world where noise is constant. Not just the literal sound, but mental noise, social chatter, and information overload flood our minds daily.</p>
+
+<p>This noise affects how we think, feel, and act. It hijacks attention, fuels stress, and clouds judgment.</p>
+
+<p>Mind over noise is about mastering your inner state despite external chaos. It’s the ability to remain calm, focused, and rational when everything around you is shouting for attention.</p>
+
+<p>The first step is awareness. Recognizing the noise and its effects is essential. Without awareness, we are at its mercy.</p>
+
+<p>Next comes detachment. Not in an apathetic sense, but as the ability to observe without immediate reaction. This creates a mental buffer.</p>
+
+<p>Focus is the superpower here. In a loud world, your ability to direct attention consciously separates effectiveness from distraction.</p>
+
+<p>Practicing mindfulness strengthens this focus. Meditation, breathing exercises, and deliberate pauses train the mind to handle stimuli without being overwhelmed.</p>
+
+<p>Discipline underpins mind over noise. Consistently prioritizing what truly matters reinforces mental clarity and control.</p>
+
+<p>Information consumption must be intentional. Social media, news, and notifications are distractions unless curated carefully.</p>
+
+<p>Another key is emotional regulation. Noise triggers fear, anger, and stress. Learning to manage these emotions preserves decision-making power.</p>
+
+<p>Cold thinking complements mind over noise. Rational analysis ensures reactions are based on facts rather than emotional impulses.</p>
+
+<p>Time management also supports mental clarity. Structured routines minimize chaos and prevent cognitive overload.</p>
+
+<p>Physical wellness is surprisingly connected. Exercise, proper sleep, and nutrition reduce stress and increase resilience against noise.</p>
+
+<p>Reading and reflection enhance mind over noise. Philosophy, history, and critical thinking sharpen perspective and judgment.</p>
+
+<p>Journaling is a powerful tool. Writing down thoughts separates meaningful ideas from mental clutter.</p>
+
+<p>Environment matters. Decluttered spaces and intentional design reduce sensory noise, allowing the mind to focus.</p>
+
+<p>Technology can be both friend and foe. Using apps to block distractions and schedule tasks enhances mental control.</p>
+
+<p>Social noise also requires management. Choosing relationships and communities that support growth preserves mental energy.</p>
+
+<p>Practicing patience strengthens mind over noise. Waiting before reacting reduces impulsivity and emotional hijacking.</p>
+
+<p>Decision-making improves. When the mind is clear, choices are rational, informed, and aligned with long-term goals.</p>
+
+<p>Creativity flourishes in calm minds. Mental space for reflection allows ideas to form without interference.</p>
+
+<p>Leadership benefits. Leaders with mind over noise inspire confidence, make better decisions, and manage teams effectively.</p>
+
+<p>Stress reduction is another outcome. Calm minds process challenges systematically rather than reacting chaotically.</p>
+
+<p>Learning deepens. Noise-free mental space allows retention, understanding, and mastery rather than surface-level memorization.</p>
+
+<p>Discipline compounds over time. Each instance of focusing amidst noise strengthens neural pathways for concentration.</p>
+
+<p>Emotional resilience grows. Calm, clear thinking prevents overreaction and fosters problem-solving even under pressure.</p>
+
+<p>Reflection and self-awareness maintain this skill. Periodically analyzing your thoughts ensures mental noise is not creeping back in.</p>
+
+<p>Freedom emerges. Controlling your mind frees you from chaos, distractions, and manipulations of the external world.</p>
+
+<p>Ultimately, mind over noise is a lifelong practice. It requires patience, focus, and intentionality, but the rewards are profound: clarity, control, and peace.</p>
+
+<p>Will you start mastering your mind today and rise above the noise? The choice is yours, and the power is real.</p>`
+},
+{
+  id: 42,
+  title: "The Silent Genius: Nikola Tesla’s Life and Legacy",
+  author: "Komal Chaudhary",
+  date: "December 19, 2025",
+  category: "Biography",
+  imageUrl: "https://placehold.co/600x400/8b5cf6/ffffff?text=Nikola+Tesla",
+  summary:
+      `Nikola Tesla, the brilliant inventor and visionary, changed the world with his innovations. From alternating current to wireless communication, his genius was unmatched. This blog explores his life, struggles, and enduring legacy.`,
+  content: `<p>Nikola Tesla was born on July 10, 1856, in Smiljan, Croatia. From an early age, he displayed extraordinary intelligence and a vivid imagination, often visualizing complex inventions entirely in his mind before building them.</p>
+
+<p>Tesla's fascination with electricity began in childhood, fueled by his curiosity and innate understanding of natural phenomena. He often conducted small experiments at home, demonstrating a creative and fearless approach to learning.</p>
+
+<p>After studying engineering and physics, Tesla began working in Europe, contributing to telegraph and electrical systems. However, his ambition soon drew him to the United States, where he would leave an indelible mark on technology.</p>
+
+<p>In 1884, Tesla arrived in New York and briefly worked with Thomas Edison. Their differing approaches to electricity—Edison's direct current (DC) versus Tesla's alternating current (AC)—soon led to a professional rift.</p>
+
+<p>The “War of Currents” became legendary. Tesla’s AC system ultimately proved more efficient for long-distance power transmission, reshaping the global electrical infrastructure and securing his place in history.</p>
+
+<p>Among Tesla’s many inventions was the induction motor, which revolutionized industrial machinery. His work on transformers, generators, and AC power systems laid the foundation for modern electricity distribution.</p>
+
+<p>Tesla also dreamed of wireless power. He envisioned a world where electricity could be transmitted without wires, experimenting at Colorado Springs and later at Wardenclyffe Tower on Long Island.</p>
+
+<p>Despite his genius, Tesla struggled financially. Many of his ideas were ahead of their time, and he often lacked the business acumen to profit from them, unlike Edison or Westinghouse.</p>
+
+<p>Tesla’s eccentricity was well-known. He had a photographic memory, obsessive habits, and unusual routines, such as working late nights and maintaining strict personal rituals. These quirks only added to his enigmatic persona.</p>
+
+<p>Beyond electricity, Tesla explored concepts like radio, X-rays, and even early robotics. He filed hundreds of patents, each representing a vision far beyond the technological limitations of his era.</p>
+
+<p>Tesla was also a futurist. He predicted wireless communication, smartphones, and even renewable energy applications decades before they became reality, demonstrating his uncanny foresight.</p>
+
+<p>Yet, Tesla often faced skepticism and ridicule. His visionary ideas sometimes seemed fantastical to contemporaries, causing him to struggle for recognition during his lifetime.</p>
+
+<p>He never married and lived a life largely dedicated to invention and study. Tesla’s personal sacrifices were immense, often putting his work above comfort, wealth, or social life.</p>
+
+<p>In later years, Tesla became more reclusive, focusing on theoretical research and writing. Newspapers occasionally covered his eccentric experiments, capturing public fascination and curiosity.</p>
+
+<p>Despite hardships, Tesla’s contributions were profound. The AC system alone powers modern civilization, proving his lasting impact on society and technology.</p>
+
+<p>Tesla died on January 7, 1943, in New York City, relatively unrecognized for many of his contributions. His inventions, however, continue to shape modern life.</p>
+
+<p>Today, Tesla is celebrated as one of history’s greatest scientific minds. His name graces companies, scientific awards, and popular culture, ensuring his legacy endures.</p>
+
+<p>Tesla’s life teaches us the value of curiosity, persistence, and visionary thinking. Even in adversity, he remained committed to exploration and innovation.</p>
+
+<p>He also reminds us that genius often comes with sacrifice. Tesla prioritized discovery over wealth, fame, or social status, demonstrating the cost and courage of innovation.</p>
+
+<p>From alternating current to early wireless communication, Tesla’s ideas paved the way for countless technological advances, including radio, electrical grids, and modern power systems.</p>
+
+<p>Tesla’s vision extended beyond machines. He dreamed of a world interconnected by energy, knowledge, and technology, a concept that resonates even today.</p>
+
+<p>His notebooks and patents remain treasures for scientists and engineers, offering inspiration and insight into one of the most brilliant minds of the 19th and 20th centuries.</p>
+
+<p>Nikola Tesla’s story is a reminder that innovation requires imagination, courage, and resilience. His work continues to inspire inventors, scientists, and dreamers worldwide.</p>
+
+<p>Today, we honor Tesla not only for his inventions but also for his unwavering dedication to pushing humanity forward, even when the world was not ready for his ideas.</p>
+
+<p>By studying Tesla’s life, we learn the importance of thinking beyond the present, embracing creativity, and believing in visions that may seem impossible.</p>
+
+<p>In conclusion, Nikola Tesla was more than an inventor; he was a visionary whose mind reshaped reality. His legacy challenges us to pursue knowledge, think boldly, and leave a lasting impact on the world.</p>`
+},
+
+{
+  id: 43,
+  title: "The Psychology Behind Iconic Characters: Sherlock Holmes and the Art of Observation",
+  author: "Komal Chaudhary",
+  date: "December 19, 2025",
+  category: "Books",
+  imageUrl: "https://placehold.co/600x400/8b5cf6/ffffff?text=Sherlock+Holmes",
+  summary:
+      `Sherlock Holmes, one of literature’s most iconic characters, demonstrates extraordinary observation and deduction skills. This blog explores the psychological principles behind his methods and how human cognition plays a role in his genius.`,
+  content: `<p>Sherlock Holmes, created by Arthur Conan Doyle, is celebrated for his extraordinary ability to observe minute details and deduce truths that escape ordinary people.</p>
+
+<p>Holmes’ powers of observation and deduction are not mere literary exaggerations; they reflect fundamental psychological principles of attention, memory, and reasoning.</p>
+
+<p>At the core of Holmes’ skill is selective attention—the ability to focus on relevant details while ignoring distractions. Psychologically, this is a key component of effective problem-solving.</p>
+
+<p>Holmes often notices clues that others overlook: a worn shoe heel, a faint scent, or subtle changes in behavior. These observations mirror real cognitive processes where careful perception reveals hidden patterns.</p>
+
+<p>Memory plays a critical role. Holmes maintains a mental “mind palace,” a technique of structured visualization to store and recall vast amounts of information, aligning with modern mnemonic strategies.</p>
+
+<p>Deductive reasoning is another hallmark. Holmes starts with facts and logically narrows possibilities. While often called deduction, his approach combines induction, abduction, and inference based on evidence.</p>
+
+<p>Abductive reasoning, or inferring the most likely explanation from incomplete data, is central to Holmes’ problem-solving. Psychologists recognize this as a key method in expert decision-making.</p>
+
+<p>Holmes also exemplifies metacognition—the ability to think about one’s own thinking. He constantly evaluates the reliability of his observations and inferences, adjusting hypotheses as new evidence emerges.</p>
+
+<p>Observation isn’t just sensory. Holmes often interprets human behavior, analyzing posture, tone of voice, and social cues, demonstrating psychological insight into personality and motives.</p>
+
+<p>Pattern recognition is another crucial skill. Holmes can detect anomalies in behavior or environment, a principle used in cognitive psychology and even artificial intelligence research today.</p>
+
+<p>Holmes’ discipline is as important as his natural intelligence. He maintains routines, focuses deeply, and dedicates uninterrupted time to reflection, which enhances cognitive performance.</p>
+
+<p>He also uses deductive chains to connect seemingly unrelated observations, illustrating how logical frameworks structure complex problem-solving in human cognition.</p>
+
+<p>Holmes’ method aligns with modern investigative psychology, which emphasizes the importance of evidence-based analysis, behavioral profiling, and careful observation.</p>
+
+<p>The stories highlight the importance of curiosity and continuous learning. Holmes constantly studies chemistry, anatomy, and various sciences to enhance his knowledge base, demonstrating lifelong learning principles.</p>
+
+<p>Interestingly, Holmes’ mind also exemplifies the balance between divergent and convergent thinking. He explores multiple hypotheses (divergent) and then narrows to the most plausible solution (convergent).</p>
+
+<p>Stress management is implicit in Holmes’ work. He often isolates himself to think clearly, reflecting the psychological principle that reduced cognitive load enhances problem-solving.</p>
+
+<p>Holmes’ observational methods also teach us about the limits of perception. Human cognition filters stimuli, and his stories show the power of conscious attention to overcome cognitive blind spots.</p>
+
+<p>In social contexts, Holmes’ skills highlight theory of mind—the ability to understand others’ mental states. By analyzing behavior and motives, he predicts actions, a key component of social intelligence.</p>
+
+<p>The narrative also emphasizes logical humility. Holmes frequently acknowledges uncertainty and updates his hypotheses as new data emerges, modeling the scientific method.</p>
+
+<p>Even mundane details in the environment provide insights in Holmes’ stories, showing how ordinary observations, when analyzed methodically, can reveal extraordinary truths.</p>
+
+<p>Holmes’ approach inspires readers to cultivate observation, critical thinking, and analytical reasoning, applicable not only in detective work but in everyday problem-solving.</p>
+
+<p>Modern psychology corroborates many of Holmes’ methods, from attention control and memory techniques to deductive reasoning and behavioral analysis, proving the character’s timeless relevance.</p>
+
+<p>His stories also illustrate cognitive biases and how trained minds can overcome them, offering lessons in critical thinking and evidence-based reasoning.</p>
+
+<p>Holmes’ genius teaches the value of meticulous practice. Observation and deduction are skills developed over time through discipline, curiosity, and experience.</p>
+
+<p>For students and professionals alike, adopting aspects of Holmes’ methods—structured thinking, careful observation, and analytical reasoning—enhances decision-making and problem-solving abilities.</p>
+
+<p>Ultimately, Sherlock Holmes is more than a fictional detective; he is a model of human cognitive potential, showing how mind, observation, and logic can uncover truths hidden in plain sight.</p>
+
+<p>By studying Holmes, we understand not only the art of deduction but also the psychology behind human intelligence, attention, and reasoning. His methods continue to inspire investigators, psychologists, and readers around the world.</p>  
+`
+},
+
+{
+  id: 44,
+  title: "The Evolution of Jazz: From New Orleans to Global Influence",
+  author: "Komal Chaudhary",
+  date: "December 19, 2025",
+  category: "Music",
+  imageUrl: "https://placehold.co/600x400/8b5cf6/ffffff?text=Jazz+Evolution",
+  summary:
+      `Jazz, born in New Orleans, has evolved from its cultural roots into a global musical phenomenon. This blog traces its history, key figures, cultural significance, and lasting impact on modern music.`,
+  content: `<p>Jazz is more than music; it is a cultural movement that reflects history, innovation, and human expression. Its roots can be traced back to New Orleans in the late 19th and early 20th centuries.</p>
+
+<p>New Orleans, a melting pot of African, European, and Caribbean cultures, created the perfect environment for jazz to emerge. Rhythms, melodies, and improvisation blended into a distinct sound that would transform music forever.</p>
+
+<p>Early jazz was heavily influenced by African musical traditions, particularly rhythm, call-and-response patterns, and syncopation. Spirituals, work songs, and blues also played a critical role in shaping its foundation.</p>
+
+<p>Ragtime, with its lively syncopated melodies, was a precursor to jazz. Composers like Scott Joplin popularized ragtime, bridging the gap between traditional music and the improvisational nature of jazz.</p>
+
+<p>By the 1910s and 1920s, jazz bands began performing in New Orleans clubs, streets, and dance halls. These performances emphasized improvisation, a hallmark that would define jazz across generations.</p>
+
+<p>Key figures like Louis Armstrong revolutionized jazz by combining technical skill with expressive improvisation. Armstrong’s trumpet playing and vocal style set new standards for musicians worldwide.</p>
+
+<p>Duke Ellington further expanded jazz, blending orchestration, harmony, and melody into sophisticated compositions. His work brought jazz into concert halls, elevating it from popular entertainment to high art.</p>
+
+<p>The Harlem Renaissance of the 1920s provided a cultural backdrop for jazz’s growth. Jazz became a voice for African American identity, creativity, and social change, influencing art, literature, and dance.</p>
+
+<p>Swing, emerging in the 1930s, emphasized rhythm and danceable melodies. Big bands led by Benny Goodman, Count Basie, and Fletcher Henderson popularized this style, bringing jazz to mainstream America.</p>
+
+<p>Bebop, in the 1940s, shifted jazz towards complex harmonies, fast tempos, and improvisational brilliance. Artists like Charlie Parker and Dizzy Gillespie pushed musical boundaries, creating a more intellectual form of jazz.</p>
+
+<p>Cool jazz, with figures like Miles Davis and Chet Baker, emphasized smoother tones, subtle dynamics, and relaxed tempos, contrasting with the intensity of bebop.</p>
+
+<p>Modal jazz, pioneered by Miles Davis and John Coltrane, explored modes rather than chord progressions, offering a new palette for improvisation and innovation.</p>
+
+<p>Free jazz, led by Ornette Coleman, rejected traditional structures, embracing complete improvisation and experimentation, reflecting the social and artistic revolutions of the 1960s.</p>
+
+<p>Jazz fusion in the 1970s combined jazz improvisation with rock, funk, and electronic instruments. Artists like Herbie Hancock and Weather Report created hybrid sounds that expanded jazz’s global appeal.</p>
+
+<p>Jazz has always been intertwined with cultural movements, reflecting societal changes, political struggles, and artistic exploration. Its evolution mirrors the complexity of human expression.</p>
+
+<p>Internationally, jazz spread to Europe, Asia, and Latin America, influencing local music styles and creating global collaborations. Festivals and ensembles worldwide celebrate jazz as a living, evolving art form.</p>
+
+<p>Jazz has inspired countless modern genres, including rock, hip-hop, R&B, and electronic music. Its improvisational ethos encourages innovation and creativity across all musical forms.</p>
+
+<p>Female musicians like Mary Lou Williams, Ella Fitzgerald, and Billie Holiday also shaped jazz history, proving its inclusivity and cultural richness.</p>
+
+<p>Jazz education today thrives in conservatories, universities, and online platforms, ensuring that its legacy continues for future generations of musicians and listeners.</p>
+
+<p>Modern jazz continues to blend traditional elements with contemporary styles, embracing innovation while honoring its roots. Artists like Kamasi Washington and Esperanza Spalding carry the tradition forward.</p>
+
+<p>Improvisation remains the soul of jazz. Musicians interact spontaneously, responding to each other and the moment, making every performance unique and alive.</p>
+
+<p>The global influence of jazz is profound. From film scores to pop music, its rhythms, harmonies, and improvisational spirit permeate modern culture.</p>
+
+<p>Jazz also embodies resilience and adaptation. Despite facing racial discrimination, economic challenges, and cultural shifts, jazz evolved and thrived, reflecting the human capacity to innovate.</p>
+
+<p>Understanding jazz requires appreciating both technical mastery and emotional expression. It is music that is both cerebral and visceral, appealing to intellect and heart alike.</p>
+
+<p>Ultimately, jazz is a celebration of freedom—freedom of expression, creativity, and cultural fusion. Its history is a testament to the power of music to transcend boundaries and connect humanity.</p>
+
+<p>The evolution of jazz, from New Orleans streets to global stages, demonstrates its enduring significance. Jazz is more than a genre; it is a living, breathing art form that continues to inspire, educate, and move people around the world.</p>`
+},
+
+{
+  id: 45,
+  title: "The Quantum World: How Subatomic Particles Defy Reality",
+  author: "Komal Chaudhary",
+  date: "December 19, 2025",
+  category: "Science",
+  imageUrl: "https://placehold.co/600x400/8b5cf6/ffffff?text=Quantum+World",
+  summary:
+      `Quantum mechanics challenges our understanding of reality. This blog explores subatomic phenomena such as superposition, entanglement, and uncertainty, showing how the quantum world defies classical logic and perception.`,
+  content: `<p>The quantum world is a realm unlike anything we experience in daily life. At the subatomic level, particles behave in ways that defy classical intuition and challenge our understanding of reality.</p>
+
+<p>One of the foundational principles of quantum mechanics is superposition. Particles, like electrons, can exist in multiple states simultaneously until measured, a phenomenon that defies our everyday experience of objects existing in a single state.</p>
+
+<p>Superposition leads to fascinating thought experiments, such as Schrödinger’s cat, which illustrates how a system can be in multiple contradictory states at once until observed.</p>
+
+<p>Another remarkable phenomenon is entanglement. When two particles become entangled, the state of one instantaneously influences the other, regardless of distance. Einstein famously called this “spooky action at a distance.”</p>
+
+<p>Entanglement challenges the notion of locality, suggesting that particles can be connected in ways that classical physics cannot explain, a concept that has profound implications for quantum communication and computing.</p>
+
+<p>The Heisenberg uncertainty principle is another cornerstone. It states that certain properties, like position and momentum, cannot be simultaneously measured with perfect precision. The more accurately we know one, the less accurately we know the other.</p>
+
+<p>Quantum mechanics also introduces wave-particle duality. Particles like electrons and photons exhibit both wave-like and particle-like behavior depending on how they are observed.</p>
+
+<p>This duality is vividly demonstrated in the double-slit experiment, where particles create interference patterns when unobserved, yet act like discrete particles when measured, revealing the role of observation in quantum behavior.</p>
+
+<p>Probability replaces certainty in the quantum world. Instead of deterministic outcomes, quantum mechanics provides probabilities for where a particle might be or how it will behave.</p>
+
+<p>Quantum tunneling is another strange effect. Particles can pass through barriers that would be insurmountable according to classical physics, a phenomenon exploited in modern electronics like semiconductors and scanning tunneling microscopes.</p>
+
+<p>Quantum mechanics is not just theoretical. It underpins much of modern technology, from lasers and MRI machines to transistors and quantum computers.</p>
+
+<p>Quantum computing leverages superposition and entanglement to process information in ways impossible for classical computers, potentially revolutionizing computation and cryptography.</p>
+
+<p>The quantum world also challenges philosophical notions of reality. What does it mean for a particle to exist in multiple states? Does observation create reality? These questions blur the line between physics and philosophy.</p>
+
+<p>Interpretations of quantum mechanics vary, from the Copenhagen interpretation, which emphasizes the role of observation, to the many-worlds interpretation, which posits parallel universes for every quantum outcome.</p>
+
+<p>Quantum mechanics forces us to reconsider our assumptions about causality, determinism, and the nature of reality itself, showing that the universe at its smallest scales operates fundamentally differently from everyday experience.</p>
+
+<p>Despite its counterintuitive nature, quantum mechanics is experimentally verified to extraordinary precision, making it one of the most successful theories in science.</p>
+
+<p>Quantum entanglement is now being used in experiments for ultra-secure communication, demonstrating practical applications of phenomena once considered purely theoretical.</p>
+
+<p>Quantum mechanics also reveals the limitations of human intuition. Our brains evolved to understand macroscopic objects, not the strange behaviors of subatomic particles.</p>
+
+<p>Advances in quantum theory have inspired new fields like quantum cryptography, quantum teleportation, and quantum sensors, pushing the boundaries of science and technology.</p>
+
+<p>Understanding quantum mechanics requires embracing uncertainty and probabilistic thinking, which can be applied metaphorically to decision-making and problem-solving in daily life.</p>
+
+<p>Quantum phenomena also bridge science and philosophy, inspiring contemplation about the nature of observation, consciousness, and reality itself.</p>
+
+<p>Despite being mysterious, the quantum world is tangible in its effects. Technologies like semiconductors, lasers, and MRI machines rely directly on quantum principles.</p>
+
+<p>Quantum mechanics teaches humility. The universe operates on scales and principles far beyond our everyday perceptions, reminding us that reality is more complex than it appears.</p>
+
+<p>From superposition to entanglement, the quantum world challenges imagination and intellect alike, revealing a universe filled with astonishing possibilities.</p>
+
+<p>By studying quantum mechanics, scientists continue to unlock new technologies and insights, demonstrating how understanding fundamental principles can reshape our future.</p>
+
+<p>Ultimately, the quantum world reminds us that reality is stranger than fiction. The behaviors of subatomic particles defy intuition but reveal a deeper, richer understanding of the universe.</p>
+
+<p>Embracing the lessons of quantum mechanics inspires both wonder and innovation, showing that exploring the smallest scales of nature can lead to profound implications for science, technology, and philosophy.</p>`
+},
+
+{
+  id: 46,
+  title: "The Rise and Fall of the Roman Empire: Lessons for Today",
+  author: "Komal Chaudhary",
+  date: "December 19, 2025",
+  category: "History",
+  imageUrl: "https://placehold.co/600x400/8b5cf6/ffffff?text=Roman+Empire",
+  summary:
+      `The Roman Empire rose to unprecedented power before its eventual decline. This blog examines political, military, and cultural factors behind Rome’s success and collapse, drawing lessons applicable to modern societies.`,
+  content: `<p>The Roman Empire is one of history’s most influential civilizations, dominating the Mediterranean world for centuries. Its rise and fall provide enduring lessons for leadership, governance, and society.</p>
+
+<p>Rome began as a small city-state in central Italy and expanded through strategic military conquests, political alliances, and cultural integration.</p>
+
+<p>The Roman Republic emphasized civic participation, legal frameworks, and institutional checks, which contributed to its early stability and growth.</p>
+
+<p>Military organization was central to Rome’s rise. Roman legions were disciplined, well-trained, and highly adaptable, allowing the empire to conquer vast territories efficiently.</p>
+
+<p>Rome’s engineering and infrastructure—roads, aqueducts, and fortifications—enabled effective administration, trade, and troop movement across the empire.</p>
+
+<p>Cultural assimilation was another key factor. Rome absorbed ideas, religions, and practices from conquered peoples, promoting unity and reducing resistance.</p>
+
+<p>Political leadership, such as that of Julius Caesar, Augustus, and other emperors, often combined military prowess with administrative skill, strengthening central authority.</p>
+
+<p>The Roman economy thrived on agriculture, trade, and taxation, supporting both urban populations and the military apparatus essential for expansion.</p>
+
+<p>Law and governance were central to Roman stability. Codified laws, civic rights, and administrative procedures created predictability and cohesion in a diverse empire.</p>
+
+<p>However, Rome’s success also sowed the seeds of eventual decline. Overexpansion made the empire difficult to manage, stretching military and administrative resources thin.</p>
+
+<p>Political instability became a recurring problem, with frequent power struggles, civil wars, and corruption undermining effective governance.</p>
+
+<p>Economic challenges, including inflation, heavy taxation, and reliance on slave labor, weakened the empire’s financial foundations over time.</p>
+
+<p>Military issues arose as reliance on foreign mercenaries increased, reducing loyalty and cohesion, while external invasions from Germanic tribes and others tested Rome’s defenses.</p>
+
+<p>Social decay and inequality contributed to internal instability, as the gap between elite and common citizens grew, eroding civic cohesion.</p>
+
+<p>Cultural and religious shifts, including the rise of Christianity, transformed societal values and allegiances, influencing the political landscape.</p>
+
+<p>Rome’s fall was not sudden but a gradual process of internal weakening compounded by external pressures, culminating in the collapse of the Western Roman Empire in 476 CE.</p>
+
+<p>Despite the decline, the Eastern Roman Empire, or Byzantine Empire, preserved Roman traditions and law for centuries, demonstrating the resilience of institutional structures.</p>
+
+<p>Rome’s legacy is vast. Legal principles, architectural achievements, and cultural ideas continue to influence modern governance, engineering, and societal norms.</p>
+
+<p>Modern societies can learn from Rome’s strengths: disciplined military, effective administration, infrastructure investment, and cultural inclusivity.</p>
+
+<p>At the same time, Rome’s decline warns of overexpansion, political corruption, economic mismanagement, and social inequality as factors that can destabilize nations.</p>
+
+<p>Leadership matters. Rome’s most stable periods coincided with competent, visionary rulers, while weaker leadership often accelerated decline.</p>
+
+<p>Adaptability and innovation were central to Rome’s success. Embracing new ideas and technologies allowed the empire to maintain dominance for centuries.</p>
+
+<p>Trade and economic integration created interdependence, but reliance on unsustainable practices eventually weakened the empire’s resilience.</p>
+
+<p>Military discipline and strategy were key, but without civic loyalty and administrative support, even strong armies could not prevent decline.</p>
+
+<p>Rome also demonstrates the importance of civic institutions and law in maintaining social cohesion across diverse populations.</p>
+
+<p>In conclusion, the Roman Empire offers both inspiration and caution. Its rise illustrates how vision, strategy, and culture build lasting power, while its fall reminds us that neglecting political, economic, and social foundations can undo even the greatest achievements.</p>
+
+<p>By studying Rome, modern societies can glean insights into leadership, governance, and resilience, ensuring that lessons from the past inform the present and future.</p>`
+},
+
+
+
+  /*          
    {
-                 id: 16,
+                 id: 43,
                  title: "",
                  author: "Komal Chaudhary",
-                 date: "August 25, 2025",
+                 date: "December 19, 2025",
                  category: "Tech",
                  imageUrl: "https://placehold.co/600x400/8b5cf6/ffffff?text=Space",
                  summary:

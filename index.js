@@ -27,6 +27,7 @@ document.addEventListener("DOMContentLoaded", () => {
     "Science",
     "Country",
     "Books",
+    "Lifestyle",
     "River",
     "Mountains",
     "Music",
