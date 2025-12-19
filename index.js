@@ -21,9 +21,10 @@
 document.addEventListener("DOMContentLoaded", () => {
   const categories = [
     "All",
+    "Quantum Physics",
     "Tech",
-    "Biography",
     "Science",
+    "Biography",
     "Country",
     "Books",
     "Lifestyle",
