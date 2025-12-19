@@ -136,7 +136,7 @@ document.addEventListener("DOMContentLoaded", () => {
                             }</h2>
                             <p class="text-sm text-gray-500 dark:text-gray-400 mt-2">By ${
                               post.author
-                            } on ${post.date}</p>
+                            } on ${post._displayDate}</p>
                             <p class="text-gray-700 dark:text-gray-300 mt-4 h-20 overflow-hidden">${
                               post.summary
                             }</p>
@@ -195,7 +195,7 @@ document.addEventListener("DOMContentLoaded", () => {
                             }</h1>
                             <p class="text-md text-gray-500 dark:text-gray-400 mt-4">By ${
                               post.author
-                            } on ${post.date}</p>
+                            } on ${post._displayDate}</p>
                         </div>
                         <button id="full-post-favorite-btn" data-favorite-id="${
                           post.id
@@ -286,14 +286,11 @@ document.addEventListener("DOMContentLoaded", () => {
         return (post._searchable || "").includes(term);
       });
 
-    // Apply sorting using normalized timestamps
+    // Apply sorting
     switch (state.sortOrder) {
+      // Oldest first: by numeric id ascending (smallest id = oldest)
       case "oldest":
-        filtered.sort((a, b) => {
-          const diff = (a._ts || 0) - (b._ts || 0);
-          if (diff !== 0) return diff;
-          return (a._id || 0) - (b._id || 0);
-        });
+        filtered.sort((a, b) => (a._id || 0) - (b._id || 0));
         break;
       case "alpha-asc":
         filtered.sort((a, b) => a.title.localeCompare(b.title));
@@ -301,13 +298,10 @@ document.addEventListener("DOMContentLoaded", () => {
       case "alpha-desc":
         filtered.sort((a, b) => b.title.localeCompare(a.title));
         break;
+      // Newest first: by numeric id descending (largest id = newest)
       case "newest":
       default:
-        filtered.sort((a, b) => {
-          const diff = (b._ts || 0) - (a._ts || 0);
-          if (diff !== 0) return diff;
-          return (b._id || 0) - (a._id || 0);
-        });
+        filtered.sort((a, b) => (b._id || 0) - (a._id || 0));
         break;
     }
 
@@ -534,14 +528,99 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   // Normalize posts for searching and sorting
+  const parseMonthDateYear = (dateStr) => {
+    if (!dateStr || typeof dateStr !== "string") return 0;
+    // Try built-in parser first
+    const p = Date.parse(dateStr);
+    if (Number.isFinite(p)) return p;
+
+    // Normalize spaces and remove duplicate spaces
+    const normalized = dateStr.trim().replace(/\s+/g, " ");
+
+    // Unified month maps (full and short) available for all parsing paths
+    const months = {
+      january: 0,
+      february: 1,
+      march: 2,
+      april: 3,
+      may: 4,
+      june: 5,
+      july: 6,
+      august: 7,
+      september: 8,
+      october: 9,
+      november: 10,
+      december: 11,
+      jan: 0,
+      feb: 1,
+      mar: 2,
+      apr: 3,
+      jun: 5,
+      jul: 6,
+      aug: 7,
+      sep: 8,
+      sept: 8,
+      oct: 9,
+      nov: 10,
+      dec: 11,
+    };
+
+    // Pattern: 'MonthName day, year' (comma optional, supports ordinal suffixes like '1st')
+    const regex = /^([A-Za-z]+)\s+(\d{1,2})(?:st|nd|rd|th)?,?\s*(\d{4})$/i;
+    const match = normalized.match(regex);
+    if (match) {
+      const monthIndex = months[match[1].toLowerCase()];
+      const day = parseInt(match[2], 10);
+      const year = parseInt(match[3], 10);
+      if (
+        Number.isFinite(monthIndex) &&
+        Number.isFinite(day) &&
+        Number.isFinite(year)
+      ) {
+        return new Date(year, monthIndex, day).getTime();
+      }
+    }
+
+    // Fallback: tokens like 'Dec 1 2026' or 'Dec 1, 2026'
+    const tokens = normalized.replace(/,/g, "").split(" ");
+    if (tokens.length >= 3) {
+      const monthToken = tokens[0].toLowerCase().replace(/\.$/, "");
+      const dayToken = parseInt(tokens[1].replace(/\D/g, ""), 10);
+      const yearToken = parseInt(tokens[2], 10);
+      const m = months[monthToken];
+      if (
+        Number.isFinite(m) &&
+        Number.isFinite(dayToken) &&
+        Number.isFinite(yearToken)
+      ) {
+        return new Date(yearToken, m, dayToken).getTime();
+      }
+    }
+
+    // Give up
+    console.warn("Unrecognized date format:", dateStr);
+    return 0;
+  };
+
   const normalizePosts = () => {
     if (!Array.isArray(allPosts)) return;
     allPosts.forEach((post) => {
-      // Timestamp for robust sorting
-      const ts = Date.parse(post.date);
+      // Timestamp for robust sorting using the custom parser
+      const ts = parseMonthDateYear(post.date);
       post._ts = Number.isFinite(ts) ? ts : 0;
       // Numeric id for stable tie-breaks
       post._id = Number(post.id) || 0;
+      // Precompute a readable display date
+      if (post._ts) {
+        const d = new Date(post._ts);
+        post._displayDate = d.toLocaleDateString("en-US", {
+          month: "long",
+          day: "numeric",
+          year: "numeric",
+        });
+      } else {
+        post._displayDate = post.date || "Unknown date";
+      }
       // Precompute a searchable string (strip HTML from content)
       const contentText = post.content
         ? post.content.replace(/<[^>]+>/g, " ")
@@ -564,4 +643,106 @@ document.addEventListener("DOMContentLoaded", () => {
   };
 
   init();
+
+  (() => {
+    // Local copy of the parser used in the app
+    const parse = (dateStr) => {
+      if (!dateStr || typeof dateStr !== "string") return 0;
+      const p = Date.parse(dateStr);
+      if (Number.isFinite(p)) return p;
+      const normalized = dateStr.trim().replace(/\s+/g, " ");
+      const regex = /^([A-Za-z]+)\s+(\d{1,2}),?\s*(\d{4})$/;
+      const match = normalized.match(regex);
+      const months = {
+        january: 0,
+        february: 1,
+        march: 2,
+        april: 3,
+        may: 4,
+        june: 5,
+        july: 6,
+        august: 7,
+        september: 8,
+        october: 9,
+        november: 10,
+        december: 11,
+      };
+      if (match) {
+        const m = months[match[1].toLowerCase()];
+        return new Date(
+          parseInt(match[3], 10),
+          m,
+          parseInt(match[2], 10)
+        ).getTime();
+      }
+      const tokens = normalized.replace(/,/g, "").split(" ");
+      if (tokens.length >= 3) {
+        const monthsShort = {
+          jan: 0,
+          feb: 1,
+          mar: 2,
+          apr: 3,
+          may: 4,
+          jun: 5,
+          jul: 6,
+          aug: 7,
+          sep: 8,
+          sept: 8,
+          oct: 9,
+          nov: 10,
+          dec: 11,
+        };
+        const m = monthsShort[tokens[0].toLowerCase()];
+        const d = parseInt(tokens[1], 10),
+          y = parseInt(tokens[2], 10);
+        if (Number.isFinite(m) && Number.isFinite(d) && Number.isFinite(y))
+          return new Date(y, m, d).getTime();
+      }
+      console.warn("Unrecognized date format:", dateStr);
+      return 0;
+    };
+
+    // Sample posts (including same-day tie)
+    const posts = [
+      { id: 1, date: "December 19, 2025" },
+      { id: 2, date: "October 31,2025" },
+      { id: 3, date: "January 1, 2026" },
+      { id: 4, date: "December 19, 2025" }, // same day as id 1 (tie)
+    ];
+
+    posts.forEach((p) => {
+      (p._ts = parse(p.date)),
+        (p._display = new Date(p._ts).toLocaleDateString("en-US", {
+          month: "long",
+          day: "numeric",
+          year: "numeric",
+        }));
+    });
+
+    console.log(
+      "Parsed posts:",
+      posts.map((p) => ({
+        id: p.id,
+        date: p.date,
+        parsedMs: p._ts,
+        display: p._display,
+      }))
+    );
+
+    const newest = [...posts].sort(
+      (a, b) => (b._ts || 0) - (a._ts || 0) || (b.id || 0) - (a.id || 0)
+    );
+    const oldest = [...posts].sort(
+      (a, b) => (a._ts || 0) - (b._ts || 0) || (a.id || 0) - (b.id || 0)
+    );
+
+    console.log(
+      "Newest first (ids):",
+      newest.map((p) => p.id)
+    );
+    console.log(
+      "Oldest first (ids):",
+      oldest.map((p) => p.id)
+    );
+  })();
 });

@@ -6,7 +6,7 @@ const allPosts = [
     id: 1,
     title: "About This App's Creator",
     author: "Komal Chaudhary",
-    date: "December 19, 2025",
+    date: "January 1, 2025",
     category: "Biography",
     imageUrl:
       "https://www.dropbox.com/scl/fi/bu8wupt023vg0u37kl2t3/id1.jpg?rlkey=353neh9rxdfde6kpezyb2bvb4&st=ctxd9rr9&&raw=1",
@@ -67,7 +67,7 @@ SoloLearn मा Python, Java, C++, JavaScript जस्ता धेरै भ�
     id: 2,
     title: "Future of Artificial Intelligence",
     author: "Komal Chaudhary",
-    date: "December 19, 2025",
+    date: "October 31, 2025",
     category: "Tech",
     imageUrl:
       "https://www.dropbox.com/scl/fi/mu2xvhnxmto9f941fsb3b/id2.jpg?rlkey=lmnig3t0q8he4p7m7wyw1u4jn&st=h07tu3nu&&raw=1",
@@ -126,7 +126,7 @@ SoloLearn मा Python, Java, C++, JavaScript जस्ता धेरै भ�
     id: 3,
     title: "Google",
     author: "Komal Chaudhary",
-    date: "December 19, 2025",
+    date: "October 31, 2025",
     category: "Tech",
     imageUrl:
       "https://www.dropbox.com/scl/fi/q78b026iahykc1j4e3zxk/id3.jpg?rlkey=dcswv80ci9bwmdkfy5k9thtvb&st=e5t58imr&&raw=1",
@@ -154,7 +154,7 @@ SoloLearn मा Python, Java, C++, JavaScript जस्ता धेरै भ�
     id: 4,
     title: "Mystery of The Universe",
     author: "Komal Chaudhary",
-    date: "December 19, 2025",
+    date: "October 31, 2025",
     category: "Science",
     imageUrl:
       "https://www.dropbox.com/scl/fi/pqfe0wseqxy2w5nbk4hc2/id4.jpg?rlkey=fk3409qhnt68glse9mzjq7etd&st=qu4053fk&&raw=1",
@@ -198,7 +198,7 @@ SoloLearn मा Python, Java, C++, JavaScript जस्ता धेरै भ�
     id: 5,
     title: "Microsoft",
     author: "Komal Chaudhary",
-    date: "December 19, 2025",
+    date: "October 31, 2025",
     category: "Tech",
     imageUrl:
       "https://www.dropbox.com/scl/fi/y1m9uwyajy474s5aqqxh7/id5.jpg?rlkey=75hy2684aedt9jim8uatiaw3t&st=zvi06zs9&&raw=1",
@@ -217,7 +217,7 @@ SoloLearn मा Python, Java, C++, JavaScript जस्ता धेरै भ�
     id: 6,
     title: "Open AI",
     author: "Komal Chaudhary",
-    date: "December 19, 2025",
+    date: "October 31, 2025",
     category: "Tech",
     imageUrl:
       "https://www.dropbox.com/scl/fi/amt04vu04fmet7tomx66l/id6.jpg?rlkey=dv9dl1ida0ik1dhco5pmndfih&st=ez7h4fsl&&raw=1",
@@ -235,7 +235,7 @@ SoloLearn मा Python, Java, C++, JavaScript जस्ता धेरै भ�
     id: 7,
     title: "Amazon",
     author: "Komal Chaudhary",
-    date: "December 19, 2025",
+    date: "October 31, 2025",
     category: "Tech",
     imageUrl:
       "https://www.dropbox.com/scl/fi/zv90rfn4cw4vvz36viy0e/id7.jpg?rlkey=ytztp9bi55h6zq4j74rj8qfax&st=5iwxv2kp&&raw=1",
@@ -254,7 +254,7 @@ SoloLearn मा Python, Java, C++, JavaScript जस्ता धेरै भ�
     id: 8,
     title: "Grok AI",
     author: "Komal Chaudhary",
-    date: "December 19, 2025",
+    date: "October 31, 2025",
     category: "Tech",
     imageUrl:
       "https://www.dropbox.com/scl/fi/zhaydhixk6larzyr5jwrv/id8.jpg?rlkey=gqq8kciyjx1z5kb51c0lors9l&st=u8r8cz2k&&raw=1",
@@ -273,7 +273,7 @@ Grok को एक विशेषता यसको “विशेष व्�
     id: 9,
     title: "Tiktok",
     author: "Komal Chaudhary",
-    date: "December 19, 2025",
+    date: "October 31, 2025",
     category: "Tech",
     imageUrl:
       "https://www.dropbox.com/scl/fi/xcfjx2ywj4573xvlpwh1d/id9.jpg?rlkey=oo4jjiolqjxlolp8chybctt0w&st=my8mmku0&&raw=1",
@@ -292,7 +292,7 @@ Grok को एक विशेषता यसको “विशेष व्�
     id: 10,
     title: "Facebook",
     author: "Komal Chaudhary",
-    date: "December 19, 2025",
+    date: "October 31, 2025",
     category: "Tech",
     imageUrl:
       "https://www.dropbox.com/scl/fi/jrusnfe1wutfwxfttxa8l/id10.jpg?rlkey=lk3qwuxdyhggjmhnw7qgh0drw&st=w56w70en&&raw=1",
@@ -311,7 +311,7 @@ Grok को एक विशेषता यसको “विशेष व्�
     id: 11,
     title: "YouTube",
     author: "Komal Chaudhary",
-    date: "December 19, 2025",
+    date: "October 31, 2025",
     category: "Tech",
     imageUrl:
       "https://www.dropbox.com/scl/fi/2rjz4ue8g4wvzd7htg6zn/id11.jpg?rlkey=uf0jx76h6lbqe5qd4olmhzz2x&st=5v3i9g4a&&raw=1",
@@ -331,7 +331,7 @@ Grok को एक विशेषता यसको “विशेष व्�
     id: 12,
     title: "Instagram",
     author: "Komal Chaudhary",
-    date: "December 19, 2025",
+    date: "October 31, 2025",
     category: "Tech",
     imageUrl:
       "https://www.dropbox.com/scl/fi/a415b4d8ylvxelvkoq3ph/id12.jpg?rlkey=0el3ujq773bll07rekxcndeuj&st=56hkbz3g&&raw=1",
@@ -350,7 +350,7 @@ Grok को एक विशेषता यसको “विशेष व्�
     id: 13,
     title: "DeepSeek",
     author: "Komal Chaudhary",
-    date: "December 19, 2025",
+    date: "October 31, 2025",
     category: "Tech",
     imageUrl:
       "https://www.dropbox.com/scl/fi/jlw6qvak77p2y6byvbp9e/id13.jpg?rlkey=r05raiimyh6uelykevv8jthjm&st=enln4gmj&&raw=1",
@@ -377,7 +377,7 @@ DeepSeek कम्पनीले सस्तो, प्रभावकार�
     id: 14,
     title: "Gemini AI (By Google)",
     author: "Komal Chaudhary",
-    date: "December 19, 2025",
+    date: "October 31, 2025",
     category: "Tech",
     imageUrl:
       "https://www.dropbox.com/scl/fi/0mxym7m8za0ton2wexl69/id14.jpg?rlkey=ynlic6zc355er0d84bxhiy2q8&st=b1scrnek&&raw=1",
@@ -392,7 +392,7 @@ Gemini AI वेब एप मार्फत ४० भन्दा बढी �
     id: 15,
     title: "Copilot",
     author: "Komal Chaudhary",
-    date: "December 19, 2025",
+    date: "October 31, 2025",
     category: "Tech",
     imageUrl:
       "https://www.dropbox.com/scl/fi/lnkix641i4tbe1gpjkzv4/id15.jpg?rlkey=4el97mgzxp5iped62nes4cohn&st=5h5fj1w1&&raw=1",
@@ -408,7 +408,7 @@ Copilot को प्रयोग विद्यार्थी, पेशे�
     id: 16,
     title: "The Sun",
     author: "Komal Chaudhary",
-    date: "August 26, 2025",
+    date: "October 31, 2025",
     category: "Science",
     imageUrl:
       "https://www.dropbox.com/scl/fi/qeiehtoq1rkgl31zc4f4h/id16.jpg?rlkey=jkkaldaj2m15d6wnp1woa4g23&st=0sdf2lwh&&raw=1",
@@ -506,7 +506,7 @@ Copilot को प्रयोग विद्यार्थी, पेशे�
     id: 17,
     title: "Earth",
     author: "Komal Chaudhary",
-    date: "August 26, 2025",
+    date: "October 31, 2025",
     category: "Science",
     imageUrl:
       "https://www.dropbox.com/scl/fi/tdech5asytyzw2s8b5y5k/id17.jpg?rlkey=7xh0b3jxwuq3abwndfyfo951s&st=41rxf28p&&raw=1",
@@ -550,7 +550,7 @@ Copilot को प्रयोग विद्यार्थी, पेशे�
     id: 18,
     title: "Mercury",
     author: "Komal Chaudhary",
-    date: "August 26, 2025",
+    date: "October 31, 2025",
     category: "Science",
     imageUrl:
       "https://www.dropbox.com/scl/fi/m7k1oygybviq4vthk93ro/id18.jpg?rlkey=37fym867un6qwhkyxvdc1eale&st=ohzoeh4d&&raw=1",
@@ -594,7 +594,7 @@ Copilot को प्रयोग विद्यार्थी, पेशे�
     id: 19,
     title: "Venus",
     author: "Komal Chaudhary",
-    date: "August 26, 2025",
+    date: "October 31, 2025",
     category: "Science",
     imageUrl:
       "https://www.dropbox.com/scl/fi/ghxsei77hmdn2fa1fxhij/id19.jpg?rlkey=egsfid21j1tnmzmny3h8tzyev&st=8vchlt7d&&raw=1",
@@ -637,7 +637,7 @@ Copilot को प्रयोग विद्यार्थी, पेशे�
     id: 20,
     title: "Mars",
     author: "Komal Chaudhary",
-    date: "August 26, 2025",
+    date: "October 31, 2025",
     category: "Science",
     imageUrl:
       "https://www.dropbox.com/scl/fi/58i3fpkqluf3pwszao95q/id20.jpg?rlkey=q3pbpx4hynw72hqpzdcazdwg2&st=mhp4xjsc&&raw=1",
@@ -681,7 +681,7 @@ Copilot को प्रयोग विद्यार्थी, पेशे�
     id: 21,
     title: "Jupiter",
     author: "Komal Chaudhary",
-    date: "August 26, 2025",
+    date: "October 31, 2025",
     category: "Science",
     imageUrl:
       "https://www.dropbox.com/scl/fi/icrpsrubt3iagun3kgrgy/id21.jpg?rlkey=2x5j8egi2g9fiwlzpmee15aw4&st=wxko7hq7&&raw=1",
@@ -723,7 +723,7 @@ Copilot को प्रयोग विद्यार्थी, पेशे�
     id: 22,
     title: "Saturn",
     author: "Komal Chaudhary",
-    date: "August 26, 2025",
+    date: "October 31, 2025",
     category: "Science",
     imageUrl:
       "https://www.dropbox.com/scl/fi/d8valp2n1g71a77pj34k8/id22.jpg?rlkey=ux8uqb8s6j6ns5mk0vmpxgesz&st=z5azhrg5&&raw=1",
@@ -770,7 +770,7 @@ Copilot को प्रयोग विद्यार्थी, पेशे�
     id: 23,
     title: "Neptune",
     author: "Komal Chaudhary",
-    date: "August 26, 2025",
+    date: "October 31, 2025",
     category: "Science",
     imageUrl:
       "https://www.dropbox.com/scl/fi/derzqwaqtqimutex9j90j/id23.jpg?rlkey=04e2byeszxbzsok9ehm5mn7qn&st=wto8csgm&&raw=1",
@@ -813,7 +813,7 @@ Copilot को प्रयोग विद्यार्थी, पेशे�
     id: 24,
     title: "Uranus",
     author: "Komal Chaudhary",
-    date: "August 26, 2025",
+    date: "October 31, 2025",
     category: "Science",
     imageUrl:
       "https://www.dropbox.com/scl/fi/up4cscv94aw0fr9y9wllt/id24.jpg?rlkey=8k0gxdk41exjt88vywiiid89g&st=aeg00fec&&raw=1",
@@ -856,7 +856,7 @@ Copilot को प्रयोग विद्यार्थी, पेशे�
     id: 25,
     title: "Pluto",
     author: "Komal Chaudhary",
-    date: "August 26, 2025",
+    date: "October 31, 2025",
     category: "Science",
     imageUrl:
       "https://www.dropbox.com/scl/fi/eavngc3g9he7opavxyyex/id25.jpg?rlkey=hww356pfzvyo19n624sfng4be&st=dod1j8ua&&raw=1",
@@ -898,7 +898,7 @@ Copilot को प्रयोग विद्यार्थी, पेशे�
     id: 26,
     title: "The Moon",
     author: "Komal Chaudhary",
-    date: "August 26, 2025",
+    date: "October 31, 2025",
     category: "Science",
     imageUrl:
       "https://www.dropbox.com/scl/fi/aco6i1w71de9311nfziue/id26.jpg?rlkey=1es8mbku0qumcjtkawc3yxtvl&st=lbnyxe9r&&raw=1",
@@ -943,7 +943,7 @@ Copilot को प्रयोग विद्यार्थी, पेशे�
     id: 27,
     title: "K2-18b",
     author: "Komal Chaudhary",
-    date: "August 26, 2025",
+    date: "October 31, 2025",
     category: "Science",
     imageUrl:
       "https://www.dropbox.com/scl/fi/u85jqb000t0f2jbdezkb0/id27.png?rlkey=j5coixxa59zyk35jnzxjusv0r&st=slp7219o&&raw=1",
@@ -979,7 +979,7 @@ K2-18b exoplanetको रूपमा वैज्ञानिक दृष्�
     id: 28,
     title: "TRAPPIST-1e",
     author: "Komal Chaudhary",
-    date: "August 26, 2025",
+    date: "October 31, 2025",
     category: "Science",
     imageUrl:
       "https://www.dropbox.com/scl/fi/r99gibad1oh22xy6lwweq/id28.png?rlkey=uugf0rocszm3lva91g8wz390l&st=0l0ooavx&&raw=1",
@@ -1016,7 +1016,7 @@ TRAPPIST-1e बाह्य सौर्यमण्डलमा जीवन �
     id: 29,
     title: "Betelgeuse",
     author: "Komal Chaudhary",
-    date: "August 26, 2025",
+    date: "October 31, 2025",
     category: "Science",
     imageUrl:
       "https://www.dropbox.com/scl/fi/m79cxiko81t9aj4iflie1/id29.jpg?rlkey=l3nxnpuxe8ccggh6shr3ooa22&st=20rpn6jt&&raw=1",
@@ -1053,7 +1053,7 @@ Betelgeuse रातो सुपरजाइन्ट तारा हो ज�
     id: 30,
     title: "Proxima Centauri",
     author: "Komal Chaudhary",
-    date: "August 26, 2025",
+    date: "October 31, 2025",
     category: "Science",
     imageUrl:
       "https://www.dropbox.com/scl/fi/et46i8ww2gg90ua6q707h/id30.jpg?rlkey=tx3dvpokui4zjrhv8dszjeev6&st=rlbk6um8&&raw=1",
@@ -1089,7 +1089,7 @@ Proxima Centauri नजिकको रातो बौना तारा ह�
     id: 31,
     title: "Black Hole",
     author: "Komal Chaudhary",
-    date: "August 26, 2025",
+    date: "October 31, 2025",
     category: "Science",
     imageUrl:
       "https://www.dropbox.com/scl/fi/yng8qqcne83cr07j60ndn/id31.jpg?rlkey=bvyh0r4enkqkbxp0ca9orbxid&st=grne66bz&&raw=1",
@@ -1130,7 +1130,7 @@ Proxima Centauri नजिकको रातो बौना तारा ह�
     id: 32,
     title: "James Webb Space Telescope",
     author: "Komal Chaudhary",
-    date: "August 26, 2025",
+    date: "October 31, 2025",
     category: "Science",
     imageUrl:
       "https://www.dropbox.com/scl/fi/ktr9bnoxlvx1j25pmoj9d/id32.jpg?rlkey=g0uclp38897qdmvdvyruuc380&st=g2l02v2t&&raw=1",
@@ -1167,7 +1167,7 @@ James Webb Space Telescope अन्तरिक्षको अनुसन्�
     id: 33,
     title: "Hubble Space Telescope",
     author: "Komal Chaudhary",
-    date: "August 26, 2025",
+    date: "October 31, 2025",
     category: "Science",
     imageUrl:
       "https://www.dropbox.com/scl/fi/z7n91463eflubm88lzv8d/id33.jpg?rlkey=eayusf0me5kxsqrkw3ymorrca&st=k3mfawa9&&raw=1",
@@ -1201,7 +1201,7 @@ Hubble Space Telescope ब्रह्माण्डीय अवलोकन�
     id: 34,
     title: "All in One Intro of Nepal",
     author: "Komal Chaudhary",
-    date: "August 27, 2025",
+    date: "October 31, 2025",
     category: "Country",
     imageUrl:
       "https://www.dropbox.com/scl/fi/k5b917mq9yb24bbsswgbt/id34.jpg?rlkey=79r9liep7hr04v93dcir2v9s2&st=1zaz75y4&&raw=1",
@@ -1230,7 +1230,7 @@ Hubble Space Telescope ब्रह्माण्डीय अवलोकन�
     id: 35,
     title: "Nile : The Longest River",
     author: "Komal Chaudhary",
-    date: "August 27, 2025",
+    date: "October 31, 2025",
     category: "River",
     imageUrl:
       "https://www.dropbox.com/scl/fi/ccl1xd8dom6wgs7wl6704/id35.jpg?rlkey=wlctplea2646afmoapmeb9dsk&st=yqpqdjtr&&raw=1",
@@ -1254,7 +1254,7 @@ Hubble Space Telescope ब्रह्माण्डीय अवलोकन�
     id: 36,
     title: "Mount Everest : The Top of Earth",
     author: "Komal Chaudhary",
-    date: "August 27, 2025",
+    date: "October 31, 2025",
     category: "Mountains",
     imageUrl:
       "https://www.dropbox.com/scl/fi/334n2j2nng1zaajfzcqvu/id36.jpg?rlkey=12vuxza0ormi184e3lp5hrzmc&st=nmuu8ito&&raw=1",
@@ -1283,7 +1283,7 @@ Hubble Space Telescope ब्रह्माण्डीय अवलोकन�
     id: 37,
     title: "3i-Atlas",
     author: "Komal Chaudhary",
-    date: "December 19, 2025",
+    date: "October 31, 2025",
     category: "Science",
     imageUrl:
       "https://assets.science.nasa.gov/content/dam/science/psd/solar-system/comets/multimedia/Comet%203I-ATLAS.gif?w=500&h=500&fit=clip&crop=faces%2Cfocalpoint",
@@ -1329,12 +1329,12 @@ Hubble Space Telescope ब्रह्माण्डीय अवलोकन�
 <p>By continuously cycling through Intelligence, Intention, and Impact, the 3i Atlas becomes more than a framework—it becomes a way of thinking, navigating, and evolving with purpose.</p>
 `,
   },
- 
+
   {
     id: 38,
     title: "The Art of Control: Mastering Yourself and Your World",
     author: "Komal Chaudhary",
-    date: "December 19, 2025",
+    date: "October 31, 2025",
     category: "Lifestyle",
     imageUrl:
       "https://placehold.co/600x400/8b5cf6/ffffff?text=The+Art+of+Control",
@@ -1370,7 +1370,7 @@ Hubble Space Telescope ब्रह्माण्डीय अवलोकन�
     id: 39,
     title: "Cold Thinking in a Loud World",
     author: "Komal Chaudhary",
-    date: "December 19, 2025",
+    date: "October 31, 2025",
     category: "Lifestyle",
     imageUrl: "https://placehold.co/600x400/8b5cf6/ffffff?text=Cold+Thinking",
     summary: `In a world filled with constant noise, distractions, and emotional reactions, mastering cold, rational thinking is a superpower. It allows you to make decisions with clarity, focus, and purpose, rising above chaos.`,
@@ -1410,15 +1410,14 @@ Hubble Space Telescope ब्रह्माण्डीय अवलोकन�
   },
 
   {
-  id: 40,
-  title: "Discipline Is a Superpower",
-  author: "Komal Chaudhary",
-  date: "December 19, 2025",
-  category: "Lifestyle",
-  imageUrl: "https://placehold.co/600x400/8b5cf6/ffffff?text=Discipline",
-  summary:
-      `Discipline is more than following rules—it’s a transformative superpower. It shapes habits, strengthens self-control, and allows you to achieve long-term goals despite distractions or setbacks.`,
-  content: `<p>Have you ever wondered why some people achieve extraordinary results while others struggle despite equal talent? The secret often isn’t talent or luck—it’s discipline. Discipline is a superpower, one that transforms your mind, body, and life if cultivated consistently.</p>
+    id: 40,
+    title: "Discipline Is a Superpower",
+    author: "Komal Chaudhary",
+    date: "October 31, 2025",
+    category: "Lifestyle",
+    imageUrl: "https://placehold.co/600x400/8b5cf6/ffffff?text=Discipline",
+    summary: `Discipline is more than following rules—it’s a transformative superpower. It shapes habits, strengthens self-control, and allows you to achieve long-term goals despite distractions or setbacks.`,
+    content: `<p>Have you ever wondered why some people achieve extraordinary results while others struggle despite equal talent? The secret often isn’t talent or luck—it’s discipline. Discipline is a superpower, one that transforms your mind, body, and life if cultivated consistently.</p>
 
 <p>At its core, discipline is the ability to control impulses, emotions, and actions, consistently choosing what aligns with long-term goals over instant gratification. Imagine a power that allows you to stay focused, calm, and effective regardless of chaos. That is discipline in action.</p>
 
@@ -1454,19 +1453,18 @@ Hubble Space Telescope ब्रह्माण्डीय अवलोकन�
 
 <p>Ultimately, discipline is paradoxically freedom. Controlling oneself allows freedom to achieve, grow, and shape destiny. Without discipline, external circumstances dictate life. With it, you control your path.</p>
 
-<p>Small, consistent disciplined actions compound over time, creating a life of achievement, resilience, and purpose. Discipline is a superpower—quiet but profound. Will you start cultivating it today?</p>`
-},
+<p>Small, consistent disciplined actions compound over time, creating a life of achievement, resilience, and purpose. Discipline is a superpower—quiet but profound. Will you start cultivating it today?</p>`,
+  },
 
-{
-  id: 41,
-  title: "Mind Over Noise",
-  author: "Komal Chaudhary",
-  date: "December 19, 2025",
-  category: "Lifestyle",
-  imageUrl: "https://placehold.co/600x400/8b5cf6/ffffff?text=Mind+Over+Noise",
-  summary:
-      `In a world overwhelmed by constant noise, mastering control over your mind is the ultimate superpower. "Mind Over Noise" explores how focus, awareness, and disciplined thought allow you to rise above distractions and chaos.`,
-  content: `<p>We live in a world where noise is constant. Not just the literal sound, but mental noise, social chatter, and information overload flood our minds daily.</p>
+  {
+    id: 41,
+    title: "Mind Over Noise",
+    author: "Komal Chaudhary",
+    date: "October 31, 2025",
+    category: "Lifestyle",
+    imageUrl: "https://placehold.co/600x400/8b5cf6/ffffff?text=Mind+Over+Noise",
+    summary: `In a world overwhelmed by constant noise, mastering control over your mind is the ultimate superpower. "Mind Over Noise" explores how focus, awareness, and disciplined thought allow you to rise above distractions and chaos.`,
+    content: `<p>We live in a world where noise is constant. Not just the literal sound, but mental noise, social chatter, and information overload flood our minds daily.</p>
 
 <p>This noise affects how we think, feel, and act. It hijacks attention, fuels stress, and clouds judgment.</p>
 
@@ -1524,18 +1522,17 @@ Hubble Space Telescope ब्रह्माण्डीय अवलोकन�
 
 <p>Ultimately, mind over noise is a lifelong practice. It requires patience, focus, and intentionality, but the rewards are profound: clarity, control, and peace.</p>
 
-<p>Will you start mastering your mind today and rise above the noise? The choice is yours, and the power is real.</p>`
-},
-{
-  id: 42,
-  title: "The Silent Genius: Nikola Tesla’s Life and Legacy",
-  author: "Komal Chaudhary",
-  date: "December 19, 2025",
-  category: "Biography",
-  imageUrl: "https://placehold.co/600x400/8b5cf6/ffffff?text=Nikola+Tesla",
-  summary:
-      `Nikola Tesla, the brilliant inventor and visionary, changed the world with his innovations. From alternating current to wireless communication, his genius was unmatched. This blog explores his life, struggles, and enduring legacy.`,
-  content: `<p>Nikola Tesla was born on July 10, 1856, in Smiljan, Croatia. From an early age, he displayed extraordinary intelligence and a vivid imagination, often visualizing complex inventions entirely in his mind before building them.</p>
+<p>Will you start mastering your mind today and rise above the noise? The choice is yours, and the power is real.</p>`,
+  },
+  {
+    id: 42,
+    title: "The Silent Genius: Nikola Tesla’s Life and Legacy",
+    author: "Komal Chaudhary",
+    date: "October 31, 2025",
+    category: "Biography",
+    imageUrl: "https://placehold.co/600x400/8b5cf6/ffffff?text=Nikola+Tesla",
+    summary: `Nikola Tesla, the brilliant inventor and visionary, changed the world with his innovations. From alternating current to wireless communication, his genius was unmatched. This blog explores his life, struggles, and enduring legacy.`,
+    content: `<p>Nikola Tesla was born on July 10, 1856, in Smiljan, Croatia. From an early age, he displayed extraordinary intelligence and a vivid imagination, often visualizing complex inventions entirely in his mind before building them.</p>
 
 <p>Tesla's fascination with electricity began in childhood, fueled by his curiosity and innate understanding of natural phenomena. He often conducted small experiments at home, demonstrating a creative and fearless approach to learning.</p>
 
@@ -1585,19 +1582,19 @@ Hubble Space Telescope ब्रह्माण्डीय अवलोकन�
 
 <p>By studying Tesla’s life, we learn the importance of thinking beyond the present, embracing creativity, and believing in visions that may seem impossible.</p>
 
-<p>In conclusion, Nikola Tesla was more than an inventor; he was a visionary whose mind reshaped reality. His legacy challenges us to pursue knowledge, think boldly, and leave a lasting impact on the world.</p>`
-},
+<p>In conclusion, Nikola Tesla was more than an inventor; he was a visionary whose mind reshaped reality. His legacy challenges us to pursue knowledge, think boldly, and leave a lasting impact on the world.</p>`,
+  },
 
-{
-  id: 43,
-  title: "The Psychology Behind Iconic Characters: Sherlock Holmes and the Art of Observation",
-  author: "Komal Chaudhary",
-  date: "December 19, 2025",
-  category: "Books",
-  imageUrl: "https://placehold.co/600x400/8b5cf6/ffffff?text=Sherlock+Holmes",
-  summary:
-      `Sherlock Holmes, one of literature’s most iconic characters, demonstrates extraordinary observation and deduction skills. This blog explores the psychological principles behind his methods and how human cognition plays a role in his genius.`,
-  content: `<p>Sherlock Holmes, created by Arthur Conan Doyle, is celebrated for his extraordinary ability to observe minute details and deduce truths that escape ordinary people.</p>
+  {
+    id: 43,
+    title:
+      "The Psychology Behind Iconic Characters: Sherlock Holmes and the Art of Observation",
+    author: "Komal Chaudhary",
+    date: "October 31, 2025",
+    category: "Books",
+    imageUrl: "https://placehold.co/600x400/8b5cf6/ffffff?text=Sherlock+Holmes",
+    summary: `Sherlock Holmes, one of literature’s most iconic characters, demonstrates extraordinary observation and deduction skills. This blog explores the psychological principles behind his methods and how human cognition plays a role in his genius.`,
+    content: `<p>Sherlock Holmes, created by Arthur Conan Doyle, is celebrated for his extraordinary ability to observe minute details and deduce truths that escape ordinary people.</p>
 
 <p>Holmes’ powers of observation and deduction are not mere literary exaggerations; they reflect fundamental psychological principles of attention, memory, and reasoning.</p>
 
@@ -1650,19 +1647,18 @@ Hubble Space Telescope ब्रह्माण्डीय अवलोकन�
 <p>Ultimately, Sherlock Holmes is more than a fictional detective; he is a model of human cognitive potential, showing how mind, observation, and logic can uncover truths hidden in plain sight.</p>
 
 <p>By studying Holmes, we understand not only the art of deduction but also the psychology behind human intelligence, attention, and reasoning. His methods continue to inspire investigators, psychologists, and readers around the world.</p>  
-`
-},
+`,
+  },
 
-{
-  id: 44,
-  title: "The Evolution of Jazz: From New Orleans to Global Influence",
-  author: "Komal Chaudhary",
-  date: "December 19, 2025",
-  category: "Music",
-  imageUrl: "https://placehold.co/600x400/8b5cf6/ffffff?text=Jazz+Evolution",
-  summary:
-      `Jazz, born in New Orleans, has evolved from its cultural roots into a global musical phenomenon. This blog traces its history, key figures, cultural significance, and lasting impact on modern music.`,
-  content: `<p>Jazz is more than music; it is a cultural movement that reflects history, innovation, and human expression. Its roots can be traced back to New Orleans in the late 19th and early 20th centuries.</p>
+  {
+    id: 44,
+    title: "The Evolution of Jazz: From New Orleans to Global Influence",
+    author: "Komal Chaudhary",
+    date: "October 31, 2025",
+    category: "Music",
+    imageUrl: "https://placehold.co/600x400/8b5cf6/ffffff?text=Jazz+Evolution",
+    summary: `Jazz, born in New Orleans, has evolved from its cultural roots into a global musical phenomenon. This blog traces its history, key figures, cultural significance, and lasting impact on modern music.`,
+    content: `<p>Jazz is more than music; it is a cultural movement that reflects history, innovation, and human expression. Its roots can be traced back to New Orleans in the late 19th and early 20th centuries.</p>
 
 <p>New Orleans, a melting pot of African, European, and Caribbean cultures, created the perfect environment for jazz to emerge. Rhythms, melodies, and improvisation blended into a distinct sound that would transform music forever.</p>
 
@@ -1712,19 +1708,18 @@ Hubble Space Telescope ब्रह्माण्डीय अवलोकन�
 
 <p>Ultimately, jazz is a celebration of freedom—freedom of expression, creativity, and cultural fusion. Its history is a testament to the power of music to transcend boundaries and connect humanity.</p>
 
-<p>The evolution of jazz, from New Orleans streets to global stages, demonstrates its enduring significance. Jazz is more than a genre; it is a living, breathing art form that continues to inspire, educate, and move people around the world.</p>`
-},
+<p>The evolution of jazz, from New Orleans streets to global stages, demonstrates its enduring significance. Jazz is more than a genre; it is a living, breathing art form that continues to inspire, educate, and move people around the world.</p>`,
+  },
 
-{
-  id: 45,
-  title: "The Quantum World: How Subatomic Particles Defy Reality",
-  author: "Komal Chaudhary",
-  date: "December 19, 2025",
-  category: "Science",
-  imageUrl: "https://placehold.co/600x400/8b5cf6/ffffff?text=Quantum+World",
-  summary:
-      `Quantum mechanics challenges our understanding of reality. This blog explores subatomic phenomena such as superposition, entanglement, and uncertainty, showing how the quantum world defies classical logic and perception.`,
-  content: `<p>The quantum world is a realm unlike anything we experience in daily life. At the subatomic level, particles behave in ways that defy classical intuition and challenge our understanding of reality.</p>
+  {
+    id: 45,
+    title: "The Quantum World: How Subatomic Particles Defy Reality",
+    author: "Komal Chaudhary",
+    date: "October 31, 2025",
+    category: "Science",
+    imageUrl: "https://placehold.co/600x400/8b5cf6/ffffff?text=Quantum+World",
+    summary: `Quantum mechanics challenges our understanding of reality. This blog explores subatomic phenomena such as superposition, entanglement, and uncertainty, showing how the quantum world defies classical logic and perception.`,
+    content: `<p>The quantum world is a realm unlike anything we experience in daily life. At the subatomic level, particles behave in ways that defy classical intuition and challenge our understanding of reality.</p>
 
 <p>One of the foundational principles of quantum mechanics is superposition. Particles, like electrons, can exist in multiple states simultaneously until measured, a phenomenon that defies our everyday experience of objects existing in a single state.</p>
 
@@ -1776,19 +1771,18 @@ Hubble Space Telescope ब्रह्माण्डीय अवलोकन�
 
 <p>Ultimately, the quantum world reminds us that reality is stranger than fiction. The behaviors of subatomic particles defy intuition but reveal a deeper, richer understanding of the universe.</p>
 
-<p>Embracing the lessons of quantum mechanics inspires both wonder and innovation, showing that exploring the smallest scales of nature can lead to profound implications for science, technology, and philosophy.</p>`
-},
+<p>Embracing the lessons of quantum mechanics inspires both wonder and innovation, showing that exploring the smallest scales of nature can lead to profound implications for science, technology, and philosophy.</p>`,
+  },
 
-{
-  id: 46,
-  title: "The Rise and Fall of the Roman Empire: Lessons for Today",
-  author: "Komal Chaudhary",
-  date: "December 19, 2025",
-  category: "History",
-  imageUrl: "https://placehold.co/600x400/8b5cf6/ffffff?text=Roman+Empire",
-  summary:
-      `The Roman Empire rose to unprecedented power before its eventual decline. This blog examines political, military, and cultural factors behind Rome’s success and collapse, drawing lessons applicable to modern societies.`,
-  content: `<p>The Roman Empire is one of history’s most influential civilizations, dominating the Mediterranean world for centuries. Its rise and fall provide enduring lessons for leadership, governance, and society.</p>
+  {
+    id: 46,
+    title: "The Rise and Fall of the Roman Empire: Lessons for Today",
+    author: "Komal Chaudhary",
+    date: "October 31, 2025",
+    category: "History",
+    imageUrl: "https://placehold.co/600x400/8b5cf6/ffffff?text=Roman+Empire",
+    summary: `The Roman Empire rose to unprecedented power before its eventual decline. This blog examines political, military, and cultural factors behind Rome’s success and collapse, drawing lessons applicable to modern societies.`,
+    content: `<p>The Roman Empire is one of history’s most influential civilizations, dominating the Mediterranean world for centuries. Its rise and fall provide enduring lessons for leadership, governance, and society.</p>
 
 <p>Rome began as a small city-state in central Italy and expanded through strategic military conquests, political alliances, and cultural integration.</p>
 
@@ -1840,17 +1834,16 @@ Hubble Space Telescope ब्रह्माण्डीय अवलोकन�
 
 <p>In conclusion, the Roman Empire offers both inspiration and caution. Its rise illustrates how vision, strategy, and culture build lasting power, while its fall reminds us that neglecting political, economic, and social foundations can undo even the greatest achievements.</p>
 
-<p>By studying Rome, modern societies can glean insights into leadership, governance, and resilience, ensuring that lessons from the past inform the present and future.</p>`
-},
-
-
+<p>By studying Rome, modern societies can glean insights into leadership, governance, and resilience, ensuring that lessons from the past inform the present and future.</p>`,
+  },
 
   /*          
    {
                  id: 43,
                  title: "",
                  author: "Komal Chaudhary",
-                 date: "December 19, 2025",
+                 date: "October 31
+            , 2025",
                  category: "Tech",
                  imageUrl: "https://placehold.co/600x400/8b5cf6/ffffff?text=Space",
                  summary:
